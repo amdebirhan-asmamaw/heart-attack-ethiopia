@@ -9,6 +9,8 @@ import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/localization/generated/strings.g.dart';
 import '../bloc/auth_cubit.dart';
 import '../bloc/login_cubit.dart';
+import '../widgets/auth_button.dart';
+import '../widgets/auth_text_field.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -28,6 +30,9 @@ class _LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.t.strings.auth;
+    final size = MediaQuery.of(context).size;
+    // Scale factor based on Figma width 360px
+    final scale = size.width / 360;
 
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
@@ -46,64 +51,72 @@ class _LoginView extends StatelessWidget {
           backgroundColor: AppColors.loginBackground,
           body: SingleChildScrollView(
             child: SizedBox(
-              height: MediaQuery.of(context).size.height,
+              height: size.height > 798 * scale ? size.height : 798 * scale,
+              width: size.width,
               child: Stack(
                 children: [
                   // Logo (LOGO_3-removebg-preview 1)
-                  // CSS: top: calc(50% - 225px / 2 - 263.5px);
+                  // CSS: top: 23px approx; width: 225px; height: 225px;
                   Positioned(
-                    top: MediaQuery.of(context).size.height * 0.05,
+                    top: 23 * scale,
                     left: 0,
                     right: 0,
                     child: Center(
                       child: Image.asset(
                         AppMedia.onboardingLogo,
-                        width: 225,
-                        height: 225,
+                        width: 225 * scale,
+                        height: 225 * scale,
                         fit: BoxFit.contain,
                       ),
                     ),
                   ),
 
                   // Login Inputs (Frame 1000006983)
-                  // CSS: top: 273px;
+                  // CSS: top: 273px; width: 294px; gap: 8px;
                   Positioned(
-                    top: 273,
-                    left: 30,
-                    right: 30,
+                    top: 273 * scale,
+                    left: 33 * scale,
+                    right: 33 * scale,
                     child: Column(
                       children: [
-                        _LoginTextField(
+                        AuthTextField(
                           hintText: t.emailLabel,
                           initialValue: state.email.value,
                           onChanged: context.read<LoginCubit>().emailChanged,
                           keyboardType: TextInputType.emailAddress,
+                          scale: scale,
                         ),
-                        const SizedBox(height: 8),
-                        _LoginTextField(
+                        SizedBox(height: 8 * scale),
+                        AuthTextField(
                           hintText: t.passwordLabel,
                           initialValue: state.password.value,
                           onChanged: context.read<LoginCubit>().passwordChanged,
                           obscureText: true,
                           isPasswordField: true,
+                          scale: scale,
                         ),
                       ],
                     ),
                   ),
 
                   // Forgot Password
-                  // CSS: top: 374px;
+                  // CSS: top: 374px; font-size: 12px; color: #999999;
                   Positioned(
-                    top: 374,
+                    top: 374 * scale,
                     left: 0,
                     right: 0,
                     child: Center(
                       child: TextButton(
                         onPressed: () {},
+                        style: TextButton.styleFrom(
+                          minimumSize: Size.zero,
+                          padding: EdgeInsets.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
                         child: Text(
                           t.forgotPassword,
-                          style: const TextStyle(
-                            fontSize: 12,
+                          style: TextStyle(
+                            fontSize: 12 * scale,
                             fontWeight: FontWeight.w500,
                             color: AppColors.textGrayLight,
                             letterSpacing: -0.005,
@@ -114,38 +127,45 @@ class _LoginView extends StatelessWidget {
                   ),
 
                   // Login Button & Create Account (Frame 512579)
-                  // CSS: top: 407px;
+                  // CSS: top: 407px; height: 65px;
                   Positioned(
-                    top: 407,
-                    left: 30,
-                    right: 30,
+                    top: 407 * scale,
+                    left: 31 * scale,
+                    right: 31 * scale,
                     child: Column(
                       children: [
-                        _MainButton(
+                        AuthButton(
                           text: t.submit,
                           backgroundColor: AppColors.loginMaroon,
                           textColor: Colors.white,
                           isLoading: state.status == FormzSubmissionStatus.inProgress,
                           onPressed: () => context.read<LoginCubit>().submit(),
+                          borderRadius: 50,
+                          scale: scale,
                         ),
-                        const SizedBox(height: 5),
+                        SizedBox(height: 0 * scale), // CSS uses flex layout, gap handled by height of frame
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               t.dontHaveAccount,
-                              style: const TextStyle(
-                                fontSize: 12,
+                              style: TextStyle(
+                                fontSize: 12 * scale,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.textGray,
                               ),
                             ),
                             TextButton(
                               onPressed: () {},
+                              style: TextButton.styleFrom(
+                                minimumSize: Size.zero,
+                                padding: const EdgeInsets.only(left: 4),
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              ),
                               child: Text(
                                 t.createAccount,
-                                style: const TextStyle(
-                                  fontSize: 12,
+                                style: TextStyle(
+                                  fontSize: 12 * scale,
                                   fontWeight: FontWeight.w700,
                                   color: AppColors.loginMaroonLight,
                                 ),
@@ -158,66 +178,79 @@ class _LoginView extends StatelessWidget {
                   ),
 
                   // OR Divider (Frame 512566)
-                  // CSS: top: 510px (parent top)
+                  // CSS: top: 510px; width: 297px; gap: 5px;
                   Positioned(
-                    top: 510,
-                    left: 30,
-                    right: 30,
+                    top: 510 * scale,
+                    left: 31 * scale,
+                    right: 31 * scale,
                     child: Row(
                       children: [
-                        const Expanded(child: Divider(color: Colors.black)),
+                        Expanded(child: Divider(color: Colors.black, thickness: 1 * scale)),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5 * scale),
                           child: Text(
                             t.or,
-                            style: const TextStyle(
-                              fontSize: 16,
+                            style: TextStyle(
+                              fontSize: 16 * scale,
                               fontWeight: FontWeight.w500,
                               color: AppColors.textBlack,
                             ),
                           ),
                         ),
-                        const Expanded(child: Divider(color: Colors.black)),
+                        Expanded(child: Divider(color: Colors.black, thickness: 1 * scale)),
                       ],
                     ),
                   ),
 
                   // Social Buttons (Frame 512575)
+                  // CSS: top: 560px approx; gap: 10px;
                   Positioned(
-                    top: 550,
-                    left: 30,
-                    right: 30,
+                    top: 560 * scale,
+                    left: 31 * scale,
+                    right: 31 * scale,
                     child: Column(
                       children: [
-                        _SocialButton(
+                        AuthButton(
                           text: t.continueWithGoogle,
+                          backgroundColor: AppColors.loginGrayDark,
+                          textColor: AppColors.textBlack,
                           onPressed: () {},
+                          borderRadius: 13,
+                          scale: scale,
                         ),
-                        const SizedBox(height: 10),
-                        _SocialButton(
+                        SizedBox(height: 10 * scale),
+                        AuthButton(
                           text: t.continueWithApple,
+                          backgroundColor: AppColors.loginGrayDark,
+                          textColor: AppColors.textBlack,
                           onPressed: () {},
+                          borderRadius: 13,
+                          scale: scale,
                         ),
-                        const SizedBox(height: 10),
-                        _SocialButton(
+                        SizedBox(height: 10 * scale),
+                        AuthButton(
                           text: t.continueWithFacebook,
+                          backgroundColor: AppColors.loginGrayDark,
+                          textColor: AppColors.textBlack,
                           onPressed: () {},
+                          borderRadius: 13,
+                          scale: scale,
                         ),
                       ],
                     ),
                   ),
 
                   // Terms (Frame 1000007028)
-                  // CSS: top: 730px;
+                  // CSS: top: 730px; width: 294px; color: #cccccc;
                   Positioned(
-                    bottom: 20,
-                    left: 30,
-                    right: 30,
+                    top: 730 * scale,
+                    left: 33 * scale,
+                    right: 33 * scale,
                     child: Text(
                       t.terms,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 14,
+                      style: TextStyle(
+                        fontSize: 14 * scale,
                         fontWeight: FontWeight.w400,
                         height: 1.4,
                         color: AppColors.textGrayLighter,
@@ -230,177 +263,6 @@ class _LoginView extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class _LoginTextField extends StatefulWidget {
-  final String hintText;
-  final String initialValue;
-  final ValueChanged<String> onChanged;
-  final bool obscureText;
-  final bool isPasswordField;
-  final TextInputType keyboardType;
-
-  const _LoginTextField({
-    required this.hintText,
-    required this.initialValue,
-    required this.onChanged,
-    this.obscureText = false,
-    this.isPasswordField = false,
-    this.keyboardType = TextInputType.text,
-  });
-
-  @override
-  State<_LoginTextField> createState() => _LoginTextFieldState();
-}
-
-class _LoginTextFieldState extends State<_LoginTextField> {
-  late bool _isObscured;
-
-  @override
-  void initState() {
-    super.initState();
-    _isObscured = widget.obscureText;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: AppColors.loginGray,
-        borderRadius: BorderRadius.circular(13),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 4),
-      child: TextFormField(
-        initialValue: widget.initialValue,
-        onChanged: widget.onChanged,
-        obscureText: _isObscured,
-        keyboardType: widget.keyboardType,
-        textAlignVertical: TextAlignVertical.center,
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-          color: Colors.black,
-        ),
-        decoration: InputDecoration(
-          hintText: widget.hintText,
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: AppColors.textGray,
-          ),
-          border: InputBorder.none,
-          isDense: true,
-          contentPadding: const EdgeInsets.symmetric(vertical: 14),
-          filled: false,
-          suffixIcon: widget.isPasswordField
-              ? GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _isObscured = !_isObscured;
-                    });
-                  },
-                  child: Icon(
-                    _isObscured
-                        ? Icons.visibility_outlined
-                        : Icons.visibility_off_outlined,
-                    size: 20,
-                    color: AppColors.textGrayLight,
-                  ),
-                )
-              : null,
-          suffixIconConstraints: const BoxConstraints(
-            minWidth: 24,
-            maxHeight: 24,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _MainButton extends StatelessWidget {
-  final String text;
-  final Color backgroundColor;
-  final Color textColor;
-  final VoidCallback onPressed;
-  final bool isLoading;
-
-  const _MainButton({
-    required this.text,
-    required this.backgroundColor,
-    required this.textColor,
-    required this.onPressed,
-    this.isLoading = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: isLoading ? null : onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-          foregroundColor: textColor,
-          elevation: 0,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50),
-          ),
-        ),
-        child: isLoading
-            ? const SizedBox(
-                height: 20,
-                width: 20,
-                child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
-              )
-            : Text(
-                text,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-      ),
-    );
-  }
-}
-
-class _SocialButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onPressed;
-
-  const _SocialButton({
-    required this.text,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.loginGrayDark,
-          foregroundColor: AppColors.textBlack,
-          elevation: 0,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(13),
-          ),
-        ),
-        child: Text(
-          text,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
     );
   }
 }
