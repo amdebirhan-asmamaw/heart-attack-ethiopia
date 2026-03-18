@@ -17,6 +17,7 @@ abstract final class AppColors {
 
   // Onboarding
   static const onboardingRed = Color(0xFFD72335);
+  static const onboardingGreen = Color(0xFF0D3D2E);
   static const overlayGradientStart = Color(0x00252525);
   static const overlayGradientEnd = Color(0xCC000000);
 }

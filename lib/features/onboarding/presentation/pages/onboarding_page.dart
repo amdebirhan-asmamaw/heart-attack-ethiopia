@@ -16,7 +16,7 @@ class OnboardingPage extends StatefulWidget {
 }
 
 class _OnboardingPageState extends State<OnboardingPage> {
-  final PageController _pageController = PageController();
+  final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
 
   @override
@@ -25,11 +25,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
     super.dispose();
   }
 
-  void _onIndicatorTap(int index) {
+  void _navigateToPage(int index) {
     if (index >= 2) return;
     _pageController.animateToPage(
       index,
-      duration: const Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
   }
@@ -78,40 +78,43 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 ),
               ),
 
-              // Swipeable PageView
+              // PageView for Onboarding Flow
               PageView(
                 controller: _pageController,
+                physics: const ClampingScrollPhysics(),
                 onPageChanged: (index) {
                   setState(() {
                     _currentPage = index;
                   });
                 },
                 children: [
-                  // Page 1: White Theme
+                  // Page 1: White Card
                   OnboardingBottomSheet(
                     title: t.title3,
                     backgroundColor: Colors.white,
                     textColor: Colors.black,
                     currentPage: 0,
                     indicatorInactiveColor: Colors.black,
-                    onIndicatorTap: _onIndicatorTap,
+                    onIndicatorTap: _navigateToPage,
                     buttonText: t.next,
                     buttonBackgroundColor: Colors.black,
                     buttonTextColor: Colors.white,
-                    onButtonPressed: () => _onIndicatorTap(1),
+                    onButtonPressed: () => _navigateToPage(1),
                   ),
-                  // Page 2: Black Theme
+
+                  // Page 2: Dark Green Card
                   OnboardingBottomSheet(
                     title: t.title,
-                    backgroundColor: Colors.black,
+                    backgroundColor: AppColors.onboardingGreen,
                     textColor: Colors.white,
                     currentPage: 1,
                     indicatorInactiveColor: Colors.white,
-                    onIndicatorTap: _onIndicatorTap,
+                    onIndicatorTap: _navigateToPage,
                     buttonText: t.signUp,
                     buttonBackgroundColor: Colors.white,
                     buttonTextColor: Colors.black,
-                    onButtonPressed: () => context.read<OnboardingCubit>().complete(),
+                    onButtonPressed: () =>
+                        context.read<OnboardingCubit>().complete(),
                     isButtonLoading: state.isSubmitting,
                   ),
                 ],

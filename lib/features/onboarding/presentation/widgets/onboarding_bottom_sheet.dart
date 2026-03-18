@@ -5,6 +5,7 @@ import 'onboarding_indicator_row.dart';
 
 class OnboardingBottomSheet extends StatelessWidget {
   final String title;
+  final String? subtitle;
   final Color backgroundColor;
   final Color textColor;
   final int currentPage;
@@ -19,6 +20,7 @@ class OnboardingBottomSheet extends StatelessWidget {
   const OnboardingBottomSheet({
     super.key,
     required this.title,
+    this.subtitle,
     required this.backgroundColor,
     required this.textColor,
     required this.currentPage,
@@ -37,39 +39,68 @@ class OnboardingBottomSheet extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: Container(
         width: double.infinity,
-        height: 254,
+        height: 254, // CSS height: 254px
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(30),
+            topLeft: Radius.circular(30), // CSS border-radius: 30px
             topRight: Radius.circular(30),
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 26, left: 25, right: 25),
+          padding: const EdgeInsets.only(top: 26, left: 25, right: 25, bottom: 20),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
+              // Title Section
               SizedBox(
-                width: 313,
-                height: 87,
-                child: Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    height: 1.2,
-                    color: textColor,
-                  ),
+                width: 313, // CSS width
+                height: 87, // CSS height
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      title,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 24, // CSS font-size
+                        fontWeight: FontWeight.w700,
+                        height: 1.2,
+                        color: textColor,
+                      ),
+                    ),
+                    if (subtitle != null) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        subtitle!,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          height: 1.4,
+                          color: textColor.withOpacity(0.7),
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
+              
+              // Indicators Row
               OnboardingIndicatorRow(
                 currentPage: currentPage,
                 inactiveColor: indicatorInactiveColor,
                 onTap: onIndicatorTap,
               ),
-              const SizedBox(height: 20),
+              
+              const Spacer(),
+
+              // Action Button
               OnboardingActionButton(
                 text: buttonText,
                 backgroundColor: buttonBackgroundColor,

@@ -13,7 +13,7 @@ class OnboardingIndicatorRow extends StatelessWidget {
     required this.currentPage,
     required this.inactiveColor,
     required this.onTap,
-    this.totalPages = 3,
+    this.totalPages = 2,
   });
 
   @override
