@@ -6,24 +6,16 @@ import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/localization/generated/strings.g.dart';
 import '../../../../app/resources/app_media.dart';
 import '../bloc/onboarding_cubit.dart';
+import '../widgets/onboarding_bottom_sheet.dart';
 
-class OnboardingPage extends StatelessWidget {
+class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const _OnboardingView();
-  }
+  State<OnboardingPage> createState() => _OnboardingPageState();
 }
 
-class _OnboardingView extends StatefulWidget {
-  const _OnboardingView();
-
-  @override
-  State<_OnboardingView> createState() => _OnboardingViewState();
-}
-
-class _OnboardingViewState extends State<_OnboardingView> {
+class _OnboardingPageState extends State<OnboardingPage> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
@@ -33,14 +25,18 @@ class _OnboardingViewState extends State<_OnboardingView> {
     super.dispose();
   }
 
+  void _onIndicatorTap(int index) {
+    if (index >= 2) return;
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final t = context.t.strings.onboarding;
-    final pageTitles = [
-      t.title3,
-      t.title,
-      t.title2,
-    ];
 
     return BlocConsumer<OnboardingCubit, OnboardingState>(
       listener: (context, state) {
@@ -52,8 +48,7 @@ class _OnboardingViewState extends State<_OnboardingView> {
         return Scaffold(
           body: Stack(
             children: [
-              // Background Gradient (Frame 1000007007)
-              // Using the CSS gradient as the full page background since images are for reference only
+              // Static Background Gradient
               Positioned.fill(
                 child: Container(
                   decoration: const BoxDecoration(
@@ -70,8 +65,7 @@ class _OnboardingViewState extends State<_OnboardingView> {
                 ),
               ),
 
-              // Logo (LOGO_3-removebg-preview 1)
-              // CSS: left: calc(50% - 225px / 2 - 0.5px); top: calc(50% - 225px / 2 - 151.5px);
+              // Static Logo
               Center(
                 child: Transform.translate(
                   offset: const Offset(-0.5, -151.5),
@@ -84,130 +78,48 @@ class _OnboardingViewState extends State<_OnboardingView> {
                 ),
               ),
 
-              // Bottom Sheet (Frame 1000007006)
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  width: double.infinity,
-                  height: 254,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
-                    ),
+              // Swipeable PageView
+              PageView(
+                controller: _pageController,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentPage = index;
+                  });
+                },
+                children: [
+                  // Page 1: White Theme
+                  OnboardingBottomSheet(
+                    title: t.title3,
+                    backgroundColor: Colors.white,
+                    textColor: Colors.black,
+                    currentPage: 0,
+                    indicatorInactiveColor: Colors.black,
+                    onIndicatorTap: _onIndicatorTap,
+                    buttonText: t.next,
+                    buttonBackgroundColor: Colors.black,
+                    buttonTextColor: Colors.white,
+                    onButtonPressed: () => _onIndicatorTap(1),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 26, left: 25, right: 25),
-                    child: Column(
-                      children: [
-                        // PageView for Titles
-                        Expanded(
-                          child: PageView.builder(
-                            controller: _pageController,
-                            itemCount: pageTitles.length,
-                            onPageChanged: (index) {
-                              setState(() {
-                                _currentPage = index;
-                              });
-                            },
-                            itemBuilder: (context, index) {
-                              return SizedBox(
-                                width: 313,
-                                child: Text(
-                                  pageTitles[index],
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w700,
-                                    height: 1.2,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        
-                        // Indicators (Frame 512564)
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(pageTitles.length, (index) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 1.5),
-                              child: _buildIndicator(isActive: _currentPage == index),
-                            );
-                          }),
-                        ),
-                        
-                        const SizedBox(height: 20),
-
-                        // Sign Up Button
-                        SizedBox(
-                          width: 310,
-                          height: 45,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              if (_currentPage < pageTitles.length - 1) {
-                                _pageController.nextPage(
-                                  duration: const Duration(milliseconds: 300),
-                                  curve: Curves.easeInOut,
-                                );
-                              } else {
-                                context.read<OnboardingCubit>().complete();
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.black,
-                              foregroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              elevation: 0,
-                              padding: EdgeInsets.zero,
-                            ),
-                            child: state.isSubmitting
-                                ? const SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: CircularProgressIndicator(
-                                      color: Colors.white,
-                                      strokeWidth: 2,
-                                    ),
-                                  )
-                                : Text(
-                                    _currentPage == pageTitles.length - 1
-                                        ? t.signUp
-                                        : t.next,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.4,
-                                    ),
-                                  ),
-                          ),
-                        ),
-                        const SizedBox(height: 20), // Bottom padding
-                      ],
-                    ),
+                  // Page 2: Black Theme
+                  OnboardingBottomSheet(
+                    title: t.title,
+                    backgroundColor: Colors.black,
+                    textColor: Colors.white,
+                    currentPage: 1,
+                    indicatorInactiveColor: Colors.white,
+                    onIndicatorTap: _onIndicatorTap,
+                    buttonText: t.signUp,
+                    buttonBackgroundColor: Colors.white,
+                    buttonTextColor: Colors.black,
+                    onButtonPressed: () => context.read<OnboardingCubit>().complete(),
+                    isButtonLoading: state.isSubmitting,
                   ),
-                ),
+                ],
               ),
             ],
           ),
         );
       },
-    );
-  }
-
-  Widget _buildIndicator({required bool isActive}) {
-    return Container(
-      width: 10,
-      height: 10,
-      decoration: BoxDecoration(
-        color: isActive ? AppColors.onboardingRed : Colors.black,
-        shape: BoxShape.circle,
-      ),
     );
   }
 }
