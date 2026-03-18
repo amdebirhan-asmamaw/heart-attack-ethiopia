@@ -52,14 +52,14 @@ class _AuthTextFieldState extends State<AuthTextField> {
         keyboardType: widget.keyboardType,
         textAlignVertical: TextAlignVertical.center,
         style: TextStyle(
-          fontSize: 16 * widget.scale,
+          fontSize: 14 * widget.scale,
           fontWeight: FontWeight.w500,
           color: Colors.black,
         ),
         decoration: InputDecoration(
           hintText: widget.hintText,
           hintStyle: TextStyle(
-            fontSize: 16 * widget.scale,
+            fontSize: 14 * widget.scale,
             fontWeight: FontWeight.w500,
             color: AppColors.textGray,
           ),

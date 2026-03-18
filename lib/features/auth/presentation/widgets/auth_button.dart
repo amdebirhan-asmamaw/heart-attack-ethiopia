@@ -8,6 +8,7 @@ class AuthButton extends StatelessWidget {
   final bool isLoading;
   final double borderRadius;
   final double scale;
+  final double fontSize;
 
   const AuthButton({
     super.key,
@@ -18,6 +19,7 @@ class AuthButton extends StatelessWidget {
     this.isLoading = false,
     required this.borderRadius,
     required this.scale,
+    this.fontSize = 16,
   });
 
   @override
@@ -47,8 +49,9 @@ class AuthButton extends StatelessWidget {
               )
             : Text(
                 text,
+                textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 16 * scale,
+                  fontSize: fontSize * scale,
                   fontWeight: FontWeight.w500,
                 ),
               ),

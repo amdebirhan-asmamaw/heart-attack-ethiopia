@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
@@ -47,217 +48,200 @@ class _LoginView extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          backgroundColor: AppColors.loginBackground,
-          body: SingleChildScrollView(
-            child: SizedBox(
-              height: size.height > 798 * scale ? size.height : 798 * scale,
-              width: size.width,
-              child: Stack(
-                children: [
-                  // Logo (LOGO_3-removebg-preview 1)
-                  // CSS: top: 23px approx; width: 225px; height: 225px;
-                  Positioned(
-                    top: 23 * scale,
-                    left: 0,
-                    right: 0,
-                    child: Center(
-                      child: Image.asset(
-                        AppMedia.onboardingLogo,
-                        width: 225 * scale,
-                        height: 225 * scale,
-                        fit: BoxFit.contain,
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: const SystemUiOverlayStyle(
+            systemNavigationBarColor: AppColors.loginBackground,
+            systemNavigationBarIconBrightness: Brightness.dark,
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.dark,
+          ),
+          child: Scaffold(
+            backgroundColor: AppColors.loginBackground,
+            resizeToAvoidBottomInset: true,
+            body: SafeArea(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minHeight: constraints.maxHeight,
                       ),
-                    ),
-                  ),
-
-                  // Login Inputs (Frame 1000006983)
-                  // CSS: top: 273px; width: 294px; gap: 8px;
-                  Positioned(
-                    top: 273 * scale,
-                    left: 33 * scale,
-                    right: 33 * scale,
-                    child: Column(
-                      children: [
-                        AuthTextField(
-                          hintText: t.emailLabel,
-                          initialValue: state.email.value,
-                          onChanged: context.read<LoginCubit>().emailChanged,
-                          keyboardType: TextInputType.emailAddress,
-                          scale: scale,
-                        ),
-                        SizedBox(height: 8 * scale),
-                        AuthTextField(
-                          hintText: t.passwordLabel,
-                          initialValue: state.password.value,
-                          onChanged: context.read<LoginCubit>().passwordChanged,
-                          obscureText: true,
-                          isPasswordField: true,
-                          scale: scale,
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  // Forgot Password
-                  // CSS: top: 374px; font-size: 12px; color: #999999;
-                  Positioned(
-                    top: 374 * scale,
-                    left: 0,
-                    right: 0,
-                    child: Center(
-                      child: TextButton(
-                        onPressed: () {},
-                        style: TextButton.styleFrom(
-                          minimumSize: Size.zero,
-                          padding: EdgeInsets.zero,
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        ),
-                        child: Text(
-                          t.forgotPassword,
-                          style: TextStyle(
-                            fontSize: 12 * scale,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.textGrayLight,
-                            letterSpacing: -0.005,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  // Login Button & Create Account (Frame 512579)
-                  // CSS: top: 407px; height: 65px;
-                  Positioned(
-                    top: 407 * scale,
-                    left: 31 * scale,
-                    right: 31 * scale,
-                    child: Column(
-                      children: [
-                        AuthButton(
-                          text: t.submit,
-                          backgroundColor: AppColors.loginMaroon,
-                          textColor: Colors.white,
-                          isLoading: state.status == FormzSubmissionStatus.inProgress,
-                          onPressed: () => context.read<LoginCubit>().submit(),
-                          borderRadius: 50,
-                          scale: scale,
-                        ),
-                        SizedBox(height: 0 * scale), // CSS uses flex layout, gap handled by height of frame
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              t.dontHaveAccount,
-                              style: TextStyle(
-                                fontSize: 12 * scale,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.textGray,
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              style: TextButton.styleFrom(
-                                minimumSize: Size.zero,
-                                padding: const EdgeInsets.only(left: 4),
-                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                              ),
-                              child: Text(
-                                t.createAccount,
-                                style: TextStyle(
-                                  fontSize: 12 * scale,
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.loginMaroonLight,
+                      child: IntrinsicHeight(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 31 * scale),
+                          child: Column(
+                            children: [
+                              // Logo
+                              SizedBox(height: 10 * scale),
+                              Center(
+                                child: Image.asset(
+                                  AppMedia.onboardingLogo,
+                                  width: 210 * scale,
+                                  height: 210 * scale,
+                                  fit: BoxFit.contain,
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                              const Spacer(flex: 1),
 
-                  // OR Divider (Frame 512566)
-                  // CSS: top: 510px; width: 297px; gap: 5px;
-                  Positioned(
-                    top: 510 * scale,
-                    left: 31 * scale,
-                    right: 31 * scale,
-                    child: Row(
-                      children: [
-                        Expanded(child: Divider(color: Colors.black, thickness: 1 * scale)),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 5 * scale),
-                          child: Text(
-                            t.or,
-                            style: TextStyle(
-                              fontSize: 16 * scale,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.textBlack,
-                            ),
+                              // Login Inputs
+                              Column(
+                                children: [
+                                  AuthTextField(
+                                    hintText: t.emailLabel,
+                                    initialValue: state.email.value,
+                                    onChanged: context.read<LoginCubit>().emailChanged,
+                                    keyboardType: TextInputType.emailAddress,
+                                    scale: scale,
+                                  ),
+                                  SizedBox(height: 8 * scale),
+                                  AuthTextField(
+                                    hintText: t.passwordLabel,
+                                    initialValue: state.password.value,
+                                    onChanged: context.read<LoginCubit>().passwordChanged,
+                                    obscureText: true,
+                                    isPasswordField: true,
+                                    scale: scale,
+                                  ),
+                                ],
+                              ),
+
+                              // Forgot Password
+                              Center(
+                                child: TextButton(
+                                  onPressed: () {},
+                                  style: TextButton.styleFrom(
+                                    minimumSize: Size.zero,
+                                    padding: EdgeInsets.symmetric(vertical: 8 * scale),
+                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  ),
+                                  child: Text(
+                                    t.forgotPassword,
+                                    style: TextStyle(
+                                      fontSize: 12 * scale,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.textGrayLight,
+                                      letterSpacing: -0.005,
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              // Login Button & Create Account
+                              AuthButton(
+                                text: t.submit,
+                                backgroundColor: AppColors.loginMaroon,
+                                textColor: Colors.white,
+                                isLoading: state.status == FormzSubmissionStatus.inProgress,
+                                onPressed: () => context.read<LoginCubit>().submit(),
+                                borderRadius: 50,
+                                scale: scale,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    t.dontHaveAccount,
+                                    style: TextStyle(
+                                      fontSize: 12 * scale,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.textGray,
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {},
+                                    style: TextButton.styleFrom(
+                                      minimumSize: Size.zero,
+                                      padding: EdgeInsets.only(left: 4 * scale, top: 8 * scale, bottom: 8 * scale),
+                                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    ),
+                                    child: Text(
+                                      t.createAccount,
+                                      style: TextStyle(
+                                        fontSize: 12 * scale,
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.loginMaroonLight,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              const Spacer(flex: 1),
+
+                              // OR Divider
+                              Row(
+                                children: [
+                                  const Expanded(child: Divider(color: Colors.black, thickness: 1)),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 5 * scale),
+                                    child: Text(
+                                      t.or,
+                                      style: TextStyle(
+                                        fontSize: 14 * scale,
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColors.textBlack,
+                                      ),
+                                    ),
+                                  ),
+                                  const Expanded(child: Divider(color: Colors.black, thickness: 1)),
+                                ],
+                              ),
+                              SizedBox(height: 10 * scale),
+
+                              // Social Buttons
+                              AuthButton(
+                                text: t.continueWithGoogle,
+                                backgroundColor: AppColors.loginGrayDark,
+                                textColor: AppColors.textBlack,
+                                onPressed: () {},
+                                borderRadius: 13,
+                                scale: scale,
+                                fontSize: 14,
+                              ),
+                              SizedBox(height: 8 * scale),
+                              AuthButton(
+                                text: t.continueWithApple,
+                                backgroundColor: AppColors.loginGrayDark,
+                                textColor: AppColors.textBlack,
+                                onPressed: () {},
+                                borderRadius: 13,
+                                scale: scale,
+                                fontSize: 14,
+                              ),
+                              SizedBox(height: 8 * scale),
+                              AuthButton(
+                                text: t.continueWithFacebook,
+                                backgroundColor: AppColors.loginGrayDark,
+                                textColor: AppColors.textBlack,
+                                onPressed: () {},
+                                borderRadius: 13,
+                                scale: scale,
+                                fontSize: 14,
+                              ),
+
+                              const Spacer(flex: 1),
+
+                              // Terms
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 10 * scale),
+                                child: Text(
+                                  t.terms,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 13 * scale,
+                                    fontWeight: FontWeight.w400,
+                                    height: 1.3,
+                                    color: AppColors.textGrayLighter,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        Expanded(child: Divider(color: Colors.black, thickness: 1 * scale)),
-                      ],
-                    ),
-                  ),
-
-                  // Social Buttons (Frame 512575)
-                  // CSS: top: 560px approx; gap: 10px;
-                  Positioned(
-                    top: 560 * scale,
-                    left: 31 * scale,
-                    right: 31 * scale,
-                    child: Column(
-                      children: [
-                        AuthButton(
-                          text: t.continueWithGoogle,
-                          backgroundColor: AppColors.loginGrayDark,
-                          textColor: AppColors.textBlack,
-                          onPressed: () {},
-                          borderRadius: 13,
-                          scale: scale,
-                        ),
-                        SizedBox(height: 10 * scale),
-                        AuthButton(
-                          text: t.continueWithApple,
-                          backgroundColor: AppColors.loginGrayDark,
-                          textColor: AppColors.textBlack,
-                          onPressed: () {},
-                          borderRadius: 13,
-                          scale: scale,
-                        ),
-                        SizedBox(height: 10 * scale),
-                        AuthButton(
-                          text: t.continueWithFacebook,
-                          backgroundColor: AppColors.loginGrayDark,
-                          textColor: AppColors.textBlack,
-                          onPressed: () {},
-                          borderRadius: 13,
-                          scale: scale,
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  // Terms (Frame 1000007028)
-                  // CSS: top: 730px; width: 294px; color: #cccccc;
-                  Positioned(
-                    top: 730 * scale,
-                    left: 33 * scale,
-                    right: 33 * scale,
-                    child: Text(
-                      t.terms,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 14 * scale,
-                        fontWeight: FontWeight.w400,
-                        height: 1.4,
-                        color: AppColors.textGrayLighter,
                       ),
                     ),
-                  ),
-                ],
+                  );
+                },
               ),
             ),
           ),
