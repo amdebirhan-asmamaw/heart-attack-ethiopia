@@ -1,0 +1,65 @@
+{
+  "app": {
+    "name": "Heart Attack Ethiopia",
+    "tagline": "Heart Attack Ethiopia Flutter 应用。",
+    "loading": "正在准备您的体验..."
+  },
+  "auth": {
+    "title": "欢迎回来",
+    "subtitle": "请登录以继续。",
+    "emailLabel": "电子邮箱地址",
+    "passwordLabel": "密码",
+    "emailHint": "demo@template.dev",
+    "passwordHint": "Password123",
+    "submit": "登录",
+    "logout": "退出登录",
+    "checkingSession": "正在检查您保存的会话...",
+    "demoHint": "演示账户：demo@template.dev / Password123",
+    "invalidCredentials": "请使用演示凭据进入应用。",
+    "signedInAs": "已登录为 $email"
+  },
+  "navigation": {
+    "chat": "聊天",
+    "notifications": "通知",
+    "profile": "个人资料",
+    "settings": "设置"
+  },
+  "common": {
+    "retry": "重试",
+    "cancel": "取消",
+    "comingSoon": "此部分即将推出。",
+    "noConnection": "没有网络连接"
+  },
+  "chat": {
+    "title": "团队聊天",
+    "description": "将您的实时消息流接入此模块。",
+    "emptyState": "暂无会话。"
+  },
+  "notifications": {
+    "title": "通知",
+    "description": "在这里管理推送、应用内和本地通知。"
+  },
+  "profile": {
+    "title": "个人资料",
+    "description": "在这里展示账户偏好、安全信息和个人资料。"
+  },
+  "settings": {
+    "title": "设置",
+    "language": "语言",
+    "english": "英语",
+    "arabic": "阿拉伯语",
+    "environment": "环境",
+    "activeEnvironment": "当前环境：$environment"
+  },
+  "connectivity": {
+    "online": "在线",
+    "offline": "离线"
+  },
+  "onboarding": {
+    "skip": "跳过",
+    "next": "继续",
+    "getStarted": "开始使用",
+    "title": "欢迎使用 Heart Attack Ethiopia",
+    "subtitle": "您在埃塞俄比亚的心脏健康与紧急应对随身指南"
+  }
+}

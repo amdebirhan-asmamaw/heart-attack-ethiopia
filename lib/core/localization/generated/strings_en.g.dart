@@ -274,26 +274,23 @@ class TranslationsStringsOnboardingEn {
 	/// en: 'Get started'
 	String get getStarted => 'Get started';
 
-	/// en: 'A quick walkthrough before you continue.'
-	String get intro => 'A quick walkthrough before you continue.';
+	/// en: 'Welcome to Heart Attack Ethiopia'
+	String get title => 'Welcome to Heart Attack Ethiopia';
 
-	/// en: 'Move faster when symptoms matter'
-	String get welcomeTitle => 'Move faster when symptoms matter';
+	/// en: 'Your pocket guide to heart health and emergency response in Ethiopia'
+	String get subtitle => 'Your pocket guide to heart health and emergency response in Ethiopia';
 
-	/// en: 'Start with a focused guide built to help people in Ethiopia spot warning signs and respond without delay.'
-	String get welcomeBody => 'Start with a focused guide built to help people in Ethiopia spot warning signs and respond without delay.';
+	/// en: 'Emergency Assistance'
+	String get title2 => 'Emergency Assistance';
 
-	/// en: 'Keep urgent heart-health information close'
-	String get trackTitle => 'Keep urgent heart-health information close';
+	/// en: 'Get immediate help and connect with nearby emergency services when every second counts.'
+	String get subtitle2 => 'Get immediate help and connect with nearby emergency services when every second counts.';
 
-	/// en: 'Store key details, follow emergency steps, and stay ready to share what responders need.'
-	String get trackBody => 'Store key details, follow emergency steps, and stay ready to share what responders need.';
+	/// en: 'Healing one heart at a time. Your support saves lives.'
+	String get title3 => 'Healing one heart at a time. Your support saves lives.';
 
-	/// en: 'Navigate care with confidence'
-	String get supportTitle => 'Navigate care with confidence';
-
-	/// en: 'Get a clearer path from first symptoms to hospital follow-up, medication, and recovery support.'
-	String get supportBody => 'Get a clearer path from first symptoms to hospital follow-up, medication, and recovery support.';
+	/// en: 'Sign Up'
+	String get signUp => 'Sign Up';
 }
 
 /// The flat map containing all translations for locale <en>.
@@ -345,13 +342,12 @@ extension on Translations {
 			'strings.onboarding.skip' => 'Skip',
 			'strings.onboarding.next' => 'Next',
 			'strings.onboarding.getStarted' => 'Get started',
-			'strings.onboarding.intro' => 'A quick walkthrough before you continue.',
-			'strings.onboarding.welcomeTitle' => 'Move faster when symptoms matter',
-			'strings.onboarding.welcomeBody' => 'Start with a focused guide built to help people in Ethiopia spot warning signs and respond without delay.',
-			'strings.onboarding.trackTitle' => 'Keep urgent heart-health information close',
-			'strings.onboarding.trackBody' => 'Store key details, follow emergency steps, and stay ready to share what responders need.',
-			'strings.onboarding.supportTitle' => 'Navigate care with confidence',
-			'strings.onboarding.supportBody' => 'Get a clearer path from first symptoms to hospital follow-up, medication, and recovery support.',
+			'strings.onboarding.title' => 'Welcome to Heart Attack Ethiopia',
+			'strings.onboarding.subtitle' => 'Your pocket guide to heart health and emergency response in Ethiopia',
+			'strings.onboarding.title2' => 'Emergency Assistance',
+			'strings.onboarding.subtitle2' => 'Get immediate help and connect with nearby emergency services when every second counts.',
+			'strings.onboarding.title3' => 'Healing one heart at a time. Your support saves lives.',
+			'strings.onboarding.signUp' => 'Sign Up',
 			_ => null,
 		};
 	}

@@ -1,0 +1,65 @@
+{
+  "app": {
+    "name": "Heart Attack Ethiopia",
+    "tagline": "Heart Attack Ethiopia Flutter-app.",
+    "loading": "Je ervaring wordt voorbereid..."
+  },
+  "auth": {
+    "title": "Welkom terug",
+    "subtitle": "Log in om verder te gaan.",
+    "emailLabel": "E-mailadres",
+    "passwordLabel": "Wachtwoord",
+    "emailHint": "demo@template.dev",
+    "passwordHint": "Password123",
+    "submit": "Inloggen",
+    "logout": "Uitloggen",
+    "checkingSession": "Je opgeslagen sessie wordt gecontroleerd...",
+    "demoHint": "Demo-account: demo@template.dev / Password123",
+    "invalidCredentials": "Gebruik de demo-inloggegevens om de app te openen.",
+    "signedInAs": "Ingelogd als $email"
+  },
+  "navigation": {
+    "chat": "Chat",
+    "notifications": "Meldingen",
+    "profile": "Profiel",
+    "settings": "Instellingen"
+  },
+  "common": {
+    "retry": "Opnieuw proberen",
+    "cancel": "Annuleren",
+    "comingSoon": "Deze sectie is binnenkort beschikbaar.",
+    "noConnection": "Geen internetverbinding"
+  },
+  "chat": {
+    "title": "Teamchat",
+    "description": "Koppel hier je live berichtenstromen aan deze module.",
+    "emptyState": "Nog geen gesprekken."
+  },
+  "notifications": {
+    "title": "Meldingen",
+    "description": "Beheer hier push-, in-app- en lokale meldingen."
+  },
+  "profile": {
+    "title": "Profiel",
+    "description": "Toon hier accountvoorkeuren, beveiliging en persoonlijke gegevens."
+  },
+  "settings": {
+    "title": "Instellingen",
+    "language": "Taal",
+    "english": "Engels",
+    "arabic": "Arabisch",
+    "environment": "Omgeving",
+    "activeEnvironment": "Huidige omgeving: $environment"
+  },
+  "connectivity": {
+    "online": "Online",
+    "offline": "Offline"
+  },
+  "onboarding": {
+    "skip": "Overslaan",
+    "next": "Volgende",
+    "getStarted": "Aan de slag",
+    "title": "Welkom bij Heart Attack Ethiopia",
+    "subtitle": "Jouw gids op zak voor hartgezondheid en noodhulp in Ethiopië"
+  }
+}

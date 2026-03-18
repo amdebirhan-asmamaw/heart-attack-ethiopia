@@ -1,0 +1,65 @@
+{
+  "app": {
+    "name": "Heart Attack Ethiopia",
+    "tagline": "Applicazione Flutter di Heart Attack Ethiopia.",
+    "loading": "Preparazione dell'esperienza..."
+  },
+  "auth": {
+    "title": "Bentornato",
+    "subtitle": "Accedi per continuare.",
+    "emailLabel": "Indirizzo e-mail",
+    "passwordLabel": "Password",
+    "emailHint": "demo@template.dev",
+    "passwordHint": "Password123",
+    "submit": "Accedi",
+    "logout": "Disconnetti",
+    "checkingSession": "Controllo della sessione salvata in corso...",
+    "demoHint": "Account demo: demo@template.dev / Password123",
+    "invalidCredentials": "Usa le credenziali demo per entrare nell'app.",
+    "signedInAs": "Accesso effettuato come $email"
+  },
+  "navigation": {
+    "chat": "Chat",
+    "notifications": "Notifiche",
+    "profile": "Profilo",
+    "settings": "Impostazioni"
+  },
+  "common": {
+    "retry": "Riprova",
+    "cancel": "Annulla",
+    "comingSoon": "Questa sezione sarà disponibile presto.",
+    "noConnection": "Nessuna connessione a Internet"
+  },
+  "chat": {
+    "title": "Chat del team",
+    "description": "Collega qui i tuoi flussi di messaggistica in tempo reale.",
+    "emptyState": "Nessuna conversazione al momento."
+  },
+  "notifications": {
+    "title": "Notifiche",
+    "description": "Gestisci da qui notifiche push, in-app e locali."
+  },
+  "profile": {
+    "title": "Profilo",
+    "description": "Mostra qui preferenze dell'account, sicurezza e dati personali."
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "language": "Lingua",
+    "english": "Inglese",
+    "arabic": "Arabo",
+    "environment": "Ambiente",
+    "activeEnvironment": "Ambiente corrente: $environment"
+  },
+  "connectivity": {
+    "online": "Online",
+    "offline": "Offline"
+  },
+  "onboarding": {
+    "skip": "Salta",
+    "next": "Avanti",
+    "getStarted": "Inizia",
+    "title": "Benvenuto in Heart Attack Ethiopia",
+    "subtitle": "La tua guida tascabile alla salute del cuore e alla risposta alle emergenze in Etiopia"
+  }
+}

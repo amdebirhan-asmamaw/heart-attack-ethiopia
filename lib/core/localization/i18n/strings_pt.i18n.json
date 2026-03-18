@@ -1,0 +1,65 @@
+{
+  "app": {
+    "name": "Heart Attack Ethiopia",
+    "tagline": "Aplicativo Flutter da Heart Attack Ethiopia.",
+    "loading": "Preparando sua experiência..."
+  },
+  "auth": {
+    "title": "Bem-vindo de volta",
+    "subtitle": "Faça login para continuar.",
+    "emailLabel": "Endereço de e-mail",
+    "passwordLabel": "Senha",
+    "emailHint": "demo@template.dev",
+    "passwordHint": "Password123",
+    "submit": "Entrar",
+    "logout": "Sair",
+    "checkingSession": "Verificando sua sessão salva...",
+    "demoHint": "Conta demo: demo@template.dev / Password123",
+    "invalidCredentials": "Use as credenciais de demonstração para entrar no aplicativo.",
+    "signedInAs": "Conectado como $email"
+  },
+  "navigation": {
+    "chat": "Chat",
+    "notifications": "Notificações",
+    "profile": "Perfil",
+    "settings": "Configurações"
+  },
+  "common": {
+    "retry": "Tentar novamente",
+    "cancel": "Cancelar",
+    "comingSoon": "Esta seção estará disponível em breve.",
+    "noConnection": "Sem conexão com a internet"
+  },
+  "chat": {
+    "title": "Chat da equipe",
+    "description": "Conecte seus fluxos de mensagens em tempo real a este módulo.",
+    "emptyState": "Ainda não há conversas."
+  },
+  "notifications": {
+    "title": "Notificações",
+    "description": "Gerencie daqui notificações push, locais e no aplicativo."
+  },
+  "profile": {
+    "title": "Perfil",
+    "description": "Mostre aqui preferências da conta, segurança e dados pessoais."
+  },
+  "settings": {
+    "title": "Configurações",
+    "language": "Idioma",
+    "english": "Inglês",
+    "arabic": "Árabe",
+    "environment": "Ambiente",
+    "activeEnvironment": "Ambiente atual: $environment"
+  },
+  "connectivity": {
+    "online": "Online",
+    "offline": "Offline"
+  },
+  "onboarding": {
+    "skip": "Pular",
+    "next": "Próximo",
+    "getStarted": "Começar",
+    "title": "Bem-vindo ao Heart Attack Ethiopia",
+    "subtitle": "Seu guia de bolso para saúde do coração e resposta a emergências na Etiópia"
+  }
+}

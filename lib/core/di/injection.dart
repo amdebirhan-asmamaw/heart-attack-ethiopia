@@ -20,6 +20,7 @@ import '../../features/onboarding/domain/usecases/get_onboarding_status_usecase.
 import '../../features/onboarding/presentation/bloc/onboarding_cubit.dart';
 import '../../shared/bloc/connectivity_cubit.dart';
 import '../config/app_config.dart';
+import '../localization/locale_preferences.dart';
 import '../network/auth_interceptor.dart';
 import '../network/dio_client.dart';
 import '../network/network_info.dart';
@@ -33,6 +34,7 @@ Future<void> configureDependencies(AppConfig appConfig) async {
 
   sl.registerSingleton<AppConfig>(appConfig);
   sl.registerLazySingleton(() => const FlutterSecureStorage());
+  sl.registerLazySingleton(() => LocalePreferences(secureStorage: sl()));
   sl.registerLazySingleton<Connectivity>(Connectivity.new);
 
   sl.registerLazySingleton<AuthLocalDataSource>(

@@ -1,0 +1,284 @@
+/* Frame 1000007007 */
+
+position: absolute;
+width: 360px;
+height: 796px;
+left: 0px;
+top: 0px;
+
+background: linear-gradient(
+  180deg,
+  rgba(37, 37, 37, 0) 0%,
+  rgba(0, 0, 0, 0.8) 79.65%
+);
+
+/* LOGO_3-removebg-preview 1 */
+
+position: absolute;
+width: 225px;
+height: 225px;
+left: calc(50% - 225px / 2 - 0.5px);
+top: calc(50% - 225px / 2 - 151.5px);
+
+background: url(LOGO_3-removebg-preview.png);
+
+/* Frame 1000007006 */
+
+position: absolute;
+width: 360px;
+height: 254px;
+left: 0px;
+top: 542px;
+
+background: #000000;
+border-radius: 30px;
+
+/* Frame 1000007005 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+
+position: absolute;
+width: 350px;
+height: 202px;
+left: 5px;
+top: 26px;
+
+/* Frame 1000007003 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px 10px;
+gap: 10px;
+
+width: 350px;
+height: 87px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+/* Healing one heart at a time. Your support saves lives. */
+
+width: 313px;
+height: 87px;
+
+font-family: "Inter";
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 120%;
+/* or 29px */
+
+color: #ffffff;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Frame 1000007004 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 10px;
+gap: 10px;
+
+width: 350px;
+height: 115px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+/* Frame 1000007002 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 10px;
+gap: 10px;
+
+width: 330px;
+height: 95px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+/* Frame 1000007001 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 20px;
+
+width: 310px;
+height: 75px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+/* Frame 512565 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+gap: 17px;
+
+width: 310px;
+height: 10px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+/* Frame 512564 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 3px;
+
+width: 36px;
+height: 10px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Frame 512561 */
+
+width: 10px;
+height: 10px;
+
+background: #d72335;
+border-radius: 50px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Frame 512562 */
+
+width: 10px;
+height: 10px;
+
+background: #ffffff;
+border-radius: 50px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+/* Frame 512563 */
+
+width: 10px;
+height: 10px;
+
+background: #ffffff;
+border-radius: 50px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+/* Sign Up */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+isolation: isolate;
+
+width: 310px;
+height: 45px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+/* Group 92 */
+
+width: 310px;
+height: 45px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+z-index: 0;
+
+/* Rectangle 37 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #ffffff;
+border-radius: 20px;
+
+/* Sign Up */
+
+position: absolute;
+left: 44.14%;
+right: 44.24%;
+top: 24.44%;
+bottom: 26.67%;
+
+/* Body Base */
+font-family: "Inter";
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;

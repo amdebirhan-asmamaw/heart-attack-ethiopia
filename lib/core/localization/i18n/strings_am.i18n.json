@@ -1,0 +1,65 @@
+{
+  "app": {
+    "name": "Heart Attack Ethiopia",
+    "tagline": "የHeart Attack Ethiopia መተግበሪያ።",
+    "loading": "ልምድዎን እያዘጋጀን ነው..."
+  },
+  "auth": {
+    "title": "እንኳን ደህና መጡ",
+    "subtitle": "ለመቀጠል ይግቡ።",
+    "emailLabel": "ኢሜይል አድራሻ",
+    "passwordLabel": "የይለፍ ቃል",
+    "emailHint": "demo@template.dev",
+    "passwordHint": "Password123",
+    "submit": "ግባ",
+    "logout": "ውጣ",
+    "checkingSession": "የተቀመጠውን ክፍለ-ጊዜ እየመረመርን ነው...",
+    "demoHint": "የሙከራ መለያ: demo@template.dev / Password123",
+    "invalidCredentials": "ወደ መተግበሪያው ለመግባት የሙከራ መረጃውን ይጠቀሙ።",
+    "signedInAs": "እንደ $email ገብተዋል"
+  },
+  "navigation": {
+    "chat": "ውይይት",
+    "notifications": "ማሳወቂያዎች",
+    "profile": "መገለጫ",
+    "settings": "ቅንብሮች"
+  },
+  "common": {
+    "retry": "እንደገና ሞክር",
+    "cancel": "ሰርዝ",
+    "comingSoon": "ይህ ክፍል በቅርቡ ይመጣል።",
+    "noConnection": "የበይነመረብ ግንኙነት የለም"
+  },
+  "chat": {
+    "title": "የቡድን ውይይት",
+    "description": "የቀጥታ መልዕክት ፍሰቶችዎን ወደዚህ ክፍል ያያይዙ።",
+    "emptyState": "እስካሁን ውይይት የለም።"
+  },
+  "notifications": {
+    "title": "ማሳወቂያዎች",
+    "description": "የግፋ፣ የውስጥ መተግበሪያ እና የአካባቢ ማሳወቂያዎችን ከዚህ ክፍል ያስተዳድሩ።"
+  },
+  "profile": {
+    "title": "መገለጫ",
+    "description": "የመለያ ምርጫዎች፣ ደህንነት እና የግል መረጃዎችን እዚህ ያሳዩ።"
+  },
+  "settings": {
+    "title": "ቅንብሮች",
+    "language": "ቋንቋ",
+    "english": "እንግሊዝኛ",
+    "arabic": "አረብኛ",
+    "environment": "አካባቢ",
+    "activeEnvironment": "የአሁኑ አካባቢ: $environment"
+  },
+  "connectivity": {
+    "online": "በመስመር ላይ",
+    "offline": "ከመስመር ውጭ"
+  },
+  "onboarding": {
+    "skip": "ዝለል",
+    "next": "ቀጥል",
+    "getStarted": "ጀምር",
+    "title": "ወደ Heart Attack Ethiopia እንኳን ደህና መጡ",
+    "subtitle": "በኢትዮጵያ ውስጥ ለልብ ጤና እና ለድንገተኛ ምላሽ የእጅ መመሪያዎ"
+  }
+}

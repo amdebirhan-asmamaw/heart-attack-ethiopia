@@ -190,13 +190,8 @@ class _TranslationsStringsOnboardingAr extends TranslationsStringsOnboardingEn {
 	@override String get skip => 'تخطي';
 	@override String get next => 'التالي';
 	@override String get getStarted => 'ابدأ';
-	@override String get intro => 'جولة سريعة قبل المتابعة.';
-	@override String get welcomeTitle => 'تحرّك أسرع عندما تظهر الأعراض';
-	@override String get welcomeBody => 'ابدأ بدليل موجز يساعد الناس في إثيوبيا على ملاحظة علامات الخطر والاستجابة دون تأخير.';
-	@override String get trackTitle => 'احتفظ بمعلومات القلب المهمة قريبًا';
-	@override String get trackBody => 'احفظ التفاصيل الأساسية واتبع خطوات الطوارئ وكن جاهزًا لمشاركة ما يحتاجه مقدمو الرعاية.';
-	@override String get supportTitle => 'تنقّل في الرعاية بثقة';
-	@override String get supportBody => 'احصل على مسار أوضح من الأعراض الأولى إلى المتابعة في المستشفى والأدوية ودعم التعافي.';
+	@override String get title => 'مرحبًا بك في Heart Attack Ethiopia';
+	@override String get subtitle => 'دليل الجيب لصحة القلب والاستجابة للطوارئ في إثيوبيا';
 }
 
 /// The flat map containing all translations for locale <ar>.
@@ -248,13 +243,8 @@ extension on TranslationsAr {
 			'strings.onboarding.skip' => 'تخطي',
 			'strings.onboarding.next' => 'التالي',
 			'strings.onboarding.getStarted' => 'ابدأ',
-			'strings.onboarding.intro' => 'جولة سريعة قبل المتابعة.',
-			'strings.onboarding.welcomeTitle' => 'تحرّك أسرع عندما تظهر الأعراض',
-			'strings.onboarding.welcomeBody' => 'ابدأ بدليل موجز يساعد الناس في إثيوبيا على ملاحظة علامات الخطر والاستجابة دون تأخير.',
-			'strings.onboarding.trackTitle' => 'احتفظ بمعلومات القلب المهمة قريبًا',
-			'strings.onboarding.trackBody' => 'احفظ التفاصيل الأساسية واتبع خطوات الطوارئ وكن جاهزًا لمشاركة ما يحتاجه مقدمو الرعاية.',
-			'strings.onboarding.supportTitle' => 'تنقّل في الرعاية بثقة',
-			'strings.onboarding.supportBody' => 'احصل على مسار أوضح من الأعراض الأولى إلى المتابعة في المستشفى والأدوية ودعم التعافي.',
+			'strings.onboarding.title' => 'مرحبًا بك في Heart Attack Ethiopia',
+			'strings.onboarding.subtitle' => 'دليل الجيب لصحة القلب والاستجابة للطوارئ في إثيوبيا',
 			_ => null,
 		};
 	}

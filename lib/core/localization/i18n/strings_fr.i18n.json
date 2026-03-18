@@ -1,0 +1,65 @@
+{
+  "app": {
+    "name": "Heart Attack Ethiopia",
+    "tagline": "Application Flutter Heart Attack Ethiopia.",
+    "loading": "Préparation de votre expérience..."
+  },
+  "auth": {
+    "title": "Bon retour",
+    "subtitle": "Connectez-vous pour continuer.",
+    "emailLabel": "Adresse e-mail",
+    "passwordLabel": "Mot de passe",
+    "emailHint": "demo@template.dev",
+    "passwordHint": "Password123",
+    "submit": "Se connecter",
+    "logout": "Se déconnecter",
+    "checkingSession": "Vérification de votre session enregistrée...",
+    "demoHint": "Compte démo : demo@template.dev / Password123",
+    "invalidCredentials": "Utilisez les identifiants de démonstration pour entrer dans l'application.",
+    "signedInAs": "Connecté en tant que $email"
+  },
+  "navigation": {
+    "chat": "Discussion",
+    "notifications": "Notifications",
+    "profile": "Profil",
+    "settings": "Paramètres"
+  },
+  "common": {
+    "retry": "Réessayer",
+    "cancel": "Annuler",
+    "comingSoon": "Cette section sera bientôt disponible.",
+    "noConnection": "Aucune connexion Internet"
+  },
+  "chat": {
+    "title": "Discussion d'équipe",
+    "description": "Connectez ici vos flux de messagerie en direct.",
+    "emptyState": "Aucune conversation pour le moment."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "description": "Gérez ici les notifications push, locales et intégrées à l'application."
+  },
+  "profile": {
+    "title": "Profil",
+    "description": "Affichez ici les préférences du compte, la sécurité et les informations personnelles."
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue",
+    "english": "Anglais",
+    "arabic": "Arabe",
+    "environment": "Environnement",
+    "activeEnvironment": "Environnement actuel : $environment"
+  },
+  "connectivity": {
+    "online": "En ligne",
+    "offline": "Hors ligne"
+  },
+  "onboarding": {
+    "skip": "Passer",
+    "next": "Suivant",
+    "getStarted": "Commencer",
+    "title": "Bienvenue sur Heart Attack Ethiopia",
+    "subtitle": "Votre guide de poche pour la santé cardiaque et la réponse d'urgence en Éthiopie"
+  }
+}

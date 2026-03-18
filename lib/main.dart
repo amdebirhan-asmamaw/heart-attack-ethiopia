@@ -6,6 +6,7 @@ import 'app/app_bloc_observer.dart';
 import 'core/config/app_config.dart';
 import 'core/di/injection.dart';
 import 'core/localization/generated/strings.g.dart';
+import 'core/localization/locale_preferences.dart';
 import 'features/auth/presentation/bloc/auth_cubit.dart';
 import 'features/onboarding/presentation/bloc/onboarding_cubit.dart';
 
@@ -16,7 +17,7 @@ Future<void> main() async {
 
   final appConfig = await AppConfig.bootstrap();
   await configureDependencies(appConfig);
-  LocaleSettings.useDeviceLocale();
+  await sl<LocalePreferences>().loadPreferredLocale();
   await sl<OnboardingCubit>().bootstrap();
   await sl<AuthCubit>().bootstrap();
 

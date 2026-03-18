@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/localization/generated/strings.g.dart';
-import '../../../../shared/widgets/app_button.dart';
+import '../../../../app/resources/app_media.dart';
 import '../bloc/onboarding_cubit.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -24,7 +24,7 @@ class _OnboardingView extends StatefulWidget {
 }
 
 class _OnboardingViewState extends State<_OnboardingView> {
-  late final PageController _pageController = PageController();
+  final PageController _pageController = PageController();
   int _currentPage = 0;
 
   @override
@@ -33,42 +33,13 @@ class _OnboardingViewState extends State<_OnboardingView> {
     super.dispose();
   }
 
-  Future<void> _advanceOrComplete({
-    required BuildContext context,
-    required int totalSlides,
-  }) async {
-    if (_currentPage == totalSlides - 1) {
-      await context.read<OnboardingCubit>().complete();
-      return;
-    }
-
-    await _pageController.nextPage(
-      duration: const Duration(milliseconds: 280),
-      curve: Curves.easeOutCubic,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    final slides = [
-      _OnboardingSlideData(
-        icon: Icons.monitor_heart_outlined,
-        accent: const Color(0xFFFFE1A8),
-        title: context.t.strings.onboarding.welcomeTitle,
-        body: context.t.strings.onboarding.welcomeBody,
-      ),
-      _OnboardingSlideData(
-        icon: Icons.fact_check_outlined,
-        accent: const Color(0xFFB7F0E4),
-        title: context.t.strings.onboarding.trackTitle,
-        body: context.t.strings.onboarding.trackBody,
-      ),
-      _OnboardingSlideData(
-        icon: Icons.local_hospital_outlined,
-        accent: const Color(0xFFFFC2C0),
-        title: context.t.strings.onboarding.supportTitle,
-        body: context.t.strings.onboarding.supportBody,
-      ),
+    final t = context.t.strings.onboarding;
+    final pageTitles = [
+      t.title3,
+      t.title,
+      t.title2,
     ];
 
     return BlocConsumer<OnboardingCubit, OnboardingState>(
@@ -78,205 +49,165 @@ class _OnboardingViewState extends State<_OnboardingView> {
         }
       },
       builder: (context, state) {
-        final isLastPage = _currentPage == slides.length - 1;
-
         return Scaffold(
-          body: DecoratedBox(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFFF8FBFF),
-                  Color(0xFFFDEFE7),
-                  Color(0xFFE8F1FF),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+          body: Stack(
+            children: [
+              // Background Gradient (Frame 1000007007)
+              // Using the CSS gradient as the full page background since images are for reference only
+              Positioned.fill(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        AppColors.overlayGradientStart,
+                        AppColors.overlayGradientEnd,
+                      ],
+                      stops: [0.0, 0.7965],
+                    ),
+                  ),
+                ),
               ),
-            ),
-            child: SafeArea(
-              child: Center(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 720),
+
+              // Logo (LOGO_3-removebg-preview 1)
+              // CSS: left: calc(50% - 225px / 2 - 0.5px); top: calc(50% - 225px / 2 - 151.5px);
+              Center(
+                child: Transform.translate(
+                  offset: const Offset(-0.5, -151.5),
+                  child: Image.asset(
+                    AppMedia.onboardingLogo,
+                    width: 225,
+                    height: 225,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+
+              // Bottom Sheet (Frame 1000007006)
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  width: double.infinity,
+                  height: 254,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                    ),
+                  ),
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(24, 20, 24, 28),
+                    padding: const EdgeInsets.only(top: 26, left: 25, right: 25),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                context.t.strings.app.name,
-                                style: Theme.of(context).textTheme.titleLarge
-                                    ?.copyWith(color: AppColors.textPrimary),
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: state.isSubmitting
-                                  ? null
-                                  : () => context
-                                        .read<OnboardingCubit>()
-                                        .complete(),
-                              child: Text(context.t.strings.onboarding.skip),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          context.t.strings.onboarding.intro,
-                          style: Theme.of(context).textTheme.bodyLarge
-                              ?.copyWith(color: AppColors.textSecondary),
-                        ),
-                        const SizedBox(height: 24),
+                        // PageView for Titles
                         Expanded(
                           child: PageView.builder(
                             controller: _pageController,
-                            itemCount: slides.length,
+                            itemCount: pageTitles.length,
                             onPageChanged: (index) {
                               setState(() {
                                 _currentPage = index;
                               });
                             },
                             itemBuilder: (context, index) {
-                              final slide = slides[index];
-                              return _OnboardingCard(slide: slide);
+                              return SizedBox(
+                                width: 313,
+                                child: Text(
+                                  pageTitles[index],
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w700,
+                                    height: 1.2,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              );
                             },
                           ),
                         ),
-                        const SizedBox(height: 24),
+                        
+                        // Indicators (Frame 512564)
                         Row(
-                          children: [
-                            for (var index = 0; index < slides.length; index++)
-                              AnimatedContainer(
-                                duration: const Duration(milliseconds: 220),
-                                margin: const EdgeInsetsDirectional.only(
-                                  end: 10,
-                                ),
-                                height: 10,
-                                width: _currentPage == index ? 30 : 10,
-                                decoration: BoxDecoration(
-                                  color: _currentPage == index
-                                      ? AppColors.primary
-                                      : AppColors.border,
-                                  borderRadius: BorderRadius.circular(999),
-                                ),
-                              ),
-                            const Spacer(),
-                            SizedBox(
-                              width: 180,
-                              child: AppButton(
-                                label: isLastPage
-                                    ? context.t.strings.onboarding.getStarted
-                                    : context.t.strings.onboarding.next,
-                                isLoading: state.isSubmitting,
-                                onPressed: () => _advanceOrComplete(
-                                  context: context,
-                                  totalSlides: slides.length,
-                                ),
-                              ),
-                            ),
-                          ],
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(pageTitles.length, (index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 1.5),
+                              child: _buildIndicator(isActive: _currentPage == index),
+                            );
+                          }),
                         ),
+                        
+                        const SizedBox(height: 20),
+
+                        // Sign Up Button
+                        SizedBox(
+                          width: 310,
+                          height: 45,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (_currentPage < pageTitles.length - 1) {
+                                _pageController.nextPage(
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.easeInOut,
+                                );
+                              } else {
+                                context.read<OnboardingCubit>().complete();
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.black,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              elevation: 0,
+                              padding: EdgeInsets.zero,
+                            ),
+                            child: state.isSubmitting
+                                ? const SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                : Text(
+                                    _currentPage == pageTitles.length - 1
+                                        ? t.signUp
+                                        : t.next,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      height: 1.4,
+                                    ),
+                                  ),
+                          ),
+                        ),
+                        const SizedBox(height: 20), // Bottom padding
                       ],
                     ),
                   ),
                 ),
               ),
-            ),
+            ],
           ),
         );
       },
     );
   }
-}
 
-class _OnboardingCard extends StatelessWidget {
-  const _OnboardingCard({required this.slide});
-
-  final _OnboardingSlideData slide;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildIndicator({required bool isActive}) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      padding: const EdgeInsets.all(28),
+      width: 10,
+      height: 10,
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.92),
-        borderRadius: BorderRadius.circular(32),
-        border: Border.all(color: Colors.white, width: 1.4),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x1A14213D),
-            blurRadius: 30,
-            offset: Offset(0, 16),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 72,
-            height: 72,
-            decoration: BoxDecoration(
-              color: slide.accent,
-              borderRadius: BorderRadius.circular(24),
-            ),
-            child: Icon(slide.icon, size: 36, color: AppColors.textPrimary),
-          ),
-          const SizedBox(height: 32),
-          Text(
-            slide.title,
-            style: Theme.of(
-              context,
-            ).textTheme.displaySmall?.copyWith(height: 1.1),
-          ),
-          const SizedBox(height: 18),
-          Text(
-            slide.body,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: AppColors.textSecondary,
-              height: 1.6,
-            ),
-          ),
-          const Spacer(),
-          Container(
-            padding: const EdgeInsets.all(18),
-            decoration: BoxDecoration(
-              color: const Color(0xFFF4F7FC),
-              borderRadius: BorderRadius.circular(24),
-            ),
-            child: Row(
-              children: [
-                const Icon(Icons.favorite_border, color: AppColors.primary),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    context.t.strings.app.tagline,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.textPrimary,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+        color: isActive ? AppColors.onboardingRed : Colors.black,
+        shape: BoxShape.circle,
       ),
     );
   }
-}
-
-class _OnboardingSlideData {
-  const _OnboardingSlideData({
-    required this.icon,
-    required this.accent,
-    required this.title,
-    required this.body,
-  });
-
-  final IconData icon;
-  final Color accent;
-  final String title;
-  final String body;
 }

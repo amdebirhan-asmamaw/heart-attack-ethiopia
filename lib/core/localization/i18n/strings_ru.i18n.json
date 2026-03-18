@@ -1,0 +1,65 @@
+{
+  "app": {
+    "name": "Heart Attack Ethiopia",
+    "tagline": "Flutter-приложение Heart Attack Ethiopia.",
+    "loading": "Подготавливаем приложение..."
+  },
+  "auth": {
+    "title": "С возвращением",
+    "subtitle": "Войдите, чтобы продолжить.",
+    "emailLabel": "Адрес электронной почты",
+    "passwordLabel": "Пароль",
+    "emailHint": "demo@template.dev",
+    "passwordHint": "Password123",
+    "submit": "Войти",
+    "logout": "Выйти",
+    "checkingSession": "Проверяем сохранённую сессию...",
+    "demoHint": "Демо-аккаунт: demo@template.dev / Password123",
+    "invalidCredentials": "Используйте демо-данные, чтобы войти в приложение.",
+    "signedInAs": "Вход выполнен как $email"
+  },
+  "navigation": {
+    "chat": "Чат",
+    "notifications": "Уведомления",
+    "profile": "Профиль",
+    "settings": "Настройки"
+  },
+  "common": {
+    "retry": "Повторить",
+    "cancel": "Отмена",
+    "comingSoon": "Этот раздел скоро появится.",
+    "noConnection": "Нет подключения к интернету"
+  },
+  "chat": {
+    "title": "Командный чат",
+    "description": "Подключите сюда потоки обмена сообщениями в реальном времени.",
+    "emptyState": "Пока нет разговоров."
+  },
+  "notifications": {
+    "title": "Уведомления",
+    "description": "Управляйте push-, локальными и встроенными уведомлениями отсюда."
+  },
+  "profile": {
+    "title": "Профиль",
+    "description": "Показывайте здесь настройки аккаунта, безопасность и личные данные."
+  },
+  "settings": {
+    "title": "Настройки",
+    "language": "Язык",
+    "english": "Английский",
+    "arabic": "Арабский",
+    "environment": "Среда",
+    "activeEnvironment": "Текущая среда: $environment"
+  },
+  "connectivity": {
+    "online": "В сети",
+    "offline": "Не в сети"
+  },
+  "onboarding": {
+    "skip": "Пропустить",
+    "next": "Далее",
+    "getStarted": "Начать",
+    "title": "Добро пожаловать в Heart Attack Ethiopia",
+    "subtitle": "Ваш карманный помощник по здоровью сердца и экстренной помощи в Эфиопии"
+  }
+}

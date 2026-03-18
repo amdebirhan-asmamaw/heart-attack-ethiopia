@@ -59,12 +59,11 @@
     "skip": "Skip",
     "next": "Next",
     "getStarted": "Get started",
-    "intro": "A quick walkthrough before you continue.",
-    "welcomeTitle": "Move faster when symptoms matter",
-    "welcomeBody": "Start with a focused guide built to help people in Ethiopia spot warning signs and respond without delay.",
-    "trackTitle": "Keep urgent heart-health information close",
-    "trackBody": "Store key details, follow emergency steps, and stay ready to share what responders need.",
-    "supportTitle": "Navigate care with confidence",
-    "supportBody": "Get a clearer path from first symptoms to hospital follow-up, medication, and recovery support."
+    "title": "Welcome to Heart Attack Ethiopia",
+    "subtitle": "Your pocket guide to heart health and emergency response in Ethiopia",
+    "title2": "Emergency Assistance",
+    "subtitle2": "Get immediate help and connect with nearby emergency services when every second counts.",
+    "title3": "Healing one heart at a time. Your support saves lives.",
+    "signUp": "Sign Up"
   }
 }

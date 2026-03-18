@@ -1,0 +1,65 @@
+{
+  "app": {
+    "name": "Heart Attack Ethiopia",
+    "tagline": "Heart Attack Ethiopia Flutter ऐप.",
+    "loading": "आपका अनुभव तैयार किया जा रहा है..."
+  },
+  "auth": {
+    "title": "वापसी पर स्वागत है",
+    "subtitle": "जारी रखने के लिए साइन इन करें।",
+    "emailLabel": "ईमेल पता",
+    "passwordLabel": "पासवर्ड",
+    "emailHint": "demo@template.dev",
+    "passwordHint": "Password123",
+    "submit": "साइन इन करें",
+    "logout": "साइन आउट करें",
+    "checkingSession": "आपका सहेजा गया सत्र जाँचा जा रहा है...",
+    "demoHint": "डेमो खाता: demo@template.dev / Password123",
+    "invalidCredentials": "ऐप में प्रवेश करने के लिए डेमो क्रेडेंशियल्स का उपयोग करें।",
+    "signedInAs": "$email के रूप में साइन इन किया गया"
+  },
+  "navigation": {
+    "chat": "चैट",
+    "notifications": "सूचनाएँ",
+    "profile": "प्रोफ़ाइल",
+    "settings": "सेटिंग्स"
+  },
+  "common": {
+    "retry": "फिर से प्रयास करें",
+    "cancel": "रद्द करें",
+    "comingSoon": "यह अनुभाग जल्द ही उपलब्ध होगा।",
+    "noConnection": "इंटरनेट कनेक्शन नहीं है"
+  },
+  "chat": {
+    "title": "टीम चैट",
+    "description": "अपने लाइव संदेश प्रवाह को इस मॉड्यूल से जोड़ें।",
+    "emptyState": "अभी तक कोई बातचीत नहीं है।"
+  },
+  "notifications": {
+    "title": "सूचनाएँ",
+    "description": "पुश, इन-ऐप और स्थानीय सूचनाओं को यहाँ से प्रबंधित करें।"
+  },
+  "profile": {
+    "title": "प्रोफ़ाइल",
+    "description": "खाता प्राथमिकताएँ, सुरक्षा और व्यक्तिगत विवरण यहाँ दिखाएँ।"
+  },
+  "settings": {
+    "title": "सेटिंग्स",
+    "language": "भाषा",
+    "english": "अंग्रेज़ी",
+    "arabic": "अरबी",
+    "environment": "पर्यावरण",
+    "activeEnvironment": "वर्तमान पर्यावरण: $environment"
+  },
+  "connectivity": {
+    "online": "ऑनलाइन",
+    "offline": "ऑफ़लाइन"
+  },
+  "onboarding": {
+    "skip": "छोड़ें",
+    "next": "आगे",
+    "getStarted": "शुरू करें",
+    "title": "Heart Attack Ethiopia में आपका स्वागत है",
+    "subtitle": "इथियोपिया में हृदय स्वास्थ्य और आपातकालीन प्रतिक्रिया के लिए आपकी पॉकेट गाइड"
+  }
+}

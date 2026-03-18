@@ -1,0 +1,65 @@
+{
+  "app": {
+    "name": "Heart Attack Ethiopia",
+    "tagline": "Aplicación Flutter de Heart Attack Ethiopia.",
+    "loading": "Preparando tu experiencia..."
+  },
+  "auth": {
+    "title": "Bienvenido de nuevo",
+    "subtitle": "Inicia sesión para continuar.",
+    "emailLabel": "Correo electrónico",
+    "passwordLabel": "Contraseña",
+    "emailHint": "demo@template.dev",
+    "passwordHint": "Password123",
+    "submit": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "checkingSession": "Comprobando tu sesión guardada...",
+    "demoHint": "Cuenta demo: demo@template.dev / Password123",
+    "invalidCredentials": "Usa las credenciales de demostración para entrar en la aplicación.",
+    "signedInAs": "Has iniciado sesión como $email"
+  },
+  "navigation": {
+    "chat": "Chat",
+    "notifications": "Notificaciones",
+    "profile": "Perfil",
+    "settings": "Configuración"
+  },
+  "common": {
+    "retry": "Reintentar",
+    "cancel": "Cancelar",
+    "comingSoon": "Esta sección estará disponible pronto.",
+    "noConnection": "Sin conexión a Internet"
+  },
+  "chat": {
+    "title": "Chat del equipo",
+    "description": "Conecta aquí tus flujos de mensajería en tiempo real.",
+    "emptyState": "Todavía no hay conversaciones."
+  },
+  "notifications": {
+    "title": "Notificaciones",
+    "description": "Gestiona desde aquí las notificaciones push, locales y dentro de la aplicación."
+  },
+  "profile": {
+    "title": "Perfil",
+    "description": "Muestra aquí las preferencias de la cuenta, la seguridad y los datos personales."
+  },
+  "settings": {
+    "title": "Configuración",
+    "language": "Idioma",
+    "english": "Inglés",
+    "arabic": "Árabe",
+    "environment": "Entorno",
+    "activeEnvironment": "Entorno actual: $environment"
+  },
+  "connectivity": {
+    "online": "En línea",
+    "offline": "Sin conexión"
+  },
+  "onboarding": {
+    "skip": "Omitir",
+    "next": "Siguiente",
+    "getStarted": "Comenzar",
+    "title": "Bienvenido a Heart Attack Ethiopia",
+    "subtitle": "Tu guía de bolsillo sobre salud cardíaca y respuesta de emergencia en Etiopía"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "app": {
+    "name": "Heart Attack Ethiopia",
+    "tagline": "Heart Attack Ethiopia Flutter-Anwendung.",
+    "loading": "Ihre Erfahrung wird vorbereitet..."
+  },
+  "auth": {
+    "title": "Willkommen zurück",
+    "subtitle": "Melden Sie sich an, um fortzufahren.",
+    "emailLabel": "E-Mail-Adresse",
+    "passwordLabel": "Passwort",
+    "emailHint": "demo@template.dev",
+    "passwordHint": "Password123",
+    "submit": "Anmelden",
+    "logout": "Abmelden",
+    "checkingSession": "Ihre gespeicherte Sitzung wird geprüft...",
+    "demoHint": "Demokonto: demo@template.dev / Password123",
+    "invalidCredentials": "Verwenden Sie die Demo-Zugangsdaten, um die App zu öffnen.",
+    "signedInAs": "Angemeldet als $email"
+  },
+  "navigation": {
+    "chat": "Chat",
+    "notifications": "Benachrichtigungen",
+    "profile": "Profil",
+    "settings": "Einstellungen"
+  },
+  "common": {
+    "retry": "Erneut versuchen",
+    "cancel": "Abbrechen",
+    "comingSoon": "Dieser Bereich ist bald verfügbar.",
+    "noConnection": "Keine Internetverbindung"
+  },
+  "chat": {
+    "title": "Team-Chat",
+    "description": "Verbinden Sie Ihre Live-Nachrichtenflüsse mit diesem Modul.",
+    "emptyState": "Noch keine Unterhaltungen."
+  },
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "description": "Steuern Sie Push-, In-App- und lokale Benachrichtigungen aus diesem Bereich."
+  },
+  "profile": {
+    "title": "Profil",
+    "description": "Zeigen Sie hier Kontoeinstellungen, Sicherheit und persönliche Daten an."
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache",
+    "english": "Englisch",
+    "arabic": "Arabisch",
+    "environment": "Umgebung",
+    "activeEnvironment": "Aktuelle Umgebung: $environment"
+  },
+  "connectivity": {
+    "online": "Online",
+    "offline": "Offline"
+  },
+  "onboarding": {
+    "skip": "Überspringen",
+    "next": "Weiter",
+    "getStarted": "Loslegen",
+    "title": "Willkommen bei Heart Attack Ethiopia",
+    "subtitle": "Ihr Begleiter für Herzgesundheit und Notfallreaktion in Äthiopien"
+  }
+}
