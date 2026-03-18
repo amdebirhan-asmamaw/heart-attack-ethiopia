@@ -123,6 +123,30 @@ class TranslationsStringsAuthEn {
 
 	/// en: 'Signed in as $email'
 	String signedInAs({required Object email}) => 'Signed in as ${email}';
+
+	/// en: 'Forgot password'
+	String get forgotPassword => 'Forgot password';
+
+	/// en: 'Don’t have an account?'
+	String get dontHaveAccount => 'Don’t have an account?';
+
+	/// en: 'Create Account'
+	String get createAccount => 'Create Account';
+
+	/// en: 'OR'
+	String get or => 'OR';
+
+	/// en: 'Continue with Google'
+	String get continueWithGoogle => 'Continue with Google';
+
+	/// en: 'Continue with Apple'
+	String get continueWithApple => 'Continue with Apple';
+
+	/// en: 'Continue with Facebook'
+	String get continueWithFacebook => 'Continue with Facebook';
+
+	/// en: 'By pressing on 'Continue with...' you agree to our Terms of Services and Privacy Policy'
+	String get terms => 'By pressing on \'Continue with...\' you agree to our Terms of Services and Privacy Policy';
 }
 
 // Path: strings.navigation
@@ -316,6 +340,14 @@ extension on Translations {
 			'strings.auth.demoHint' => 'Demo account: demo@template.dev / Password123',
 			'strings.auth.invalidCredentials' => 'Use the demo credentials to enter the template.',
 			'strings.auth.signedInAs' => ({required Object email}) => 'Signed in as ${email}',
+			'strings.auth.forgotPassword' => 'Forgot password',
+			'strings.auth.dontHaveAccount' => 'Don’t have an account?',
+			'strings.auth.createAccount' => 'Create Account',
+			'strings.auth.or' => 'OR',
+			'strings.auth.continueWithGoogle' => 'Continue with Google',
+			'strings.auth.continueWithApple' => 'Continue with Apple',
+			'strings.auth.continueWithFacebook' => 'Continue with Facebook',
+			'strings.auth.terms' => 'By pressing on \'Continue with...\' you agree to our Terms of Services and Privacy Policy',
 			'strings.navigation.chat' => 'Chat',
 			'strings.navigation.notifications' => 'Notifications',
 			'strings.navigation.profile' => 'Profile',

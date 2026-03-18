@@ -16,7 +16,15 @@
     "checkingSession": "Checking your saved session...",
     "demoHint": "Demo account: demo@template.dev / Password123",
     "invalidCredentials": "Use the demo credentials to enter the template.",
-    "signedInAs": "Signed in as $email"
+    "signedInAs": "Signed in as $email",
+    "forgotPassword": "Forgot password",
+    "dontHaveAccount": "Don’t have an account?",
+    "createAccount": "Create Account",
+    "or": "OR",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithApple": "Continue with Apple",
+    "continueWithFacebook": "Continue with Facebook",
+    "terms": "By pressing on 'Continue with...' you agree to our Terms of Services and Privacy Policy"
   },
   "navigation": {
     "chat": "Chat",

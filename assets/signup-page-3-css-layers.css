@@ -1,0 +1,989 @@
+/* SignUp */
+
+position: relative;
+width: 360px;
+height: 798px;
+left: 571px;
+top: 309px;
+
+background:
+  linear-gradient(0deg, #ffffff, #ffffff),
+  linear-gradient(270deg, #32080c 3.85%, #981825 55.29%, #32080c 100%);
+border-radius: 30px;
+
+/* 16:04 */
+
+position: absolute;
+width: 30px;
+height: 14px;
+left: 27px;
+top: 9px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 13px;
+line-height: 12px;
+display: flex;
+align-items: center;
+text-transform: capitalize;
+
+color: #252525;
+
+/* Group 12 */
+
+position: absolute;
+width: 17px;
+height: 9px;
+left: 312px;
+top: -63px;
+
+/* Vector (Stroke) */
+
+position: absolute;
+width: 12px;
+height: 7px;
+left: calc(50% - 12px / 2 + 139px);
+top: calc(50% - 7px / 2 - 457.5px);
+
+background: #252525;
+
+/* Vector (Stroke) */
+
+position: absolute;
+width: 17px;
+height: 9px;
+left: calc(50% - 17px / 2 + 140.5px);
+top: calc(50% - 9px / 2 - 457.5px);
+
+border: 1px solid #252525;
+border-radius: 1px;
+
+/* Back # 2 */
+
+position: absolute;
+width: 8px;
+height: 14px;
+left: 32px;
+top: 61px;
+
+/* Vector */
+
+position: absolute;
+visibility: hidden;
+left: 0%;
+right: -75%;
+top: 0%;
+bottom: 42.86%;
+
+border: 2px solid #ffffff;
+transform: rotate(-90deg);
+
+/* Vector */
+
+position: absolute;
+width: 13px;
+height: 11px;
+left: 273px;
+top: 9px;
+
+background: #252525;
+
+/* Vector */
+
+position: absolute;
+width: 15px;
+height: 8px;
+left: 291px;
+top: 11px;
+
+border: 2px solid #252525;
+border-radius: 58px;
+
+/* Group 50 */
+
+position: absolute;
+width: 17px;
+height: 9px;
+left: 312px;
+top: -38px;
+
+/* Vector (Stroke) */
+
+position: absolute;
+width: 12px;
+height: 7px;
+left: calc(50% - 12px / 2 + 139px);
+top: calc(50% - 7px / 2 - 432.5px);
+
+background: #252525;
+
+/* Vector (Stroke) */
+
+position: absolute;
+width: 17px;
+height: 9px;
+left: calc(50% - 17px / 2 + 140.5px);
+top: calc(50% - 9px / 2 - 432.5px);
+
+border: 1px solid #252525;
+border-radius: 1px;
+
+/* nav bar */
+
+position: absolute;
+width: 360px;
+height: 92px;
+left: -0.51px;
+top: 1.62px;
+
+transform: rotate(179.48deg);
+
+/* Rectangle */
+
+position: absolute;
+visibility: hidden;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #fafafa;
+border-radius: 40px 40px 0px 0px;
+transform: rotate(179.48deg);
+
+/* Home */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+align-items: center;
+padding: 21px 120.5px 8px;
+gap: 10px;
+
+position: absolute;
+left: -2.08%;
+right: -2.08%;
+top: -0.07%;
+bottom: 63.12%;
+
+transform: rotate(179.48deg);
+
+/* Home Indicator */
+
+width: 134px;
+height: 5px;
+
+transform: rotate(179.48deg);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Home Indicator */
+
+position: absolute;
+visibility: hidden;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* Foundation /Red/Darker */
+background: #420c11;
+border-radius: 100px;
+transform: rotate(179.48deg);
+
+/* User */
+
+position: absolute;
+visibility: hidden;
+left: 9.45%;
+right: 84.15%;
+top: 55.19%;
+bottom: 18.72%;
+
+transform: rotate(179.48deg);
+
+/* Home / Icon / Nearby */
+
+position: absolute;
+left: 59.59%;
+right: 34.01%;
+top: 53.39%;
+bottom: 20.52%;
+
+transform: rotate(179.48deg);
+
+/* Frame */
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: calc(50% - 24px / 2 - 0.48px);
+top: calc(50% - 24px / 2);
+
+transform: rotate(179.48deg);
+
+/* Vector */
+
+position: absolute;
+visibility: hidden;
+left: 6.79%;
+right: 6.55%;
+top: 12.96%;
+bottom: 14.49%;
+
+border: 1.5px solid rgba(66, 12, 17, 0.5);
+transform: rotate(179.48deg);
+
+/* Home */
+
+position: absolute;
+visibility: hidden;
+left: 80.65%;
+right: 12.95%;
+top: 52.64%;
+bottom: 21.27%;
+
+transform: rotate(179.48deg);
+
+/* Frame */
+
+position: absolute;
+visibility: hidden;
+width: 24px;
+height: 24px;
+left: 111.43px;
+top: 50.06px;
+
+transform: rotate(179.48deg);
+
+/* Frame 1000006990 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+position: absolute;
+width: 256px;
+height: 47px;
+left: 31px;
+top: 115px;
+
+/* Sign in */
+
+width: 256px;
+height: 22px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 22px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-transform: capitalize;
+
+color: #420c11;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+/* Lets create your account */
+
+width: 256px;
+height: 15px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-transform: capitalize;
+
+color: rgba(0, 0, 0, 0.5);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+/* Frame 512581 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 27px;
+
+position: absolute;
+width: 298px;
+height: 273px;
+left: 30px;
+top: 223px;
+
+/* Frame 512571 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 7px;
+
+width: 298px;
+height: 201px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+/* Frame 512567 */
+
+width: 298px;
+height: 45px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+/* Main Button */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 12px;
+gap: 10px;
+
+position: absolute;
+width: 298px;
+height: 45px;
+left: 0px;
+top: 0px;
+
+background: #f2f2f2;
+border-radius: 13px;
+
+/* Main Button */
+
+display: none;
+width: 141px;
+height: 20px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height, or 125% */
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: -0.005em;
+
+/* Text 2 */
+color: #252525;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* First name */
+
+position: absolute;
+width: 73px;
+height: 15px;
+left: 33px;
+top: 18px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-transform: capitalize;
+
+color: #999999;
+
+/* Frame 512568 */
+
+width: 298px;
+height: 45px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+/* Main Button */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 12px;
+gap: 10px;
+
+position: absolute;
+width: 298px;
+height: 45px;
+left: 0px;
+top: 0px;
+
+background: #f2f2f2;
+border-radius: 13px;
+
+/* Main Button */
+
+display: none;
+width: 141px;
+height: 20px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height, or 125% */
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: -0.005em;
+
+/* Text 2 */
+color: #252525;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Last name */
+
+position: absolute;
+width: 72px;
+height: 15px;
+left: 33px;
+top: 18px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-transform: capitalize;
+
+color: #999999;
+
+/* Frame 512569 */
+
+width: 298px;
+height: 45px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+/* Main Button */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 12px;
+gap: 10px;
+
+position: absolute;
+width: 298px;
+height: 45px;
+left: 0px;
+top: 0px;
+
+background: #f2f2f2;
+border-radius: 13px;
+
+/* Main Button */
+
+display: none;
+width: 141px;
+height: 20px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height, or 125% */
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: -0.005em;
+
+/* Text 2 */
+color: #252525;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Password */
+
+position: absolute;
+width: 64px;
+height: 15px;
+left: 33px;
+top: 18px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-transform: capitalize;
+
+color: #999999;
+
+/* Frame 512570 */
+
+width: 298px;
+height: 45px;
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+align-self: stretch;
+flex-grow: 0;
+
+/* Main Button */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 12px;
+gap: 10px;
+
+position: absolute;
+width: 298px;
+height: 45px;
+left: 0px;
+top: 0px;
+
+background: #f2f2f2;
+border-radius: 13px;
+
+/* Main Button */
+
+display: none;
+width: 141px;
+height: 20px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height, or 125% */
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: -0.005em;
+
+/* Text 2 */
+color: #252525;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Confirm Password */
+
+position: absolute;
+width: 122px;
+height: 15px;
+left: 33px;
+top: 18px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-transform: capitalize;
+
+color: #999999;
+
+/* Main Button */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 12px;
+gap: 10px;
+
+width: 298px;
+height: 45px;
+
+background: #420c11;
+border-radius: 50px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+/* Main Button */
+
+width: 103px;
+height: 20px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height, or 125% */
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: -0.005em;
+
+/* White */
+color: #ffffff;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Frame 512574 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 40px;
+
+position: absolute;
+width: 302.03px;
+height: 273px;
+left: 31px;
+top: 506px;
+
+/* Frame 512566 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 5px;
+
+width: 302.03px;
+height: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+/* Line 6 */
+
+width: 133.02px;
+height: 0px;
+
+border: 1px solid #000000;
+transform: rotate(180deg);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* OR */
+
+width: 21px;
+height: 20px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height, or 125% */
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: -0.005em;
+
+/* Text 2 */
+color: #252525;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+/* Line 7 */
+
+width: 133.02px;
+height: 0px;
+
+border: 1px solid #000000;
+transform: rotate(180deg);
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+/* Frame 512573 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 18px;
+
+width: 302.03px;
+height: 213px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+/* Frame 512572 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 302.03px;
+height: 155px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+/* Main Button */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 12px;
+gap: 10px;
+
+width: 302.03px;
+height: 45px;
+
+background: #e9e9e9;
+border-radius: 13px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+/* Main Button */
+
+width: 141px;
+height: 20px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height, or 125% */
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: -0.005em;
+
+/* Text 2 */
+color: #252525;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Main Button */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 12px;
+gap: 10px;
+
+width: 302.03px;
+height: 45px;
+
+background: #e9e9e9;
+border-radius: 13px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+/* Main Button */
+
+width: 138px;
+height: 20px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height, or 125% */
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: -0.005em;
+
+/* Text 2 */
+color: #252525;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Main Button */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 12px;
+gap: 10px;
+
+width: 302.03px;
+height: 45px;
+
+background: #e9e9e9;
+border-radius: 13px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+/* Main Button */
+
+width: 120px;
+height: 20px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height, or 125% */
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: -0.005em;
+
+/* Text 2 */
+color: #252525;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* By pressing on 'Continue with...' you agree to our Terms of Services and Privacy Policy */
+
+width: 302.03px;
+height: 40px;
+
+/* Body Small */
+font-family: "Inter";
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 140%;
+/* or 20px */
+text-align: center;
+
+color: #cccccc;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;

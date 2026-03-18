@@ -1,0 +1,636 @@
+/* SignUp */
+
+position: relative;
+width: 360px;
+height: 798px;
+left: 969px;
+top: 309px;
+
+background:
+  linear-gradient(0deg, #ffffff, #ffffff),
+  linear-gradient(270deg, #32080c 3.85%, #981825 55.29%, #32080c 100%);
+border-radius: 30px;
+
+/* 16:04 */
+
+position: absolute;
+width: 30px;
+height: 14px;
+left: 27px;
+top: 9px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 13px;
+line-height: 12px;
+display: flex;
+align-items: center;
+text-transform: capitalize;
+
+color: #252525;
+
+/* Group 12 */
+
+position: absolute;
+width: 17px;
+height: 9px;
+left: 312px;
+top: -63px;
+
+/* Vector (Stroke) */
+
+position: absolute;
+width: 12px;
+height: 7px;
+left: calc(50% - 12px / 2 + 139px);
+top: calc(50% - 7px / 2 - 457.5px);
+
+background: #252525;
+
+/* Vector (Stroke) */
+
+position: absolute;
+width: 17px;
+height: 9px;
+left: calc(50% - 17px / 2 + 140.5px);
+top: calc(50% - 9px / 2 - 457.5px);
+
+border: 1px solid #252525;
+border-radius: 1px;
+
+/* Back # 2 */
+
+position: absolute;
+width: 8px;
+height: 14px;
+left: 32px;
+top: 61px;
+
+/* Vector */
+
+position: absolute;
+visibility: hidden;
+left: 0%;
+right: -75%;
+top: 0%;
+bottom: 42.86%;
+
+border: 2px solid #ffffff;
+transform: rotate(-90deg);
+
+/* Vector */
+
+position: absolute;
+width: 13px;
+height: 11px;
+left: 273px;
+top: 9px;
+
+background: #252525;
+
+/* Vector */
+
+position: absolute;
+width: 15px;
+height: 8px;
+left: 291px;
+top: 11px;
+
+border: 2px solid #252525;
+border-radius: 58px;
+
+/* Group 50 */
+
+position: absolute;
+width: 17px;
+height: 9px;
+left: 312px;
+top: -38px;
+
+/* Vector (Stroke) */
+
+position: absolute;
+width: 12px;
+height: 7px;
+left: calc(50% - 12px / 2 + 139px);
+top: calc(50% - 7px / 2 - 432.5px);
+
+background: #252525;
+
+/* Vector (Stroke) */
+
+position: absolute;
+width: 17px;
+height: 9px;
+left: calc(50% - 17px / 2 + 140.5px);
+top: calc(50% - 9px / 2 - 432.5px);
+
+border: 1px solid #252525;
+border-radius: 1px;
+
+/* Frame 1000006976 */
+
+position: absolute;
+width: 298px;
+height: 274px;
+left: 31px;
+top: 486px;
+
+/* Frame 9 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 90px;
+height: 61px;
+left: 0px;
+top: 0px;
+
+background: #f2f2f2;
+border-radius: 10px;
+
+/* 1 */
+
+position: absolute;
+width: 12px;
+height: 27px;
+left: 40px;
+top: 17px;
+
+font-family: "Nunito";
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 27px;
+
+color: #000000;
+
+/* Frame 1000006965 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 90px;
+height: 61px;
+left: 104px;
+top: 0px;
+
+background: #f2f2f2;
+border-radius: 10px;
+
+/* 2 */
+
+position: absolute;
+width: 12px;
+height: 27px;
+left: 40px;
+top: 17px;
+
+font-family: "Nunito";
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 27px;
+
+color: #000000;
+
+/* Frame 1000006966 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 90px;
+height: 61px;
+left: 208px;
+top: 0px;
+
+background: #f2f2f2;
+opacity: 0.9;
+border-radius: 10px;
+
+/* 3 */
+
+position: absolute;
+width: 12px;
+height: 27px;
+left: 40px;
+top: 17px;
+
+font-family: "Nunito";
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 27px;
+
+color: #000000;
+
+/* Frame 1000006967 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 90px;
+height: 61px;
+left: 0px;
+top: 71px;
+
+background: #f2f2f2;
+border-radius: 10px;
+
+/* 4 */
+
+position: absolute;
+width: 12px;
+height: 27px;
+left: 40px;
+top: 17px;
+
+font-family: "Nunito";
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 27px;
+
+color: #000000;
+
+/* Frame 1000006968 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 90px;
+height: 61px;
+left: 104px;
+top: 71px;
+
+background: #f2f2f2;
+border-radius: 10px;
+
+/* 5 */
+
+position: absolute;
+width: 12px;
+height: 27px;
+left: 40px;
+top: 17px;
+
+font-family: "Nunito";
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 27px;
+
+color: #000000;
+
+/* Frame 1000006969 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 90px;
+height: 61px;
+left: 208px;
+top: 71px;
+
+background: #f2f2f2;
+opacity: 0.9;
+border-radius: 10px;
+
+/* 6 */
+
+position: absolute;
+width: 12px;
+height: 27px;
+left: 40px;
+top: 17px;
+
+font-family: "Nunito";
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 27px;
+
+color: #000000;
+
+/* Frame 1000006970 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 90px;
+height: 61px;
+left: 0px;
+top: 142px;
+
+background: #f2f2f2;
+border-radius: 10px;
+
+/* 7 */
+
+position: absolute;
+width: 12px;
+height: 27px;
+left: 40px;
+top: 17px;
+
+font-family: "Nunito";
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 27px;
+
+color: #000000;
+
+/* Frame 1000006971 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 90px;
+height: 61px;
+left: 104px;
+top: 142px;
+
+background: #f2f2f2;
+border-radius: 10px;
+
+/* 8 */
+
+position: absolute;
+width: 12px;
+height: 27px;
+left: 40px;
+top: 17px;
+
+font-family: "Nunito";
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 27px;
+
+color: #000000;
+
+/* Frame 1000006972 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 90px;
+height: 61px;
+left: 208px;
+top: 142px;
+
+background: #f2f2f2;
+opacity: 0.9;
+border-radius: 10px;
+
+/* 9 */
+
+position: absolute;
+width: 12px;
+height: 27px;
+left: 40px;
+top: 17px;
+
+font-family: "Nunito";
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 27px;
+
+color: #000000;
+
+/* Frame 1000006973 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 90px;
+height: 61px;
+left: 0px;
+top: 213px;
+
+background: #f2f2f2;
+border-radius: 10px;
+
+/* - */
+
+position: absolute;
+width: 9px;
+height: 27px;
+left: 40px;
+top: 17px;
+
+font-family: "Nunito";
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 27px;
+
+color: #000000;
+
+/* Frame 1000006974 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 90px;
+height: 61px;
+left: 104px;
+top: 213px;
+
+background: #f2f2f2;
+border-radius: 10px;
+
+/* 0 */
+
+position: absolute;
+width: 12px;
+height: 27px;
+left: 40px;
+top: 17px;
+
+font-family: "Nunito";
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 27px;
+
+color: #000000;
+
+/* Frame 1000006975 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 90px;
+height: 61px;
+left: 208px;
+top: 213px;
+
+background: #420c11;
+opacity: 0.9;
+border-radius: 10px;
+
+/* > */
+
+position: absolute;
+width: 12px;
+height: 27px;
+left: 40px;
+top: 17px;
+
+font-family: "Nunito";
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 27px;
+
+color: #f2f2f2;
+
+/* Picsart_26-02-10_10-41-16-813 1 */
+
+position: absolute;
+width: 177px;
+height: 50px;
+left: 86px;
+top: 11px;
+
+/* Frame 1000006963 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 8px;
+
+position: absolute;
+width: 298px;
+height: 61px;
+left: 32px;
+top: 223px;
+
+/* Frame 27 */
+
+box-sizing: border-box;
+
+width: 82px;
+height: 61px;
+
+background: #f2f2f2;
+border-radius: 10px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* +251 */
+
+position: absolute;
+width: 52px;
+height: 21px;
+left: 15px;
+top: 20px;
+
+font-family: "Nunito";
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 27px;
+
+color: #999999;
+
+/* Frame 29 */
+
+box-sizing: border-box;
+
+width: 212px;
+height: 61px;
+
+background: #f2f2f2;
+border-radius: 10px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+/* _ _ _ _ _ _ _ _ _ */
+
+position: absolute;
+width: 189px;
+height: 21px;
+left: 11px;
+top: 20px;
+
+font-family: "Nunito";
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 27px;
+
+color: #999999;
+
+/* Frame 1000006990 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+position: absolute;
+width: 256px;
+height: 47px;
+left: 42px;
+top: 115px;
+
+/* Sign in with you phone */
+
+width: 256px;
+height: 22px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 22px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-transform: capitalize;
+
+color: #420c11;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+/* Write your phone */
+
+width: 256px;
+height: 15px;
+
+font-family: "League Spartan";
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-transform: capitalize;
+
+color: rgba(0, 0, 0, 0.5);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
