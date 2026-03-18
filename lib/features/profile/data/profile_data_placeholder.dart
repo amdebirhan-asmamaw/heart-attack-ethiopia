@@ -1,0 +1,3 @@
+class ProfileDataPlaceholder {
+  const ProfileDataPlaceholder();
+}

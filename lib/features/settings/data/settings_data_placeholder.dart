@@ -1,0 +1,3 @@
+class SettingsDataPlaceholder {
+  const SettingsDataPlaceholder();
+}

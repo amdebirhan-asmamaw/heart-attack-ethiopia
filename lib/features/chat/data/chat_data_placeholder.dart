@@ -1,0 +1,3 @@
+class ChatDataPlaceholder {
+  const ChatDataPlaceholder();
+}

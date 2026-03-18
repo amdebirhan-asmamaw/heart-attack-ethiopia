@@ -1,0 +1,70 @@
+{
+  "app": {
+    "name": "Heart Attack Ethiopia",
+    "tagline": "تطبيق Heart Attack Ethiopia.",
+    "loading": "جارٍ تجهيز التجربة..."
+  },
+  "auth": {
+    "title": "مرحبًا بعودتك",
+    "subtitle": "سجّل الدخول للدخول إلى مساحة العمل الابتدائية.",
+    "emailLabel": "البريد الإلكتروني",
+    "passwordLabel": "كلمة المرور",
+    "emailHint": "demo@template.dev",
+    "passwordHint": "Password123",
+    "submit": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "checkingSession": "جارٍ التحقق من الجلسة المحفوظة...",
+    "demoHint": "حساب التجربة: demo@template.dev / Password123",
+    "invalidCredentials": "استخدم بيانات التجربة للدخول إلى القالب.",
+    "signedInAs": "تم تسجيل الدخول باسم $email"
+  },
+  "navigation": {
+    "chat": "الدردشة",
+    "notifications": "الإشعارات",
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات"
+  },
+  "common": {
+    "retry": "إعادة المحاولة",
+    "cancel": "إلغاء",
+    "comingSoon": "هذه الوحدة جاهزة للتنفيذ.",
+    "noConnection": "لا يوجد اتصال بالإنترنت"
+  },
+  "chat": {
+    "title": "دردشة الفريق",
+    "description": "اربط تدفقات الرسائل الحية ضمن هذه الوحدة.",
+    "emptyState": "لا توجد محادثات بعد."
+  },
+  "notifications": {
+    "title": "الإشعارات",
+    "description": "وجّه الإشعارات المحلية والداخلية والدفع من هذه الوحدة."
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "description": "اعرض تفضيلات الحساب والأمان والبيانات الشخصية هنا."
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "language": "اللغة",
+    "english": "الإنجليزية",
+    "arabic": "العربية",
+    "environment": "البيئة",
+    "activeEnvironment": "البيئة الحالية: $environment"
+  },
+  "connectivity": {
+    "online": "متصل",
+    "offline": "غير متصل"
+  },
+  "onboarding": {
+    "skip": "تخطي",
+    "next": "التالي",
+    "getStarted": "ابدأ",
+    "intro": "جولة سريعة قبل المتابعة.",
+    "welcomeTitle": "تحرّك أسرع عندما تظهر الأعراض",
+    "welcomeBody": "ابدأ بدليل موجز يساعد الناس في إثيوبيا على ملاحظة علامات الخطر والاستجابة دون تأخير.",
+    "trackTitle": "احتفظ بمعلومات القلب المهمة قريبًا",
+    "trackBody": "احفظ التفاصيل الأساسية واتبع خطوات الطوارئ وكن جاهزًا لمشاركة ما يحتاجه مقدمو الرعاية.",
+    "supportTitle": "تنقّل في الرعاية بثقة",
+    "supportBody": "احصل على مسار أوضح من الأعراض الأولى إلى المتابعة في المستشفى والأدوية ودعم التعافي."
+  }
+}

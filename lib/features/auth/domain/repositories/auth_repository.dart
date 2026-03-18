@@ -1,0 +1,15 @@
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/error/failures.dart';
+import '../entities/auth_session.dart';
+
+abstract interface class AuthRepository {
+  Future<Either<Failure, AuthSession>> login({
+    required String email,
+    required String password,
+  });
+
+  Future<Either<Failure, AuthSession>> restoreSession();
+
+  Future<Either<Failure, Unit>> logout();
+}

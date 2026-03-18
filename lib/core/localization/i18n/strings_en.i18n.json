@@ -1,0 +1,70 @@
+{
+  "app": {
+    "name": "Heart Attack Ethiopia",
+    "tagline": "Heart Attack Ethiopia Flutter application.",
+    "loading": "Preparing your experience..."
+  },
+  "auth": {
+    "title": "Welcome back",
+    "subtitle": "Sign in to enter the starter workspace.",
+    "emailLabel": "Email address",
+    "passwordLabel": "Password",
+    "emailHint": "demo@template.dev",
+    "passwordHint": "Password123",
+    "submit": "Sign in",
+    "logout": "Sign out",
+    "checkingSession": "Checking your saved session...",
+    "demoHint": "Demo account: demo@template.dev / Password123",
+    "invalidCredentials": "Use the demo credentials to enter the template.",
+    "signedInAs": "Signed in as $email"
+  },
+  "navigation": {
+    "chat": "Chat",
+    "notifications": "Notifications",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "common": {
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "comingSoon": "This feature slice is ready for implementation.",
+    "noConnection": "No internet connection"
+  },
+  "chat": {
+    "title": "Team Chat",
+    "description": "Hook your live messaging flows into this feature module.",
+    "emptyState": "No conversations yet."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "description": "Route push, in-app, and local notifications from this slice."
+  },
+  "profile": {
+    "title": "Profile",
+    "description": "Expose account preferences, security, and personal details here."
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "english": "English",
+    "arabic": "Arabic",
+    "environment": "Environment",
+    "activeEnvironment": "Current environment: $environment"
+  },
+  "connectivity": {
+    "online": "Online",
+    "offline": "Offline"
+  },
+  "onboarding": {
+    "skip": "Skip",
+    "next": "Next",
+    "getStarted": "Get started",
+    "intro": "A quick walkthrough before you continue.",
+    "welcomeTitle": "Move faster when symptoms matter",
+    "welcomeBody": "Start with a focused guide built to help people in Ethiopia spot warning signs and respond without delay.",
+    "trackTitle": "Keep urgent heart-health information close",
+    "trackBody": "Store key details, follow emergency steps, and stay ready to share what responders need.",
+    "supportTitle": "Navigate care with confidence",
+    "supportBody": "Get a clearer path from first symptoms to hospital follow-up, medication, and recovery support."
+  }
+}

@@ -1,0 +1,63 @@
+# Misc
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.metadata
+/build/
+coverage/
+
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/key.properties
+android/*.keystore
+
+# iOS
+os/Flutter/ephemeral/
+ios/Pods/
+ios/.symlinks/
+ios/Runner.xcworkspace/
+ios/DerivedData/
+
+
+# macOS / Windows / Linux
+macos/Flutter/ephemeral/
+macos/Pods/
+macos/.symlinks/
+macos/DerivedData/
+windows/flutter/ephemeral/
+linux/flutter/ephemeral/
+
+# Generated (optional — depends on workflow)
+# *.g.dart
+# *.freezed.dart
+
+# Environment
+.env*
+secrets.yaml
+credentials.json
+
+# Node (if used)
+node_modules/
+
+# JetBrains
+out/
+
+# Lockfile (KEEP for apps)
+# pubspec.lock
