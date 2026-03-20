@@ -31,7 +31,7 @@ class OnboardingIndicatorRow extends StatelessWidget {
               width: 10,
               height: 10,
               decoration: BoxDecoration(
-                color: isActive ? AppColors.blackSecondary : inactiveColor,
+                color: isActive ? AppColors.primary : inactiveColor,
                 shape: BoxShape.circle,
               ),
             ),

@@ -68,10 +68,6 @@ class _SignupViewState extends State<_SignupView> {
 
     return BlocListener<SignupCubit, SignupState>(
       listenWhen: (previous, current) =>
-          previous.firstName != current.firstName ||
-          previous.lastName != current.lastName ||
-          previous.password != current.password ||
-          previous.confirmPassword != current.confirmPassword ||
           previous.status != current.status ||
           previous.errorMessage != current.errorMessage ||
           previous.session != current.session,
@@ -104,10 +100,7 @@ class _SignupViewState extends State<_SignupView> {
 
           leading: IconButton(
             onPressed: () => context.pop(),
-            icon: Icon(
-              CupertinoIcons.chevron_back,
-              color: AppColors.blackSecondary,
-            ),
+            icon: Icon(CupertinoIcons.chevron_back, color: AppColors.primary),
           ),
         ),
         body: SafeArea(
@@ -182,7 +175,7 @@ class _SignupHeaderSection extends StatelessWidget {
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w500,
-            color: AppColors.blackSecondary,
+            color: AppColors.primary,
             fontFamily: 'League Spartan',
           ),
         ),
@@ -192,7 +185,7 @@ class _SignupHeaderSection extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: AppColors.black,
+            color: AppColors.textSecondary,
             fontFamily: 'League Spartan',
           ),
         ),
@@ -229,6 +222,8 @@ class _SignupFormSection extends StatelessWidget {
               controller: firstNameController,
               hintText: signupT.firstName,
               onChanged: cubit.firstNameChanged,
+              textInputAction: TextInputAction.next,
+              onSubmitted: (_) => FocusScope.of(context).nextFocus(),
               autofillHints: const [AutofillHints.givenName],
               errorText: firstNameError,
             );
@@ -243,6 +238,8 @@ class _SignupFormSection extends StatelessWidget {
               controller: lastNameController,
               hintText: signupT.lastName,
               onChanged: cubit.lastNameChanged,
+              textInputAction: TextInputAction.next,
+              onSubmitted: (_) => FocusScope.of(context).nextFocus(),
               autofillHints: const [AutofillHints.familyName],
               errorText: lastNameError,
             );
@@ -264,6 +261,8 @@ class _SignupFormSection extends StatelessWidget {
               onChanged: cubit.passwordChanged,
               obscureText: passwordState.obscured,
               onToggleVisibility: cubit.togglePasswordVisibility,
+              textInputAction: TextInputAction.next,
+              onSubmitted: (_) => FocusScope.of(context).nextFocus(),
               autofillHints: const [AutofillHints.newPassword],
               errorText: passwordState.error,
             );
@@ -289,7 +288,7 @@ class _SignupFormSection extends StatelessWidget {
               onToggleVisibility: cubit.toggleConfirmPasswordVisibility,
               textInputAction: TextInputAction.done,
               onSubmitted: (_) => cubit.submit(),
-              autofillHints: const [AutofillHints.newPassword],
+              autofillHints: const [AutofillHints.password],
               errorText: confirmPasswordState.error,
             );
           },
@@ -326,7 +325,7 @@ class _SignupFooterSection extends StatelessWidget {
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w500,
-            color: AppColors.black,
+            color: AppColors.textHint,
           ),
         ),
         TextButton(
@@ -341,7 +340,7 @@ class _SignupFooterSection extends StatelessWidget {
             style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w700,
-              color: AppColors.blackSecondary,
+              color: AppColors.primary,
             ),
           ),
         ),

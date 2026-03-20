@@ -207,7 +207,7 @@ class _LoginFormSection extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
-                color: AppColors.black,
+                color: AppColors.textHint,
               ),
             ),
           ),
@@ -232,7 +232,7 @@ class _LoginFormSection extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
-                color: AppColors.black,
+                color: AppColors.textHint,
               ),
             ),
             TextButton(
@@ -247,7 +247,7 @@ class _LoginFormSection extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.blackSecondary,
+                  color: AppColors.primary,
                 ),
               ),
             ),
@@ -293,7 +293,7 @@ class AuthSocialSection extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.black,
+                  color: AppColors.textPrimary,
                 ),
               ),
             ),
@@ -337,14 +337,14 @@ class AuthTermsSection extends StatelessWidget {
       fontSize: 13,
       fontWeight: FontWeight.w400,
       height: 1.3,
-      color: AppColors.black,
+      color: AppColors.textSubtle,
     );
 
     const linkStyle = TextStyle(
       fontSize: 13,
       fontWeight: FontWeight.w500,
       height: 1.3,
-      color: AppColors.blackSecondary,
+      color: AppColors.textMuted,
     );
 
     return RichText(

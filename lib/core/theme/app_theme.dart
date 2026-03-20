@@ -7,8 +7,8 @@ import 'text_styles.dart';
 abstract final class AppTheme {
   static ThemeData get lightTheme {
     const colorScheme = ColorScheme.light(
-      primary: AppColors.blackSecondary,
-      secondary: AppColors.black,
+      primary: AppColors.primary,
+      secondary: AppColors.textPrimary,
       surface: AppColors.surface,
       error: AppColors.error,
     );
@@ -16,7 +16,7 @@ abstract final class AppTheme {
     return ThemeData(
       colorScheme: colorScheme,
       scaffoldBackgroundColor: AppColors.background,
-      textTheme: TextStyles.textTheme(AppColors.black),
+      textTheme: TextStyles.textTheme(AppColors.textPrimary),
       useMaterial3: true,
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.background,
@@ -35,11 +35,11 @@ abstract final class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: AppColors.blackSecondary),
+          borderSide: const BorderSide(color: AppColors.primary),
         ),
       ),
       cardTheme: CardThemeData(
-        color: AppColors.white,
+        color: AppColors.background,
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       ),

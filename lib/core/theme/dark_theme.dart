@@ -6,24 +6,24 @@ import 'text_styles.dart';
 abstract final class DarkTheme {
   static ThemeData get theme {
     const colorScheme = ColorScheme.dark(
-      primary: AppColors.blackSecondary,
-      secondary: AppColors.white,
-      surface: AppColors.black,
+      primary: AppColors.primary,
+      secondary: AppColors.onPrimary,
+      surface: AppColors.textPrimary,
       error: AppColors.error,
     );
 
     return ThemeData(
       colorScheme: colorScheme,
-      scaffoldBackgroundColor: AppColors.black,
-      textTheme: TextStyles.textTheme(AppColors.white),
+      scaffoldBackgroundColor: AppColors.textPrimary,
+      textTheme: TextStyles.textTheme(AppColors.onPrimary),
       useMaterial3: true,
       appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.black,
+        backgroundColor: AppColors.textPrimary,
         elevation: 0,
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: AppColors.black,
+        fillColor: AppColors.textPrimary,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: const BorderSide(color: AppColors.surface),
