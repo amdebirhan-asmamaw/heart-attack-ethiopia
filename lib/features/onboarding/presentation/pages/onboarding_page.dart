@@ -84,17 +84,25 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 ),
               ),
 
-              // Gradient Overlay to darken the background image
-              Positioned.fill(
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.black.withValues(alpha: 0.1),
-                        Colors.black.withValues(alpha: 0.4),
-                      ],
+              // Subtle top shadow on the background image only
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                height: 180,
+                child: IgnorePointer(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.black.withValues(alpha: 0.18),
+                          Colors.black.withValues(alpha: 0.08),
+                          Colors.transparent,
+                        ],
+                        stops: [0, 0.45, 1],
+                      ),
                     ),
                   ),
                 ),

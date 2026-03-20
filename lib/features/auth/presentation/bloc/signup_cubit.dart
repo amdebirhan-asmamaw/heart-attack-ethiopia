@@ -83,6 +83,18 @@ class SignupCubit extends Cubit<SignupState> {
     );
   }
 
+  void togglePasswordVisibility() {
+    emit(state.copyWith(isPasswordObscured: !state.isPasswordObscured));
+  }
+
+  void toggleConfirmPasswordVisibility() {
+    emit(
+      state.copyWith(
+        isConfirmPasswordObscured: !state.isConfirmPasswordObscured,
+      ),
+    );
+  }
+
   Future<void> submit() async {
     final firstName = NameInput.dirty(state.firstName.value);
     final lastName = NameInput.dirty(state.lastName.value);

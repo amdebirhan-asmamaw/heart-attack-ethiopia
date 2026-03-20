@@ -14,9 +14,11 @@ class NameInput extends FormzInput<String, NameValidationError> {
 
 enum ConfirmPasswordValidationError { empty, mismatch }
 
-class ConfirmPasswordInput extends FormzInput<String, ConfirmPasswordValidationError> {
+class ConfirmPasswordInput
+    extends FormzInput<String, ConfirmPasswordValidationError> {
   const ConfirmPasswordInput.pure({this.password = ''}) : super.pure('');
-  const ConfirmPasswordInput.dirty({this.password = '', String value = ''}) : super.dirty(value);
+  const ConfirmPasswordInput.dirty({this.password = '', String value = ''})
+    : super.dirty(value);
 
   final String password;
 
@@ -36,6 +38,8 @@ class SignupState extends Equatable {
     required this.password,
     required this.confirmPassword,
     required this.isValid,
+    required this.isPasswordObscured,
+    required this.isConfirmPasswordObscured,
     required this.status,
     this.errorMessage,
     this.session,
@@ -48,6 +52,8 @@ class SignupState extends Equatable {
       password: PasswordInput.pure(),
       confirmPassword: ConfirmPasswordInput.pure(),
       isValid: false,
+      isPasswordObscured: true,
+      isConfirmPasswordObscured: true,
       status: FormzSubmissionStatus.initial,
     );
   }
@@ -57,6 +63,8 @@ class SignupState extends Equatable {
   final PasswordInput password;
   final ConfirmPasswordInput confirmPassword;
   final bool isValid;
+  final bool isPasswordObscured;
+  final bool isConfirmPasswordObscured;
   final FormzSubmissionStatus status;
   final String? errorMessage;
   final AuthSession? session;
@@ -67,6 +75,8 @@ class SignupState extends Equatable {
     PasswordInput? password,
     ConfirmPasswordInput? confirmPassword,
     bool? isValid,
+    bool? isPasswordObscured,
+    bool? isConfirmPasswordObscured,
     FormzSubmissionStatus? status,
     String? errorMessage,
     AuthSession? session,
@@ -78,6 +88,9 @@ class SignupState extends Equatable {
       password: password ?? this.password,
       confirmPassword: confirmPassword ?? this.confirmPassword,
       isValid: isValid ?? this.isValid,
+      isPasswordObscured: isPasswordObscured ?? this.isPasswordObscured,
+      isConfirmPasswordObscured:
+          isConfirmPasswordObscured ?? this.isConfirmPasswordObscured,
       status: status ?? this.status,
       errorMessage: clearError ? null : errorMessage ?? this.errorMessage,
       session: session ?? this.session,
@@ -133,6 +146,8 @@ class SignupState extends Equatable {
     password,
     confirmPassword,
     isValid,
+    isPasswordObscured,
+    isConfirmPasswordObscured,
     status,
     errorMessage,
     session,

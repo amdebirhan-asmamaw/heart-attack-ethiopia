@@ -45,6 +45,7 @@ class LoginState extends Equatable {
     required this.email,
     required this.password,
     required this.isValid,
+    required this.isPasswordObscured,
     required this.status,
     this.errorMessage,
     this.session,
@@ -57,6 +58,7 @@ class LoginState extends Equatable {
       email: email,
       password: password,
       isValid: Formz.validate([email, password]),
+      isPasswordObscured: true,
       status: FormzSubmissionStatus.initial,
     );
   }
@@ -64,6 +66,7 @@ class LoginState extends Equatable {
   final EmailInput email;
   final PasswordInput password;
   final bool isValid;
+  final bool isPasswordObscured;
   final FormzSubmissionStatus status;
   final String? errorMessage;
   final AuthSession? session;
@@ -72,6 +75,7 @@ class LoginState extends Equatable {
     EmailInput? email,
     PasswordInput? password,
     bool? isValid,
+    bool? isPasswordObscured,
     FormzSubmissionStatus? status,
     String? errorMessage,
     AuthSession? session,
@@ -81,6 +85,7 @@ class LoginState extends Equatable {
       email: email ?? this.email,
       password: password ?? this.password,
       isValid: isValid ?? this.isValid,
+      isPasswordObscured: isPasswordObscured ?? this.isPasswordObscured,
       status: status ?? this.status,
       errorMessage: clearError ? null : errorMessage ?? this.errorMessage,
       session: session ?? this.session,
@@ -122,6 +127,7 @@ class LoginState extends Equatable {
     email,
     password,
     isValid,
+    isPasswordObscured,
     status,
     errorMessage,
     session,

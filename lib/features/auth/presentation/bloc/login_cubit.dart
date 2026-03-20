@@ -35,6 +35,10 @@ class LoginCubit extends Cubit<LoginState> {
     );
   }
 
+  void togglePasswordVisibility() {
+    emit(state.copyWith(isPasswordObscured: !state.isPasswordObscured));
+  }
+
   Future<void> submit() async {
     final email = EmailInput.dirty(state.email.value);
     final password = PasswordInput.dirty(state.password.value);

@@ -327,8 +327,8 @@ class TranslationsStringsAuthSignupEn {
 
 	// Translations
 
-	/// en: 'Sign in'
-	String get title => 'Sign in';
+	/// en: 'Signup'
+	String get title => 'Signup';
 
 	/// en: 'Lets create your account'
 	String get subtitle => 'Lets create your account';
@@ -383,7 +383,7 @@ extension on Translations {
 			'strings.auth.continueWithApple' => 'Continue with Apple',
 			'strings.auth.continueWithFacebook' => 'Continue with Facebook',
 			'strings.auth.terms' => 'By pressing on \'Continue with...\' you agree to our Terms of Services and Privacy Policy',
-			'strings.auth.signup.title' => 'Sign in',
+			'strings.auth.signup.title' => 'Signup',
 			'strings.auth.signup.subtitle' => 'Lets create your account',
 			'strings.auth.signup.firstName' => 'First name',
 			'strings.auth.signup.lastName' => 'Last name',

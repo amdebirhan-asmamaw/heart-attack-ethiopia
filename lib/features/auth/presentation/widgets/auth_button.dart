@@ -1,32 +1,41 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/app_colors.dart';
+
 class AuthButton extends StatelessWidget {
+  const AuthButton.primary({
+    required this.text,
+    required this.onPressed,
+    super.key,
+    this.isLoading = false,
+  }) : backgroundColor = AppColors.loginMaroon,
+       textColor = Colors.white,
+       fontSize = 16,
+       borderRadius = 50;
+
+  const AuthButton.secondary({
+    required this.text,
+    required this.onPressed,
+    super.key,
+    this.isLoading = false,
+  }) : backgroundColor = AppColors.loginGrayDark,
+       textColor = AppColors.textBlack,
+       fontSize = 14,
+       borderRadius = 13;
+
   final String text;
   final Color backgroundColor;
   final Color textColor;
   final VoidCallback onPressed;
   final bool isLoading;
   final double borderRadius;
-  final double scale;
   final double fontSize;
-
-  const AuthButton({
-    super.key,
-    required this.text,
-    required this.backgroundColor,
-    required this.textColor,
-    required this.onPressed,
-    this.isLoading = false,
-    required this.borderRadius,
-    required this.scale,
-    this.fontSize = 16,
-  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 298 * scale,
-      height: 45 * scale,
+      width: double.infinity,
+      height: 48,
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
@@ -35,13 +44,13 @@ class AuthButton extends StatelessWidget {
           elevation: 0,
           padding: EdgeInsets.zero,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius * scale),
+            borderRadius: BorderRadius.circular(borderRadius),
           ),
         ),
         child: isLoading
             ? SizedBox(
-                height: 20 * scale,
-                width: 20 * scale,
+                height: 20,
+                width: 20,
                 child: CircularProgressIndicator(
                   color: textColor,
                   strokeWidth: 2,
@@ -51,7 +60,7 @@ class AuthButton extends StatelessWidget {
                 text,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: fontSize * scale,
+                  fontSize: fontSize,
                   fontWeight: FontWeight.w500,
                 ),
               ),
