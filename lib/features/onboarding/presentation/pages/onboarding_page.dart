@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../../../app/resources/app_media.dart';
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/localization/generated/strings.g.dart';
-import '../../../../core/router/routes.dart';
-import '../../../auth/presentation/bloc/auth_cubit.dart';
-import '../bloc/onboarding_cubit.dart';
-import '../widgets/onboarding_bottom_sheet.dart';
+import 'package:heart_attack_ethiopia/app/resources/app_media.dart';
+import 'package:heart_attack_ethiopia/core/extensions/context_extensions.dart';
+import 'package:heart_attack_ethiopia/core/localization/generated/strings.g.dart';
+import 'package:heart_attack_ethiopia/features/onboarding/presentation/bloc/onboarding_cubit.dart';
+import 'package:heart_attack_ethiopia/features/onboarding/presentation/widgets/onboarding_bottom_sheet.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -50,29 +46,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
     await context.read<OnboardingCubit>().complete();
   }
 
-  void _goToNextRoute() {
-    final authStatus = context.read<AuthCubit>().state.status;
-    final nextRoute = authStatus == AuthStatus.authenticated
-        ? AppRoutes.shell
-        : AppRoutes.login;
-
-    context.go(nextRoute);
-  }
-
   @override
   Widget build(BuildContext context) {
     final t = context.t.strings.onboarding;
 
     return BlocListener<OnboardingCubit, OnboardingState>(
       listenWhen: (previous, current) =>
-          previous.status != current.status ||
           previous.errorMessage != current.errorMessage,
       listener: (context, state) {
-        if (state.status == OnboardingStatus.completed) {
-          _goToNextRoute();
-          return;
-        }
-
         if (state.errorMessage != null) {
           context.showAppSnackBar(state.errorMessage!);
         }
@@ -84,27 +65,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
               child: Image.asset(
                 AppMedia.onboardingBackground,
                 fit: BoxFit.cover,
+                colorBlendMode: BlendMode.darken,
               ),
             ),
-            const Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              height: 180,
-              child: IgnorePointer(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color(0x2E000000),
-                        Color(0x14000000),
-                        Colors.transparent,
-                      ],
-                      stops: [0, 0.45, 1],
-                    ),
-                  ),
+            Positioned.fill(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Colors.black.withValues(alpha: 0.65),
                 ),
               ),
             ),
@@ -155,7 +122,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
           backgroundColor: Colors.white,
           textColor: Colors.black,
           currentPage: pageIndex,
-          indicatorInactiveColor: Colors.black,
+          indicatorInactiveColor: Colors.black.withValues(alpha: 0.5),
           onIndicatorTap: _navigateToPage,
           buttonText: onboardingText.next,
           buttonBackgroundColor: Colors.black,

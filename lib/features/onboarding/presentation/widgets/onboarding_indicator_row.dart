@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/constants/app_colors.dart';
+import 'package:heart_attack_ethiopia/core/constants/app_colors.dart';
 
 class OnboardingIndicatorRow extends StatelessWidget {
   final int currentPage;
@@ -31,7 +30,7 @@ class OnboardingIndicatorRow extends StatelessWidget {
               width: 10,
               height: 10,
               decoration: BoxDecoration(
-                color: isActive ? AppColors.primary : inactiveColor,
+                color: isActive ? AppColors.red : inactiveColor,
                 shape: BoxShape.circle,
               ),
             ),

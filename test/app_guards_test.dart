@@ -29,18 +29,21 @@ void main() {
       expect(redirect, AppRoutes.onboarding);
     });
 
-    test('routes authenticated users past onboarding to shell', () {
-      final redirect = AppGuards.redirect(
-        authState: const AuthState(status: AuthStatus.authenticated),
-        onboardingState: const OnboardingState(
-          status: OnboardingStatus.completed,
-          isSubmitting: false,
-        ),
-        currentLocation: AppRoutes.onboarding,
-      );
+    test(
+      'routes authenticated users past onboarding to shell from auth routes',
+      () {
+        final redirect = AppGuards.redirect(
+          authState: const AuthState(status: AuthStatus.authenticated),
+          onboardingState: const OnboardingState(
+            status: OnboardingStatus.completed,
+            isSubmitting: false,
+          ),
+          currentLocation: AppRoutes.login,
+        );
 
-      expect(redirect, AppRoutes.shell);
-    });
+        expect(redirect, AppRoutes.shell);
+      },
+    );
 
     test('routes unauthenticated users to login after onboarding', () {
       final redirect = AppGuards.redirect(
@@ -55,18 +58,21 @@ void main() {
       expect(redirect, AppRoutes.login);
     });
 
-    test('moves completed unauthenticated users off splash to login', () {
-      final redirect = AppGuards.redirect(
-        authState: const AuthState(status: AuthStatus.unauthenticated),
-        onboardingState: const OnboardingState(
-          status: OnboardingStatus.completed,
-          isSubmitting: false,
-        ),
-        currentLocation: AppRoutes.splash,
-      );
+    test(
+      'moves completed users from splash to onboarding during development',
+      () {
+        final redirect = AppGuards.redirect(
+          authState: const AuthState(status: AuthStatus.unauthenticated),
+          onboardingState: const OnboardingState(
+            status: OnboardingStatus.completed,
+            isSubmitting: false,
+          ),
+          currentLocation: AppRoutes.splash,
+        );
 
-      expect(redirect, AppRoutes.login);
-    });
+        expect(redirect, AppRoutes.onboarding);
+      },
+    );
 
     test('moves completed unauthenticated users off onboarding to login', () {
       final redirect = AppGuards.redirect(

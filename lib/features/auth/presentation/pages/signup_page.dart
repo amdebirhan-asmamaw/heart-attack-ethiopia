@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/di/injection.dart';
-import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/localization/generated/strings.g.dart';
-import '../bloc/auth_cubit.dart';
-import '../bloc/signup_cubit.dart';
-import 'login_page.dart';
-import '../widgets/auth_button.dart';
-import '../widgets/auth_text_field.dart';
+import 'package:heart_attack_ethiopia/core/constants/app_colors.dart';
+import 'package:heart_attack_ethiopia/core/di/injection.dart';
+import 'package:heart_attack_ethiopia/core/extensions/context_extensions.dart';
+import 'package:heart_attack_ethiopia/core/localization/generated/strings.g.dart';
+import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/auth_cubit.dart';
+import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/signup_cubit.dart';
+import 'package:heart_attack_ethiopia/features/auth/presentation/pages/login_page.dart';
+import 'package:heart_attack_ethiopia/features/auth/presentation/widgets/auth_button.dart';
+import 'package:heart_attack_ethiopia/features/auth/presentation/widgets/auth_text_field.dart';
 
 class SignupPage extends StatelessWidget {
   const SignupPage({super.key});

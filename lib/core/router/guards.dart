@@ -8,7 +8,9 @@ abstract final class AppGuards {
     required OnboardingState onboardingState,
     required String currentLocation,
   }) {
-    final isAuthRoute = currentLocation == AppRoutes.login || currentLocation == AppRoutes.signup;
+    final isAuthRoute =
+        currentLocation == AppRoutes.login ||
+        currentLocation == AppRoutes.signup;
     final isOnboardingRoute = currentLocation == AppRoutes.onboarding;
     final isSplashRoute = currentLocation == AppRoutes.splash;
     final isProtectedRoute = currentLocation.startsWith(AppRoutes.shell);
@@ -20,6 +22,12 @@ abstract final class AppGuards {
       case OnboardingStatus.pending:
         return isOnboardingRoute ? null : AppRoutes.onboarding;
       case OnboardingStatus.completed:
+        // TODO: Remove this development override once onboarding QA is complete.
+        // During development we always want the app to land on onboarding first,
+        // even if the completion flag has already been stored.
+        if (isSplashRoute) {
+          return AppRoutes.onboarding;
+        }
         break;
     }
 

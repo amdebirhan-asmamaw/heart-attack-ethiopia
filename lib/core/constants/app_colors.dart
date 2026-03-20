@@ -17,6 +17,8 @@ abstract final class AppColors {
   static const textMuted = Color(0xFF808080);
   static const textSubtle = Color(0xFFCCCCCC);
 
+  static const red = Color(0xFFD72335);
+
   // Feedback
   static const success = Color(0xFF1E9E62);
   static const warning = Color(0xFFF59E0B);

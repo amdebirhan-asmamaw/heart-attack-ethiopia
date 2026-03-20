@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/localization/generated/strings.g.dart';
+import 'package:heart_attack_ethiopia/core/localization/generated/strings.g.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});

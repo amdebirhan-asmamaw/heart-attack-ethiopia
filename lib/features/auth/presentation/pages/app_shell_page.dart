@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/config/app_config.dart';
-import '../../../../core/di/injection.dart';
-import '../../../../core/localization/generated/strings.g.dart';
-import '../../../../features/chat/presentation/chat_page.dart';
-import '../../../../features/notifications/presentation/notifications_page.dart';
-import '../../../../features/profile/presentation/profile_page.dart';
-import '../../../../features/settings/presentation/settings_page.dart';
-import '../../../../shared/bloc/connectivity_cubit.dart';
-import '../bloc/auth_cubit.dart';
+import 'package:heart_attack_ethiopia/core/config/app_config.dart';
+import 'package:heart_attack_ethiopia/core/di/injection.dart';
+import 'package:heart_attack_ethiopia/core/localization/generated/strings.g.dart';
+import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/auth_cubit.dart';
+import 'package:heart_attack_ethiopia/features/chat/presentation/chat_page.dart';
+import 'package:heart_attack_ethiopia/features/notifications/presentation/notifications_page.dart';
+import 'package:heart_attack_ethiopia/features/profile/presentation/profile_page.dart';
+import 'package:heart_attack_ethiopia/features/settings/presentation/settings_page.dart';
+import 'package:heart_attack_ethiopia/shared/bloc/connectivity_cubit.dart';
 
 class AppShellPage extends StatefulWidget {
   const AppShellPage({super.key});

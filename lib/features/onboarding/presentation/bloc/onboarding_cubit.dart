@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../domain/usecases/complete_onboarding_usecase.dart';
-import '../../domain/usecases/get_onboarding_status_usecase.dart';
+import 'package:heart_attack_ethiopia/features/onboarding/domain/usecases/complete_onboarding_usecase.dart';
+import 'package:heart_attack_ethiopia/features/onboarding/domain/usecases/get_onboarding_status_usecase.dart';
 
 part 'onboarding_state.dart';
 
@@ -47,7 +46,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   }
 
   Future<void> complete() async {
-    if (state.isSubmitting || state.status == OnboardingStatus.completed) {
+    if (state.isSubmitting) {
       return;
     }
 
@@ -72,11 +71,14 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   }
 
   void handleBootstrapTimeout() {
-    if (state.status == OnboardingStatus.loading || state.status == OnboardingStatus.initial) {
-      emit(const OnboardingState(
-        status: OnboardingStatus.pending,
-        isSubmitting: false,
-      ));
+    if (state.status == OnboardingStatus.loading ||
+        state.status == OnboardingStatus.initial) {
+      emit(
+        const OnboardingState(
+          status: OnboardingStatus.pending,
+          isSubmitting: false,
+        ),
+      );
     }
   }
 }
