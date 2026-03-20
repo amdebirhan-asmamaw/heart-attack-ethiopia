@@ -22,14 +22,10 @@ abstract final class AppColors {
   static const overlayGradientEnd = Color(0xCC000000);
 
   // Login
-  static const loginBackground = Color(0xFFFCFCFC);
+  static const loginBackground = Color(0xFFF2F2F2);
   static const loginMaroon = Color(0xFF420C11);
-  static const loginMaroonDark = Color(0xFF32080C);
-  static const loginMaroonLight = Color(0xFF981825);
   static const loginGray = Color(0xFFF2F2F2);
   static const loginGrayDark = Color(0xFFE9E9E9);
-  static const textGray = Color(0xFF808080);
-  static const textGrayLight = Color(0xFF999999);
-  static const textGrayLighter = Color(0xFFCCCCCC);
-  static const textBlack = Color(0xFF252525);
+  static const textBlack = Colors.black;
+  static const textWhite = Colors.white;
 }

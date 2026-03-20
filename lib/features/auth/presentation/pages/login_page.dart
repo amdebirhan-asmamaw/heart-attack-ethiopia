@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -54,14 +55,19 @@ class _LoginViewState extends State<_LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    final t = context.t.strings.auth;
+    final commonT = context.t.strings.common;
 
     return BlocListener<LoginCubit, LoginState>(
       listenWhen: (previous, current) =>
+          previous.email != current.email ||
+          previous.password != current.password ||
           previous.status != current.status ||
           previous.errorMessage != current.errorMessage ||
           previous.session != current.session,
       listener: (context, state) {
+        _syncController(_emailController, state.email.value);
+        _syncController(_passwordController, state.password.value);
+
         if (state.status == FormzSubmissionStatus.failure &&
             state.errorMessage != null) {
           context.showAppSnackBar(state.errorMessage!);
@@ -90,12 +96,32 @@ class _LoginViewState extends State<_LoginView> {
                 const SizedBox(height: 24),
                 const AuthSocialSection(),
                 const SizedBox(height: 24),
-                AuthTermsSection(text: t.terms),
+                AuthTermsSection(
+                  prefixText: "By continuing you agree to ",
+                  linkText: "Terms of Service",
+                  middleText: " and ",
+                  secondaryLinkText: "Privacy Policy",
+                  onTermsTap: () => context.showAppSnackBar(commonT.comingSoon),
+                  onPrivacyTap: () =>
+                      context.showAppSnackBar(commonT.comingSoon),
+                ),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  void _syncController(TextEditingController controller, String value) {
+    if (controller.text == value) {
+      return;
+    }
+
+    controller.value = controller.value.copyWith(
+      text: value,
+      selection: TextSelection.collapsed(offset: value.length),
+      composing: TextRange.empty,
     );
   }
 }
@@ -127,97 +153,107 @@ class _LoginFormSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = context.t.strings.auth;
     final cubit = context.read<LoginCubit>();
 
-    return BlocBuilder<LoginCubit, LoginState>(
-      buildWhen: (previous, current) =>
-          previous.email != current.email ||
-          previous.password != current.password ||
-          previous.isPasswordObscured != current.isPasswordObscured ||
-          previous.status != current.status,
-      builder: (context, state) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            AuthTextField(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        BlocSelector<LoginCubit, LoginState, String?>(
+          selector: (state) => state.emailError,
+          builder: (context, emailError) {
+            final t = context.t.strings.auth;
+            return AuthTextField(
               controller: emailController,
               hintText: t.emailLabel,
               onChanged: cubit.emailChanged,
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
-              errorText: state.emailError,
-            ),
-            const SizedBox(height: 12),
-            AuthTextField(
+              autofillHints: const [AutofillHints.email],
+              errorText: emailError,
+            );
+          },
+        ),
+        const SizedBox(height: 12),
+        BlocSelector<LoginCubit, LoginState, ({bool obscured, String? error})>(
+          selector: (state) =>
+              (obscured: state.isPasswordObscured, error: state.passwordError),
+          builder: (context, passwordState) {
+            final t = context.t.strings.auth;
+            return AuthTextField(
               controller: passwordController,
               hintText: t.passwordLabel,
               onChanged: cubit.passwordChanged,
-              obscureText: state.isPasswordObscured,
+              obscureText: passwordState.obscured,
               onToggleVisibility: cubit.togglePasswordVisibility,
               textInputAction: TextInputAction.done,
-              errorText: state.passwordError,
+              autofillHints: const [AutofillHints.password],
+              onSubmitted: (_) => cubit.submit(),
+              errorText: passwordState.error,
+            );
+          },
+        ),
+        const SizedBox(height: 8),
+        Align(
+          alignment: Alignment.center,
+          child: TextButton(
+            onPressed: () {},
+            style: TextButton.styleFrom(
+              minimumSize: Size.zero,
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
-            const SizedBox(height: 8),
-            Align(
-              alignment: Alignment.center,
-              child: TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  minimumSize: Size.zero,
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                ),
-                child: Text(
-                  t.forgotPassword,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.textGrayLight,
-                  ),
+            child: Text(
+              context.t.strings.auth.forgotPassword,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textBlack,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 20),
+        BlocSelector<LoginCubit, LoginState, bool>(
+          selector: (state) => state.status == FormzSubmissionStatus.inProgress,
+          builder: (context, isLoading) {
+            return AuthButton.primary(
+              text: context.t.strings.auth.submit,
+              onPressed: cubit.submit,
+              isLoading: isLoading,
+            );
+          },
+        ),
+        const SizedBox(height: 12),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              context.t.strings.auth.dontHaveAccount,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textBlack,
+              ),
+            ),
+            TextButton(
+              onPressed: () => context.push(AppRoutes.signup),
+              style: TextButton.styleFrom(
+                minimumSize: Size.zero,
+                padding: const EdgeInsets.only(left: 4, top: 8, bottom: 8),
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+              child: Text(
+                context.t.strings.auth.createAccount,
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.loginMaroon,
                 ),
               ),
             ),
-            const SizedBox(height: 20),
-            AuthButton.primary(
-              text: t.submit,
-              onPressed: cubit.submit,
-              isLoading: state.status == FormzSubmissionStatus.inProgress,
-            ),
-            const SizedBox(height: 12),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(''),
-                Text(
-                  t.dontHaveAccount,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.textGray,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () => context.push(AppRoutes.signup),
-                  style: TextButton.styleFrom(
-                    minimumSize: Size.zero,
-                    padding: const EdgeInsets.only(left: 4, top: 8, bottom: 8),
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  ),
-                  child: Text(
-                    t.createAccount,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.loginMaroonLight,
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ],
-        );
-      },
+        ),
+      ],
     );
   }
 }
@@ -228,10 +264,20 @@ class AuthSocialSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = context.t.strings.auth;
-    final socialLabels = [
-      t.continueWithGoogle,
-      t.continueWithApple,
-      t.continueWithFacebook,
+    final commonT = context.t.strings.common;
+    final socialActions = <({String label, VoidCallback onPressed})>[
+      (
+        label: t.continueWithGoogle,
+        onPressed: () => context.showAppSnackBar(commonT.comingSoon),
+      ),
+      (
+        label: t.continueWithApple,
+        onPressed: () => context.showAppSnackBar(commonT.comingSoon),
+      ),
+      (
+        label: t.continueWithFacebook,
+        onPressed: () => context.showAppSnackBar(commonT.comingSoon),
+      ),
     ];
 
     return Column(
@@ -255,9 +301,12 @@ class AuthSocialSection extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
-        for (final label in socialLabels) ...[
-          AuthButton.secondary(text: label, onPressed: () {}),
-          if (label != socialLabels.last) const SizedBox(height: 10),
+        for (final socialAction in socialActions) ...[
+          AuthButton.secondary(
+            text: socialAction.label,
+            onPressed: socialAction.onPressed,
+          ),
+          if (socialAction != socialActions.last) const SizedBox(height: 10),
         ],
       ],
     );
@@ -265,20 +314,57 @@ class AuthSocialSection extends StatelessWidget {
 }
 
 class AuthTermsSection extends StatelessWidget {
-  const AuthTermsSection({required this.text, super.key});
+  const AuthTermsSection({
+    required this.prefixText,
+    required this.linkText,
+    required this.middleText,
+    required this.secondaryLinkText,
+    required this.onTermsTap,
+    required this.onPrivacyTap,
+    super.key,
+  });
 
-  final String text;
+  final String prefixText;
+  final String linkText;
+  final String middleText;
+  final String secondaryLinkText;
+  final VoidCallback onTermsTap;
+  final VoidCallback onPrivacyTap;
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
+    const baseStyle = TextStyle(
+      fontSize: 13,
+      fontWeight: FontWeight.w400,
+      height: 1.3,
+      color: AppColors.textBlack,
+    );
+
+    const linkStyle = TextStyle(
+      fontSize: 13,
+      fontWeight: FontWeight.w500,
+      height: 1.3,
+      color: AppColors.loginMaroon,
+    );
+
+    return RichText(
       textAlign: TextAlign.center,
-      style: const TextStyle(
-        fontSize: 13,
-        fontWeight: FontWeight.w400,
-        height: 1.3,
-        color: AppColors.textGrayLighter,
+      text: TextSpan(
+        style: baseStyle,
+        children: [
+          TextSpan(text: prefixText),
+          TextSpan(
+            text: linkText,
+            style: linkStyle,
+            recognizer: TapGestureRecognizer()..onTap = onTermsTap,
+          ),
+          TextSpan(text: middleText),
+          TextSpan(
+            text: secondaryLinkText,
+            style: linkStyle,
+            recognizer: TapGestureRecognizer()..onTap = onPrivacyTap,
+          ),
+        ],
       ),
     );
   }

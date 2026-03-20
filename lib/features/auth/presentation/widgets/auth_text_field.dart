@@ -13,6 +13,8 @@ class AuthTextField extends StatelessWidget {
     this.obscureText = false,
     this.onToggleVisibility,
     this.errorText,
+    this.autofillHints,
+    this.onSubmitted,
   });
 
   final TextEditingController controller;
@@ -23,6 +25,13 @@ class AuthTextField extends StatelessWidget {
   final bool obscureText;
   final VoidCallback? onToggleVisibility;
   final String? errorText;
+  final Iterable<String>? autofillHints;
+  final ValueChanged<String>? onSubmitted;
+
+  static final OutlineInputBorder _baseBorder = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(13),
+    borderSide: const BorderSide(color: Colors.transparent),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +41,20 @@ class AuthTextField extends StatelessWidget {
       obscureText: obscureText,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
+      autofillHints: autofillHints,
+      onFieldSubmitted: onSubmitted,
       textAlignVertical: TextAlignVertical.center,
       style: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
-        color: Colors.black,
+        color: AppColors.textBlack,
       ),
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: const TextStyle(
+        hintStyle: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w500,
-          color: AppColors.textGray,
+          color: AppColors.textBlack.withValues(alpha: 0.45),
         ),
         errorText: errorText,
         filled: true,
@@ -52,9 +63,9 @@ class AuthTextField extends StatelessWidget {
           horizontal: 14,
           vertical: 14,
         ),
-        border: _border(),
-        enabledBorder: _border(),
-        focusedBorder: _border(color: AppColors.loginMaroonLight),
+        border: _baseBorder,
+        enabledBorder: _baseBorder,
+        focusedBorder: _border(color: AppColors.loginMaroon),
         errorBorder: _border(color: AppColors.error),
         focusedErrorBorder: _border(color: AppColors.error),
         suffixIcon: onToggleVisibility == null
@@ -65,7 +76,7 @@ class AuthTextField extends StatelessWidget {
                   obscureText
                       ? Icons.visibility_outlined
                       : Icons.visibility_off_outlined,
-                  color: AppColors.textGrayLight,
+                  color: AppColors.textBlack.withValues(alpha: 0.55),
                 ),
               ),
       ),
@@ -73,9 +84,6 @@ class AuthTextField extends StatelessWidget {
   }
 
   OutlineInputBorder _border({Color color = Colors.transparent}) {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(13),
-      borderSide: BorderSide(color: color),
-    );
+    return _baseBorder.copyWith(borderSide: BorderSide(color: color));
   }
 }

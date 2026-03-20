@@ -9,7 +9,7 @@ class AuthButton extends StatelessWidget {
     super.key,
     this.isLoading = false,
   }) : backgroundColor = AppColors.loginMaroon,
-       textColor = Colors.white,
+       textColor = AppColors.textWhite,
        fontSize = 16,
        borderRadius = 50;
 
@@ -33,16 +33,19 @@ class AuthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 48,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        minWidth: double.infinity,
+        minHeight: 48,
+      ),
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor,
           foregroundColor: textColor,
           elevation: 0,
-          padding: EdgeInsets.zero,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          minimumSize: const Size.fromHeight(48),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
           ),
