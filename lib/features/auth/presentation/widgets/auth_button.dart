@@ -8,8 +8,8 @@ class AuthButton extends StatelessWidget {
     required this.onPressed,
     super.key,
     this.isLoading = false,
-  }) : backgroundColor = AppColors.loginMaroon,
-       textColor = AppColors.textWhite,
+  }) : backgroundColor = AppColors.blackSecondary,
+       textColor = AppColors.white,
        fontSize = 16,
        borderRadius = 50;
 
@@ -18,8 +18,8 @@ class AuthButton extends StatelessWidget {
     required this.onPressed,
     super.key,
     this.isLoading = false,
-  }) : backgroundColor = AppColors.loginGrayDark,
-       textColor = AppColors.textBlack,
+  }) : backgroundColor = AppColors.surface,
+       textColor = AppColors.black,
        fontSize = 14,
        borderRadius = 13;
 

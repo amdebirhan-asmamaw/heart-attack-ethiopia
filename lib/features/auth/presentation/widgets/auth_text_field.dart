@@ -47,25 +47,25 @@ class AuthTextField extends StatelessWidget {
       style: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
-        color: AppColors.textBlack,
+        color: AppColors.black,
       ),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w500,
-          color: AppColors.textBlack.withValues(alpha: 0.45),
+          color: AppColors.black.withValues(alpha: 0.45),
         ),
         errorText: errorText,
         filled: true,
-        fillColor: AppColors.loginGray,
+        fillColor: AppColors.background,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 14,
           vertical: 14,
         ),
         border: _baseBorder,
         enabledBorder: _baseBorder,
-        focusedBorder: _border(color: AppColors.loginMaroon),
+        focusedBorder: _border(color: AppColors.blackSecondary),
         errorBorder: _border(color: AppColors.error),
         focusedErrorBorder: _border(color: AppColors.error),
         suffixIcon: onToggleVisibility == null
@@ -76,7 +76,7 @@ class AuthTextField extends StatelessWidget {
                   obscureText
                       ? Icons.visibility_outlined
                       : Icons.visibility_off_outlined,
-                  color: AppColors.textBlack.withValues(alpha: 0.55),
+                  color: AppColors.black.withValues(alpha: 0.55),
                 ),
               ),
       ),

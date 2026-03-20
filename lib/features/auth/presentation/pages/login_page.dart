@@ -79,7 +79,7 @@ class _LoginViewState extends State<_LoginView> {
         }
       },
       child: Scaffold(
-        backgroundColor: AppColors.loginBackground,
+        backgroundColor: AppColors.background,
         resizeToAvoidBottomInset: true,
         body: SafeArea(
           child: SingleChildScrollView(
@@ -207,7 +207,7 @@ class _LoginFormSection extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
-                color: AppColors.textBlack,
+                color: AppColors.black,
               ),
             ),
           ),
@@ -232,7 +232,7 @@ class _LoginFormSection extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
-                color: AppColors.textBlack,
+                color: AppColors.black,
               ),
             ),
             TextButton(
@@ -247,7 +247,7 @@ class _LoginFormSection extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.loginMaroon,
+                  color: AppColors.blackSecondary,
                 ),
               ),
             ),
@@ -293,7 +293,7 @@ class AuthSocialSection extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.textBlack,
+                  color: AppColors.black,
                 ),
               ),
             ),
@@ -337,14 +337,14 @@ class AuthTermsSection extends StatelessWidget {
       fontSize: 13,
       fontWeight: FontWeight.w400,
       height: 1.3,
-      color: AppColors.textBlack,
+      color: AppColors.black,
     );
 
     const linkStyle = TextStyle(
       fontSize: 13,
       fontWeight: FontWeight.w500,
       height: 1.3,
-      color: AppColors.loginMaroon,
+      color: AppColors.blackSecondary,
     );
 
     return RichText(

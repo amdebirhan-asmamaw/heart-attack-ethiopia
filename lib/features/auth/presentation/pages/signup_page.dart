@@ -95,18 +95,18 @@ class _SignupViewState extends State<_SignupView> {
         }
       },
       child: Scaffold(
-        backgroundColor: AppColors.loginBackground,
+        backgroundColor: AppColors.background,
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
-          backgroundColor: AppColors.loginBackground,
+          backgroundColor: AppColors.background,
           surfaceTintColor: Colors.transparent,
-          elevation: 2,
+          elevation: 0,
 
           leading: IconButton(
             onPressed: () => context.pop(),
             icon: Icon(
               CupertinoIcons.chevron_back,
-              color: AppColors.loginMaroon,
+              color: AppColors.blackSecondary,
             ),
           ),
         ),
@@ -182,7 +182,7 @@ class _SignupHeaderSection extends StatelessWidget {
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w500,
-            color: AppColors.loginMaroon,
+            color: AppColors.blackSecondary,
             fontFamily: 'League Spartan',
           ),
         ),
@@ -192,7 +192,7 @@ class _SignupHeaderSection extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: AppColors.textBlack,
+            color: AppColors.black,
             fontFamily: 'League Spartan',
           ),
         ),
@@ -326,7 +326,7 @@ class _SignupFooterSection extends StatelessWidget {
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w500,
-            color: AppColors.textBlack,
+            color: AppColors.black,
           ),
         ),
         TextButton(
@@ -341,7 +341,7 @@ class _SignupFooterSection extends StatelessWidget {
             style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w700,
-              color: AppColors.loginMaroon,
+              color: AppColors.blackSecondary,
             ),
           ),
         ),
