@@ -49,6 +49,35 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<Either<Failure, AuthSession>> signup({
+    required String firstName,
+    required String lastName,
+    required String password,
+  }) async {
+    if (!await _networkInfo.isConnected) {
+      return const Left(NetworkFailure());
+    }
+
+    try {
+      final session = await _remoteDataSource.signup(
+        firstName: firstName,
+        lastName: lastName,
+        password: password,
+      );
+      await _localDataSource.cacheSession(session);
+      return Right(session.toEntity());
+    } on UnauthorizedException catch (error) {
+      return Left(AuthFailure(error.message));
+    } on NetworkException catch (error) {
+      return Left(NetworkFailure(error.message));
+    } on CacheException catch (error) {
+      return Left(CacheFailure(error.message));
+    } catch (_) {
+      return const Left(ServerFailure());
+    }
+  }
+
+  @override
   Future<Either<Failure, AuthSession>> restoreSession() async {
     try {
       final session = await _localDataSource.restoreSession();

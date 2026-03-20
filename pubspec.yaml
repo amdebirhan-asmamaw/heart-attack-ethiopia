@@ -61,6 +61,7 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   slang: ^4.13.0
   slang_flutter: ^4.13.0
+  flutter_svg: ^2.2.4
 
 dev_dependencies:
   flutter_test:

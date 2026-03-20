@@ -54,5 +54,31 @@ void main() {
 
       expect(redirect, AppRoutes.login);
     });
+
+    test('moves completed unauthenticated users off splash to login', () {
+      final redirect = AppGuards.redirect(
+        authState: const AuthState(status: AuthStatus.unauthenticated),
+        onboardingState: const OnboardingState(
+          status: OnboardingStatus.completed,
+          isSubmitting: false,
+        ),
+        currentLocation: AppRoutes.splash,
+      );
+
+      expect(redirect, AppRoutes.login);
+    });
+
+    test('moves completed unauthenticated users off onboarding to login', () {
+      final redirect = AppGuards.redirect(
+        authState: const AuthState(status: AuthStatus.unauthenticated),
+        onboardingState: const OnboardingState(
+          status: OnboardingStatus.completed,
+          isSubmitting: false,
+        ),
+        currentLocation: AppRoutes.onboarding,
+      );
+
+      expect(redirect, AppRoutes.login);
+    });
   });
 }

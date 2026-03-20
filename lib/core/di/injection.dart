@@ -10,8 +10,10 @@ import '../../features/auth/domain/repositories/auth_repository.dart';
 import '../../features/auth/domain/usecases/login_usecase.dart';
 import '../../features/auth/domain/usecases/logout_usecase.dart';
 import '../../features/auth/domain/usecases/restore_session_usecase.dart';
+import '../../features/auth/domain/usecases/signup_usecase.dart';
 import '../../features/auth/presentation/bloc/auth_cubit.dart';
 import '../../features/auth/presentation/bloc/login_cubit.dart';
+import '../../features/auth/presentation/bloc/signup_cubit.dart';
 import '../../features/onboarding/data/datasources/onboarding_local_data_source.dart';
 import '../../features/onboarding/data/repositories/onboarding_repository_impl.dart';
 import '../../features/onboarding/domain/repositories/onboarding_repository.dart';
@@ -66,6 +68,7 @@ Future<void> configureDependencies(AppConfig appConfig) async {
     () => OnboardingRepositoryImpl(localDataSource: sl()),
   );
   sl.registerLazySingleton(() => LoginUseCase(sl()));
+  sl.registerLazySingleton(() => SignupUseCase(sl()));
   sl.registerLazySingleton(() => LogoutUseCase(sl()));
   sl.registerLazySingleton(() => RestoreSessionUseCase(sl()));
   sl.registerLazySingleton(() => GetOnboardingStatusUseCase(sl()));
@@ -81,6 +84,7 @@ Future<void> configureDependencies(AppConfig appConfig) async {
     ),
   );
   sl.registerFactory(() => LoginCubit(loginUseCase: sl()));
+  sl.registerFactory(() => SignupCubit(signupUseCase: sl()));
   sl.registerLazySingleton(() => ConnectivityCubit(connectivity: sl()));
   sl.registerLazySingleton(
     () => AppRouter(authCubit: sl(), onboardingCubit: sl()),

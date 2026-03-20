@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../core/constants/app_colors.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/localization/generated/strings.g.dart';
+import '../../../../core/router/routes.dart';
 import '../../../../app/resources/app_media.dart';
+import '../../../auth/presentation/bloc/auth_cubit.dart';
 import '../bloc/onboarding_cubit.dart';
 import '../widgets/onboarding_bottom_sheet.dart';
 
@@ -17,7 +19,6 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage> {
   final PageController _pageController = PageController(initialPage: 0);
-  int _currentPage = 0;
 
   @override
   void dispose() {
@@ -34,12 +35,39 @@ class _OnboardingPageState extends State<OnboardingPage> {
     );
   }
 
+  void _goToNextRoute() {
+    final authStatus = context.read<AuthCubit>().state.status;
+    final nextRoute = authStatus == AuthStatus.authenticated
+        ? AppRoutes.shell
+        : AppRoutes.login;
+
+    context.go(nextRoute);
+  }
+
+  Future<void> _completeOnboarding() async {
+    final onboardingCubit = context.read<OnboardingCubit>();
+    await onboardingCubit.complete();
+
+    if (!mounted) {
+      return;
+    }
+
+    if (onboardingCubit.state.status == OnboardingStatus.completed) {
+      _goToNextRoute();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final t = context.t.strings.onboarding;
 
     return BlocConsumer<OnboardingCubit, OnboardingState>(
       listener: (context, state) {
+        if (state.status == OnboardingStatus.completed) {
+          _goToNextRoute();
+          return;
+        }
+
         if (state.errorMessage != null) {
           context.showAppSnackBar(state.errorMessage!);
         }
@@ -48,18 +76,25 @@ class _OnboardingPageState extends State<OnboardingPage> {
         return Scaffold(
           body: Stack(
             children: [
-              // Static Background Gradient
+              // Static Background Image
+              Positioned.fill(
+                child: Image.asset(
+                  AppMedia.onboardingBackground,
+                  fit: BoxFit.cover,
+                ),
+              ),
+
+              // Gradient Overlay to darken the background image
               Positioned.fill(
                 child: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        AppColors.overlayGradientStart,
-                        AppColors.overlayGradientEnd,
+                        Colors.black.withValues(alpha: 0.1),
+                        Colors.black.withValues(alpha: 0.4),
                       ],
-                      stops: [0.0, 0.7965],
                     ),
                   ),
                 ),
@@ -70,7 +105,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 child: Transform.translate(
                   offset: const Offset(-0.5, -151.5),
                   child: Image.asset(
-                    AppMedia.onboardingLogo,
+                    AppMedia.onboardingLogoPng,
                     width: 225,
                     height: 225,
                     fit: BoxFit.contain,
@@ -82,11 +117,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
               PageView(
                 controller: _pageController,
                 physics: const ClampingScrollPhysics(),
-                onPageChanged: (index) {
-                  setState(() {
-                    _currentPage = index;
-                  });
-                },
                 children: [
                   // Page 1: White Card
                   OnboardingBottomSheet(
@@ -105,16 +135,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   // Page 2: Dark Green Card
                   OnboardingBottomSheet(
                     title: t.title,
-                    backgroundColor: AppColors.onboardingGreen,
+                    backgroundColor: Colors.black,
                     textColor: Colors.white,
                     currentPage: 1,
                     indicatorInactiveColor: Colors.white,
                     onIndicatorTap: _navigateToPage,
-                    buttonText: t.signUp,
+                    buttonText: 'Continue',
                     buttonBackgroundColor: Colors.white,
                     buttonTextColor: Colors.black,
-                    onButtonPressed: () =>
-                        context.read<OnboardingCubit>().complete(),
+                    onButtonPressed: _completeOnboarding,
                     isButtonLoading: state.isSubmitting,
                   ),
                 ],

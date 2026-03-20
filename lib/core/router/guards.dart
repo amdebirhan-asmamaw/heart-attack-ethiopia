@@ -8,7 +8,7 @@ abstract final class AppGuards {
     required OnboardingState onboardingState,
     required String currentLocation,
   }) {
-    final isAuthRoute = currentLocation == AppRoutes.login;
+    final isAuthRoute = currentLocation == AppRoutes.login || currentLocation == AppRoutes.signup;
     final isOnboardingRoute = currentLocation == AppRoutes.onboarding;
     final isSplashRoute = currentLocation == AppRoutes.splash;
     final isProtectedRoute = currentLocation.startsWith(AppRoutes.shell);
@@ -36,7 +36,10 @@ abstract final class AppGuards {
         if (isProtectedRoute) {
           return AppRoutes.login;
         }
-        return isSplashRoute || isAuthRoute ? null : AppRoutes.login;
+        if (isAuthRoute) {
+          return null;
+        }
+        return AppRoutes.login;
     }
   }
 }

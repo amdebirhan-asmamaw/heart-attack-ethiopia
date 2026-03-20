@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/bloc/auth_cubit.dart';
 import '../../features/auth/presentation/pages/app_shell_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
+import '../../features/auth/presentation/pages/signup_page.dart';
 import '../../features/auth/presentation/pages/splash_page.dart';
 import '../../features/onboarding/presentation/bloc/onboarding_cubit.dart';
 import '../../features/onboarding/presentation/pages/onboarding_page.dart';
@@ -43,6 +44,10 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.login,
             builder: (context, state) => const LoginPage(),
+          ),
+          GoRoute(
+            path: AppRoutes.signup,
+            builder: (context, state) => const SignupPage(),
           ),
           GoRoute(
             path: AppRoutes.shell,

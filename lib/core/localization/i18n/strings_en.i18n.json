@@ -24,7 +24,17 @@
     "continueWithGoogle": "Continue with Google",
     "continueWithApple": "Continue with Apple",
     "continueWithFacebook": "Continue with Facebook",
-    "terms": "By pressing on 'Continue with...' you agree to our Terms of Services and Privacy Policy"
+    "terms": "By pressing on 'Continue with...' you agree to our Terms of Services and Privacy Policy",
+    "signup": {
+      "title": "Sign in",
+      "subtitle": "Lets create your account",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "submit": "Sign up",
+      "alreadyHaveAccount": "Already have an account?"
+    }
   },
   "navigation": {
     "chat": "Chat",

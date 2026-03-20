@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../app/resources/app_media.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/di/injection.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/localization/generated/strings.g.dart';
+import '../../../../core/router/routes.dart';
 import '../bloc/auth_cubit.dart';
 import '../bloc/login_cubit.dart';
 import '../widgets/auth_button.dart';
@@ -75,7 +77,7 @@ class _LoginView extends StatelessWidget {
                               SizedBox(height: 10 * scale),
                               Center(
                                 child: Image.asset(
-                                  AppMedia.onboardingLogo,
+                                  AppMedia.onboardingLogoPng,
                                   width: 210 * scale,
                                   height: 210 * scale,
                                   fit: BoxFit.contain,
@@ -89,7 +91,9 @@ class _LoginView extends StatelessWidget {
                                   AuthTextField(
                                     hintText: t.emailLabel,
                                     initialValue: state.email.value,
-                                    onChanged: context.read<LoginCubit>().emailChanged,
+                                    onChanged: context
+                                        .read<LoginCubit>()
+                                        .emailChanged,
                                     keyboardType: TextInputType.emailAddress,
                                     scale: scale,
                                   ),
@@ -97,7 +101,9 @@ class _LoginView extends StatelessWidget {
                                   AuthTextField(
                                     hintText: t.passwordLabel,
                                     initialValue: state.password.value,
-                                    onChanged: context.read<LoginCubit>().passwordChanged,
+                                    onChanged: context
+                                        .read<LoginCubit>()
+                                        .passwordChanged,
                                     obscureText: true,
                                     isPasswordField: true,
                                     scale: scale,
@@ -111,8 +117,11 @@ class _LoginView extends StatelessWidget {
                                   onPressed: () {},
                                   style: TextButton.styleFrom(
                                     minimumSize: Size.zero,
-                                    padding: EdgeInsets.symmetric(vertical: 8 * scale),
-                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 8 * scale,
+                                    ),
+                                    tapTargetSize:
+                                        MaterialTapTargetSize.shrinkWrap,
                                   ),
                                   child: Text(
                                     t.forgotPassword,
@@ -131,8 +140,11 @@ class _LoginView extends StatelessWidget {
                                 text: t.submit,
                                 backgroundColor: AppColors.loginMaroon,
                                 textColor: Colors.white,
-                                isLoading: state.status == FormzSubmissionStatus.inProgress,
-                                onPressed: () => context.read<LoginCubit>().submit(),
+                                isLoading:
+                                    state.status ==
+                                    FormzSubmissionStatus.inProgress,
+                                onPressed: () =>
+                                    context.read<LoginCubit>().submit(),
                                 borderRadius: 50,
                                 scale: scale,
                               ),
@@ -148,11 +160,17 @@ class _LoginView extends StatelessWidget {
                                     ),
                                   ),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () =>
+                                        context.push(AppRoutes.signup),
                                     style: TextButton.styleFrom(
                                       minimumSize: Size.zero,
-                                      padding: EdgeInsets.only(left: 4 * scale, top: 8 * scale, bottom: 8 * scale),
-                                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                      padding: EdgeInsets.only(
+                                        left: 4 * scale,
+                                        top: 8 * scale,
+                                        bottom: 8 * scale,
+                                      ),
+                                      tapTargetSize:
+                                          MaterialTapTargetSize.shrinkWrap,
                                     ),
                                     child: Text(
                                       t.createAccount,
@@ -171,9 +189,16 @@ class _LoginView extends StatelessWidget {
                               // OR Divider
                               Row(
                                 children: [
-                                  const Expanded(child: Divider(color: Colors.black, thickness: 1)),
+                                  const Expanded(
+                                    child: Divider(
+                                      color: Colors.black,
+                                      thickness: 1,
+                                    ),
+                                  ),
                                   Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 5 * scale),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 5 * scale,
+                                    ),
                                     child: Text(
                                       t.or,
                                       style: TextStyle(
@@ -183,7 +208,12 @@ class _LoginView extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  const Expanded(child: Divider(color: Colors.black, thickness: 1)),
+                                  const Expanded(
+                                    child: Divider(
+                                      color: Colors.black,
+                                      thickness: 1,
+                                    ),
+                                  ),
                                 ],
                               ),
                               SizedBox(height: 10 * scale),

@@ -70,4 +70,13 @@ class OnboardingCubit extends Cubit<OnboardingState> {
       ),
     );
   }
+
+  void handleBootstrapTimeout() {
+    if (state.status == OnboardingStatus.loading || state.status == OnboardingStatus.initial) {
+      emit(const OnboardingState(
+        status: OnboardingStatus.pending,
+        isSubmitting: false,
+      ));
+    }
+  }
 }

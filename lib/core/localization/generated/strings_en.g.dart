@@ -147,6 +147,8 @@ class TranslationsStringsAuthEn {
 
 	/// en: 'By pressing on 'Continue with...' you agree to our Terms of Services and Privacy Policy'
 	String get terms => 'By pressing on \'Continue with...\' you agree to our Terms of Services and Privacy Policy';
+
+	late final TranslationsStringsAuthSignupEn signup = TranslationsStringsAuthSignupEn.internal(_root);
 }
 
 // Path: strings.navigation
@@ -317,6 +319,39 @@ class TranslationsStringsOnboardingEn {
 	String get signUp => 'Sign Up';
 }
 
+// Path: strings.auth.signup
+class TranslationsStringsAuthSignupEn {
+	TranslationsStringsAuthSignupEn.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Sign in'
+	String get title => 'Sign in';
+
+	/// en: 'Lets create your account'
+	String get subtitle => 'Lets create your account';
+
+	/// en: 'First name'
+	String get firstName => 'First name';
+
+	/// en: 'Last name'
+	String get lastName => 'Last name';
+
+	/// en: 'Password'
+	String get password => 'Password';
+
+	/// en: 'Confirm Password'
+	String get confirmPassword => 'Confirm Password';
+
+	/// en: 'Sign up'
+	String get submit => 'Sign up';
+
+	/// en: 'Already have an account?'
+	String get alreadyHaveAccount => 'Already have an account?';
+}
+
 /// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -348,6 +383,14 @@ extension on Translations {
 			'strings.auth.continueWithApple' => 'Continue with Apple',
 			'strings.auth.continueWithFacebook' => 'Continue with Facebook',
 			'strings.auth.terms' => 'By pressing on \'Continue with...\' you agree to our Terms of Services and Privacy Policy',
+			'strings.auth.signup.title' => 'Sign in',
+			'strings.auth.signup.subtitle' => 'Lets create your account',
+			'strings.auth.signup.firstName' => 'First name',
+			'strings.auth.signup.lastName' => 'Last name',
+			'strings.auth.signup.password' => 'Password',
+			'strings.auth.signup.confirmPassword' => 'Confirm Password',
+			'strings.auth.signup.submit' => 'Sign up',
+			'strings.auth.signup.alreadyHaveAccount' => 'Already have an account?',
 			'strings.navigation.chat' => 'Chat',
 			'strings.navigation.notifications' => 'Notifications',
 			'strings.navigation.profile' => 'Profile',

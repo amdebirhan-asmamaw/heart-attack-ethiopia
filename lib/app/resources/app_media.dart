@@ -8,5 +8,8 @@ class AppMedia {
   // Onboarding
   static const String onboarding1 = 'assets/onboarding-1.png';
   static const String onboarding2 = 'assets/onboarding-2.png';
-  static const String onboardingLogo = 'assets/logo/logo.png';
+  static const String onboardingLogo = 'assets/logo/logo.svg';
+  static const String onboardingLogoPng = 'assets/logo/logo.png';
+  static const String onboardingBackground =
+      'assets/images/onboarding-background.jpg';
 }

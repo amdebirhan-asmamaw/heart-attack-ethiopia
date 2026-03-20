@@ -63,4 +63,10 @@ class AuthCubit extends Cubit<AuthState> {
       (_) => emit(const AuthState(status: AuthStatus.unauthenticated)),
     );
   }
+
+  void handleBootstrapTimeout() {
+    if (state.status == AuthStatus.loading || state.status == AuthStatus.initial) {
+      emit(const AuthState(status: AuthStatus.unauthenticated));
+    }
+  }
 }
