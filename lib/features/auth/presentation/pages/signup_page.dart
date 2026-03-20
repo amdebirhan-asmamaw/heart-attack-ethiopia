@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heart_attack_ethiopia/core/constants/app_colors.dart';
 import 'package:heart_attack_ethiopia/core/di/injection.dart';
 import 'package:heart_attack_ethiopia/core/extensions/context_extensions.dart';
 import 'package:heart_attack_ethiopia/core/localization/generated/strings.g.dart';
+import 'package:heart_attack_ethiopia/core/utils/validators.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/signup_cubit.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/pages/login_page.dart';
@@ -33,6 +33,7 @@ class _SignupView extends StatefulWidget {
 }
 
 class _SignupViewState extends State<_SignupView> {
+  final _formKey = GlobalKey<FormState>();
   late final TextEditingController _firstNameController;
   late final TextEditingController _lastNameController;
   late final TextEditingController _passwordController;
@@ -41,13 +42,10 @@ class _SignupViewState extends State<_SignupView> {
   @override
   void initState() {
     super.initState();
-    final state = context.read<SignupCubit>().state;
-    _firstNameController = TextEditingController(text: state.firstName.value);
-    _lastNameController = TextEditingController(text: state.lastName.value);
-    _passwordController = TextEditingController(text: state.password.value);
-    _confirmPasswordController = TextEditingController(
-      text: state.confirmPassword.value,
-    );
+    _firstNameController = TextEditingController();
+    _lastNameController = TextEditingController();
+    _passwordController = TextEditingController();
+    _confirmPasswordController = TextEditingController();
   }
 
   @override
@@ -71,20 +69,12 @@ class _SignupViewState extends State<_SignupView> {
           previous.errorMessage != current.errorMessage ||
           previous.session != current.session,
       listener: (context, state) {
-        _syncController(_firstNameController, state.firstName.value);
-        _syncController(_lastNameController, state.lastName.value);
-        _syncController(_passwordController, state.password.value);
-        _syncController(
-          _confirmPasswordController,
-          state.confirmPassword.value,
-        );
-
-        if (state.status == FormzSubmissionStatus.failure &&
+        if (state.status == SignupSubmissionStatus.failure &&
             state.errorMessage != null) {
           context.showAppSnackBar(state.errorMessage!);
         }
 
-        if (state.status == FormzSubmissionStatus.success &&
+        if (state.status == SignupSubmissionStatus.success &&
             state.session != null) {
           context.read<AuthCubit>().applySession(state.session!);
         }
@@ -96,7 +86,6 @@ class _SignupViewState extends State<_SignupView> {
           backgroundColor: AppColors.background,
           surfaceTintColor: Colors.transparent,
           elevation: 0,
-
           leading: IconButton(
             onPressed: () => context.pop(),
             icon: Icon(CupertinoIcons.chevron_back, color: AppColors.primary),
@@ -106,54 +95,48 @@ class _SignupViewState extends State<_SignupView> {
           top: false,
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _SignupHeaderSection(
-                  title: signupT.title,
-                  subtitle: signupT.subtitle,
-                ),
-                const SizedBox(height: 28),
-                _SignupFormSection(
-                  firstNameController: _firstNameController,
-                  lastNameController: _lastNameController,
-                  passwordController: _passwordController,
-                  confirmPasswordController: _confirmPasswordController,
-                ),
-                const SizedBox(height: 24),
-                const AuthSocialSection(),
-                const SizedBox(height: 24),
-                AuthTermsSection(
-                  prefixText: "By continuing you agree to ",
-                  linkText: "Terms of Service",
-                  middleText: " and ",
-                  secondaryLinkText: "Privacy Policy",
-                  onTermsTap: () => context.showAppSnackBar(commonT.comingSoon),
-                  onPrivacyTap: () =>
-                      context.showAppSnackBar(commonT.comingSoon),
-                ),
-                const SizedBox(height: 16),
-                _SignupFooterSection(
-                  prompt: signupT.alreadyHaveAccount,
-                  actionLabel: t.submit,
-                ),
-              ],
+            child: Form(
+              key: _formKey,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _SignupHeaderSection(
+                    title: signupT.title,
+                    subtitle: signupT.subtitle,
+                  ),
+                  const SizedBox(height: 28),
+                  _SignupFormSection(
+                    formKey: _formKey,
+                    firstNameController: _firstNameController,
+                    lastNameController: _lastNameController,
+                    passwordController: _passwordController,
+                    confirmPasswordController: _confirmPasswordController,
+                  ),
+                  const SizedBox(height: 24),
+                  const AuthSocialSection(),
+                  const SizedBox(height: 24),
+                  AuthTermsSection(
+                    prefixText: "By continuing you agree to ",
+                    linkText: "Terms of Service",
+                    middleText: " and ",
+                    secondaryLinkText: "Privacy Policy",
+                    onTermsTap: () =>
+                        context.showAppSnackBar(commonT.comingSoon),
+                    onPrivacyTap: () =>
+                        context.showAppSnackBar(commonT.comingSoon),
+                  ),
+                  const SizedBox(height: 16),
+                  _SignupFooterSection(
+                    prompt: signupT.alreadyHaveAccount,
+                    actionLabel: t.submit,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
-    );
-  }
-
-  void _syncController(TextEditingController controller, String value) {
-    if (controller.text == value) {
-      return;
-    }
-
-    controller.value = controller.value.copyWith(
-      text: value,
-      selection: TextSelection.collapsed(offset: value.length),
-      composing: TextRange.empty,
     );
   }
 }
@@ -181,7 +164,7 @@ class _SignupHeaderSection extends StatelessWidget {
         const SizedBox(height: 6),
         Text(
           subtitle,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
             color: AppColors.textSecondary,
@@ -193,113 +176,137 @@ class _SignupHeaderSection extends StatelessWidget {
   }
 }
 
-class _SignupFormSection extends StatelessWidget {
+class _SignupFormSection extends StatefulWidget {
   const _SignupFormSection({
+    required this.formKey,
     required this.firstNameController,
     required this.lastNameController,
     required this.passwordController,
     required this.confirmPasswordController,
   });
 
+  final GlobalKey<FormState> formKey;
   final TextEditingController firstNameController;
   final TextEditingController lastNameController;
   final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
 
   @override
+  State<_SignupFormSection> createState() => _SignupFormSectionState();
+}
+
+class _SignupFormSectionState extends State<_SignupFormSection> {
+  bool isPasswordObscured = false;
+  bool isConfirmPasswordObscured = false;
+
+  @override
   Widget build(BuildContext context) {
     final cubit = context.read<SignupCubit>();
+    final signupT = context.t.strings.auth.signup;
+
+    void submitForm() {
+      final formState = widget.formKey.currentState;
+      if (formState == null || !formState.validate()) {
+        return;
+      }
+
+      cubit.submit(
+        firstName: widget.firstNameController.text,
+        lastName: widget.lastNameController.text,
+        password: widget.passwordController.text,
+      );
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        BlocSelector<SignupCubit, SignupState, String?>(
-          selector: (state) => state.firstNameError,
-          builder: (context, firstNameError) {
-            final signupT = context.t.strings.auth.signup;
-            return AuthTextField(
-              controller: firstNameController,
-              hintText: signupT.firstName,
-              onChanged: cubit.firstNameChanged,
-              textInputAction: TextInputAction.next,
-              onSubmitted: (_) => FocusScope.of(context).nextFocus(),
-              autofillHints: const [AutofillHints.givenName],
-              errorText: firstNameError,
-            );
+        AuthTextField(
+          controller: widget.firstNameController,
+          hintText: signupT.firstName,
+          textInputAction: TextInputAction.next,
+          autofillHints: const [AutofillHints.givenName],
+          validator: (value) {
+            if ((value?.trim() ?? '').isEmpty || value == null) {
+              return 'First name is required';
+            } else if (value.length < 3 || value.length > 20) {
+              return 'Name must be between 3 and 20 characters';
+            }
+            return null;
           },
         ),
         const SizedBox(height: 12),
-        BlocSelector<SignupCubit, SignupState, String?>(
-          selector: (state) => state.lastNameError,
-          builder: (context, lastNameError) {
-            final signupT = context.t.strings.auth.signup;
-            return AuthTextField(
-              controller: lastNameController,
-              hintText: signupT.lastName,
-              onChanged: cubit.lastNameChanged,
-              textInputAction: TextInputAction.next,
-              onSubmitted: (_) => FocusScope.of(context).nextFocus(),
-              autofillHints: const [AutofillHints.familyName],
-              errorText: lastNameError,
-            );
+        AuthTextField(
+          controller: widget.lastNameController,
+          hintText: signupT.lastName,
+          textInputAction: TextInputAction.next,
+          autofillHints: const [AutofillHints.familyName],
+          validator: (value) {
+            if ((value?.trim() ?? '').isEmpty || value == null) {
+              return 'Last name is required';
+            }
+            if (value.length < 3 || value.length > 20) {
+              return 'Name must be between 3 and 20 characters';
+            }
+            return null;
           },
         ),
         const SizedBox(height: 12),
-        BlocSelector<
-          SignupCubit,
-          SignupState,
-          ({bool obscured, String? error})
-        >(
-          selector: (state) =>
-              (obscured: state.isPasswordObscured, error: state.passwordError),
-          builder: (context, passwordState) {
-            final signupT = context.t.strings.auth.signup;
-            return AuthTextField(
-              controller: passwordController,
-              hintText: signupT.password,
-              onChanged: cubit.passwordChanged,
-              obscureText: passwordState.obscured,
-              onToggleVisibility: cubit.togglePasswordVisibility,
-              textInputAction: TextInputAction.next,
-              onSubmitted: (_) => FocusScope.of(context).nextFocus(),
-              autofillHints: const [AutofillHints.newPassword],
-              errorText: passwordState.error,
-            );
+        AuthTextField(
+          controller: widget.passwordController,
+          hintText: signupT.password,
+          obscureText: isPasswordObscured,
+          onToggleVisibility: () {
+            setState(() {
+              isPasswordObscured = !isPasswordObscured;
+            });
+          },
+          textInputAction: TextInputAction.next,
+          autofillHints: const [AutofillHints.newPassword],
+          validator: (value) {
+            final password = value ?? '';
+            if (password.trim().isEmpty) {
+              return 'Password is required';
+            }
+            if (!Validators.hasMinLength(password, 8)) {
+              return 'Password must be at least 8 characters';
+            }
+            return null;
           },
         ),
         const SizedBox(height: 12),
-        BlocSelector<
-          SignupCubit,
-          SignupState,
-          ({bool obscured, String? error})
-        >(
-          selector: (state) => (
-            obscured: state.isConfirmPasswordObscured,
-            error: state.confirmPasswordError,
-          ),
-          builder: (context, confirmPasswordState) {
-            final signupT = context.t.strings.auth.signup;
-            return AuthTextField(
-              controller: confirmPasswordController,
-              hintText: signupT.confirmPassword,
-              onChanged: cubit.confirmPasswordChanged,
-              obscureText: confirmPasswordState.obscured,
-              onToggleVisibility: cubit.toggleConfirmPasswordVisibility,
-              textInputAction: TextInputAction.done,
-              onSubmitted: (_) => cubit.submit(),
-              autofillHints: const [AutofillHints.password],
-              errorText: confirmPasswordState.error,
-            );
+        AuthTextField(
+          controller: widget.confirmPasswordController,
+          hintText: signupT.confirmPassword,
+          obscureText: isConfirmPasswordObscured,
+          onToggleVisibility: () {
+            setState(() {
+              isConfirmPasswordObscured = !isConfirmPasswordObscured;
+            });
+          },
+          textInputAction: TextInputAction.done,
+          onSubmitted: (_) => submitForm(),
+          autofillHints: const [AutofillHints.password],
+          validator: (value) {
+            final confirmPassword = value ?? '';
+            if (confirmPassword.trim().isEmpty) {
+              return 'Confirm password is required';
+            }
+            if (confirmPassword != widget.passwordController.text) {
+              return 'Passwords do not match';
+            }
+            return null;
           },
         ),
         const SizedBox(height: 20),
         BlocSelector<SignupCubit, SignupState, bool>(
-          selector: (state) => state.status == FormzSubmissionStatus.inProgress,
+          selector: (state) =>
+              state.status == SignupSubmissionStatus.inProgress,
           builder: (context, isLoading) {
             return AuthButton.primary(
-              text: context.t.strings.auth.signup.submit,
-              onPressed: cubit.submit,
+              text: signupT.submit,
+              onPressed: submitForm,
               isLoading: isLoading,
+              loadingText: 'Creating account...',
             );
           },
         ),

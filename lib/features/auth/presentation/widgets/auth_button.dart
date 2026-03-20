@@ -7,6 +7,7 @@ class AuthButton extends StatelessWidget {
     required this.onPressed,
     super.key,
     this.isLoading = false,
+    this.loadingText,
   }) : backgroundColor = AppColors.primary,
        textColor = AppColors.onPrimary,
        fontSize = 16,
@@ -17,6 +18,7 @@ class AuthButton extends StatelessWidget {
     required this.onPressed,
     super.key,
     this.isLoading = false,
+    this.loadingText,
   }) : backgroundColor = AppColors.surfaceVariant,
        textColor = AppColors.textPrimary,
        fontSize = 14,
@@ -27,11 +29,14 @@ class AuthButton extends StatelessWidget {
   final Color textColor;
   final VoidCallback onPressed;
   final bool isLoading;
+  final String? loadingText;
   final double borderRadius;
   final double fontSize;
 
   @override
   Widget build(BuildContext context) {
+    final buttonLabel = isLoading ? (loadingText ?? text) : text;
+
     return ConstrainedBox(
       constraints: const BoxConstraints(
         minWidth: double.infinity,
@@ -42,6 +47,7 @@ class AuthButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor,
           foregroundColor: textColor,
+          disabledBackgroundColor: backgroundColor.withValues(alpha: 0.85),
           elevation: 0,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           minimumSize: const Size.fromHeight(48),
@@ -49,23 +55,34 @@ class AuthButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(borderRadius),
           ),
         ),
-        child: isLoading
-            ? SizedBox(
-                height: 20,
-                width: 20,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (isLoading) ...[
+              SizedBox(
+                height: 18,
+                width: 18,
                 child: CircularProgressIndicator(
                   color: textColor,
                   strokeWidth: 2,
                 ),
-              )
-            : Text(
-                text,
+              ),
+              const SizedBox(width: 10),
+            ],
+            Flexible(
+              child: Text(
+                buttonLabel,
                 textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: fontSize,
                   fontWeight: FontWeight.w500,
                 ),
               ),
+            ),
+          ],
+        ),
       ),
     );
   }

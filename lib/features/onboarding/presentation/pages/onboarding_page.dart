@@ -71,7 +71,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             Positioned.fill(
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: Colors.black.withValues(alpha: 0.65),
+                  color: Colors.black.withValues(alpha: 0.8),
                 ),
               ),
             ),

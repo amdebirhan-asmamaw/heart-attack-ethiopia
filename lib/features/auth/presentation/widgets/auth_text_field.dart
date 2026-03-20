@@ -5,25 +5,25 @@ class AuthTextField extends StatelessWidget {
   const AuthTextField({
     required this.controller,
     required this.hintText,
-    required this.onChanged,
     super.key,
+    this.onChanged,
+    this.validator,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.next,
     this.obscureText = false,
     this.onToggleVisibility,
-    this.errorText,
     this.autofillHints,
     this.onSubmitted,
   });
 
   final TextEditingController controller;
   final String hintText;
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
+  final FormFieldValidator<String>? validator;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
   final bool obscureText;
   final VoidCallback? onToggleVisibility;
-  final String? errorText;
   final Iterable<String>? autofillHints;
   final ValueChanged<String>? onSubmitted;
 
@@ -37,11 +37,16 @@ class AuthTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       onChanged: onChanged,
+      validator: validator,
       obscureText: obscureText,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
       autofillHints: autofillHints,
-      onFieldSubmitted: onSubmitted,
+      onFieldSubmitted:
+          onSubmitted ??
+          (textInputAction == TextInputAction.next
+              ? (_) => FocusScope.of(context).nextFocus()
+              : null),
       textAlignVertical: TextAlignVertical.center,
       style: const TextStyle(
         fontSize: 14,
@@ -55,7 +60,6 @@ class AuthTextField extends StatelessWidget {
           fontWeight: FontWeight.w500,
           color: AppColors.textHint,
         ),
-        errorText: errorText,
         filled: true,
         fillColor: AppColors.surface,
         contentPadding: const EdgeInsets.symmetric(
@@ -82,7 +86,7 @@ class AuthTextField extends StatelessWidget {
     );
   }
 
-  OutlineInputBorder _border({Color color = Colors.transparent}) {
+  OutlineInputBorder _border({Color color = AppColors.textMuted}) {
     return _baseBorder.copyWith(borderSide: BorderSide(color: color));
   }
 }

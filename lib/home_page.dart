@@ -11,14 +11,14 @@ import 'package:heart_attack_ethiopia/features/profile/presentation/profile_page
 import 'package:heart_attack_ethiopia/features/settings/presentation/settings_page.dart';
 import 'package:heart_attack_ethiopia/shared/bloc/connectivity_cubit.dart';
 
-class AppShellPage extends StatefulWidget {
-  const AppShellPage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<AppShellPage> createState() => _AppShellPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _AppShellPageState extends State<AppShellPage> {
+class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   late final List<Widget> _pages;
 

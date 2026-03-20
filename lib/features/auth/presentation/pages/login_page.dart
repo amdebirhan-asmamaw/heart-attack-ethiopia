@@ -1,15 +1,16 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:heart_attack_ethiopia/app/resources/app_media.dart';
 import 'package:heart_attack_ethiopia/core/constants/app_colors.dart';
+import 'package:heart_attack_ethiopia/core/constants/app_strings.dart';
 import 'package:heart_attack_ethiopia/core/di/injection.dart';
 import 'package:heart_attack_ethiopia/core/extensions/context_extensions.dart';
 import 'package:heart_attack_ethiopia/core/localization/generated/strings.g.dart';
 import 'package:heart_attack_ethiopia/core/router/routes.dart';
+import 'package:heart_attack_ethiopia/core/utils/validators.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/login_cubit.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/widgets/auth_button.dart';
@@ -35,15 +36,15 @@ class _LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<_LoginView> {
+  final _formKey = GlobalKey<FormState>();
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
 
   @override
   void initState() {
     super.initState();
-    final state = context.read<LoginCubit>().state;
-    _emailController = TextEditingController(text: state.email.value);
-    _passwordController = TextEditingController(text: state.password.value);
+    _emailController = TextEditingController(text: AppStrings.demoEmail);
+    _passwordController = TextEditingController(text: AppStrings.demoPassword);
   }
 
   @override
@@ -59,21 +60,16 @@ class _LoginViewState extends State<_LoginView> {
 
     return BlocListener<LoginCubit, LoginState>(
       listenWhen: (previous, current) =>
-          previous.email != current.email ||
-          previous.password != current.password ||
           previous.status != current.status ||
           previous.errorMessage != current.errorMessage ||
           previous.session != current.session,
       listener: (context, state) {
-        _syncController(_emailController, state.email.value);
-        _syncController(_passwordController, state.password.value);
-
-        if (state.status == FormzSubmissionStatus.failure &&
+        if (state.status == LoginSubmissionStatus.failure &&
             state.errorMessage != null) {
           context.showAppSnackBar(state.errorMessage!);
         }
 
-        if (state.status == FormzSubmissionStatus.success &&
+        if (state.status == LoginSubmissionStatus.success &&
             state.session != null) {
           context.read<AuthCubit>().applySession(state.session!);
         }
@@ -84,44 +80,37 @@ class _LoginViewState extends State<_LoginView> {
         body: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const _LoginLogoSection(),
-                const SizedBox(height: 24),
-                _LoginFormSection(
-                  emailController: _emailController,
-                  passwordController: _passwordController,
-                ),
-                const SizedBox(height: 24),
-                const AuthSocialSection(),
-                const SizedBox(height: 24),
-                AuthTermsSection(
-                  prefixText: "By continuing you agree to ",
-                  linkText: "Terms of Service",
-                  middleText: " and ",
-                  secondaryLinkText: "Privacy Policy",
-                  onTermsTap: () => context.showAppSnackBar(commonT.comingSoon),
-                  onPrivacyTap: () =>
-                      context.showAppSnackBar(commonT.comingSoon),
-                ),
-              ],
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const _LoginLogoSection(),
+                  const SizedBox(height: 24),
+                  _LoginFormSection(
+                    formKey: _formKey,
+                    emailController: _emailController,
+                    passwordController: _passwordController,
+                  ),
+                  const SizedBox(height: 24),
+                  const AuthSocialSection(),
+                  const SizedBox(height: 24),
+                  AuthTermsSection(
+                    prefixText: "By continuing you agree to ",
+                    linkText: "Terms of Service",
+                    middleText: " and ",
+                    secondaryLinkText: "Privacy Policy",
+                    onTermsTap: () =>
+                        context.showAppSnackBar(commonT.comingSoon),
+                    onPrivacyTap: () =>
+                        context.showAppSnackBar(commonT.comingSoon),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
-    );
-  }
-
-  void _syncController(TextEditingController controller, String value) {
-    if (controller.text == value) {
-      return;
-    }
-
-    controller.value = controller.value.copyWith(
-      text: value,
-      selection: TextSelection.collapsed(offset: value.length),
-      composing: TextRange.empty,
     );
   }
 }
@@ -144,10 +133,12 @@ class _LoginLogoSection extends StatelessWidget {
 
 class _LoginFormSection extends StatelessWidget {
   const _LoginFormSection({
+    required this.formKey,
     required this.emailController,
     required this.passwordController,
   });
 
+  final GlobalKey<FormState> formKey;
   final TextEditingController emailController;
   final TextEditingController passwordController;
 
@@ -155,40 +146,60 @@ class _LoginFormSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<LoginCubit>();
 
+    void submitForm() {
+      final formState = formKey.currentState;
+      if (formState == null || !formState.validate()) {
+        return;
+      }
+
+      cubit.submit(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        BlocSelector<LoginCubit, LoginState, String?>(
-          selector: (state) => state.emailError,
-          builder: (context, emailError) {
-            final t = context.t.strings.auth;
-            return AuthTextField(
-              controller: emailController,
-              hintText: t.emailLabel,
-              onChanged: cubit.emailChanged,
-              keyboardType: TextInputType.emailAddress,
-              textInputAction: TextInputAction.next,
-              autofillHints: const [AutofillHints.email],
-              errorText: emailError,
-            );
+        AuthTextField(
+          controller: emailController,
+          hintText: context.t.strings.auth.emailLabel,
+          keyboardType: TextInputType.emailAddress,
+          textInputAction: TextInputAction.next,
+          autofillHints: const [AutofillHints.email],
+          validator: (value) {
+            final email = value?.trim() ?? '';
+            if (email.isEmpty) {
+              return 'Email is required';
+            }
+            if (!Validators.isValidEmail(email)) {
+              return 'Enter a valid email';
+            }
+            return null;
           },
         ),
         const SizedBox(height: 12),
-        BlocSelector<LoginCubit, LoginState, ({bool obscured, String? error})>(
-          selector: (state) =>
-              (obscured: state.isPasswordObscured, error: state.passwordError),
-          builder: (context, passwordState) {
-            final t = context.t.strings.auth;
+        BlocSelector<LoginCubit, LoginState, bool>(
+          selector: (state) => state.isPasswordObscured,
+          builder: (context, isPasswordObscured) {
             return AuthTextField(
               controller: passwordController,
-              hintText: t.passwordLabel,
-              onChanged: cubit.passwordChanged,
-              obscureText: passwordState.obscured,
+              hintText: context.t.strings.auth.passwordLabel,
+              obscureText: isPasswordObscured,
               onToggleVisibility: cubit.togglePasswordVisibility,
               textInputAction: TextInputAction.done,
               autofillHints: const [AutofillHints.password],
-              onSubmitted: (_) => cubit.submit(),
-              errorText: passwordState.error,
+              onSubmitted: (_) => submitForm(),
+              validator: (value) {
+                final password = value ?? '';
+                if (password.trim().isEmpty) {
+                  return 'Password is required';
+                }
+                if (!Validators.hasMinLength(password, 8)) {
+                  return 'Password must be at least 8 characters';
+                }
+                return null;
+              },
             );
           },
         ),
@@ -214,12 +225,13 @@ class _LoginFormSection extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         BlocSelector<LoginCubit, LoginState, bool>(
-          selector: (state) => state.status == FormzSubmissionStatus.inProgress,
+          selector: (state) => state.status == LoginSubmissionStatus.inProgress,
           builder: (context, isLoading) {
             return AuthButton.primary(
               text: context.t.strings.auth.submit,
-              onPressed: cubit.submit,
+              onPressed: submitForm,
               isLoading: isLoading,
+              loadingText: 'Signing in...',
             );
           },
         ),

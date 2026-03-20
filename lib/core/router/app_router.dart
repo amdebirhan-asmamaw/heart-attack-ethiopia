@@ -4,10 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/bloc/auth_cubit.dart';
-import '../../features/auth/presentation/pages/app_shell_page.dart';
+import '../../home_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/signup_page.dart';
-import '../../features/auth/presentation/pages/splash_page.dart';
+import '../../splash_page.dart';
 import '../../features/onboarding/presentation/bloc/onboarding_cubit.dart';
 import '../../features/onboarding/presentation/pages/onboarding_page.dart';
 import 'guards.dart';
@@ -51,7 +51,7 @@ class AppRouter {
           ),
           GoRoute(
             path: AppRoutes.shell,
-            builder: (context, state) => const AppShellPage(),
+            builder: (context, state) => const HomePage(),
           ),
         ],
       ),
