@@ -24,19 +24,23 @@ class SplashPage extends StatelessWidget {
               const SizedBox(height: 24),
               Text(
                 context.t.strings.app.name,
-                style: Theme.of(
-                  context,
-                ).textTheme.headlineMedium?.copyWith(color: Colors.white),
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
               ),
               const SizedBox(height: 8),
               Text(
                 context.t.strings.app.loading,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyLarge?.copyWith(color: Colors.white70),
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onPrimary.withValues(alpha: 0.7),
+                ),
               ),
               const SizedBox(height: 24),
-              const CircularProgressIndicator(color: Colors.white),
+              CircularProgressIndicator(
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
             ],
           ),
         ),

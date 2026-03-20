@@ -98,17 +98,23 @@ class SignupState extends Equatable {
   }
 
   String? get firstNameError {
-    if (!firstName.isValid && firstName.isNotValid) {
-      return 'First name is required';
+    if (firstName.isPure) {
+      return null;
     }
-    return null;
+
+    return firstName.displayError == NameValidationError.empty
+        ? 'First name is required'
+        : null;
   }
 
   String? get lastNameError {
-    if (!lastName.isValid && lastName.isNotValid) {
-      return 'Last name is required';
+    if (lastName.isPure) {
+      return null;
     }
-    return null;
+
+    return lastName.displayError == NameValidationError.empty
+        ? 'Last name is required'
+        : null;
   }
 
   String? get passwordError {

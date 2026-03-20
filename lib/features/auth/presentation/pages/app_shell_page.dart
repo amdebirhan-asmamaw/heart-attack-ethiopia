@@ -20,17 +20,22 @@ class AppShellPage extends StatefulWidget {
 
 class _AppShellPageState extends State<AppShellPage> {
   int _currentIndex = 0;
+  late final List<Widget> _pages;
 
   @override
-  Widget build(BuildContext context) {
-    final session = context.watch<AuthCubit>().state.session;
-    final pages = [
+  void initState() {
+    super.initState();
+    final session = context.read<AuthCubit>().state.session;
+    _pages = [
       const ChatPage(),
       const NotificationsPage(),
       ProfilePage(userEmail: session?.user.email),
       SettingsPage(environmentLabel: sl<AppConfig>().environmentLabel),
     ];
+  }
 
+  @override
+  Widget build(BuildContext context) {
     final destinations = [
       NavigationDestination(
         icon: const Icon(Icons.chat_bubble_outline_rounded),
@@ -52,31 +57,25 @@ class _AppShellPageState extends State<AppShellPage> {
 
     return Scaffold(
       appBar: AppBar(title: Text(context.t.strings.app.name)),
-      body: Column(
-        children: [
-          BlocBuilder<ConnectivityCubit, ConnectivityState>(
-            builder: (context, state) {
-              if (state.isConnected) {
-                return const SizedBox.shrink();
-              }
+      body: IndexedStack(index: _currentIndex, children: _pages),
+      bottomSheet: BlocBuilder<ConnectivityCubit, ConnectivityState>(
+        builder: (context, state) {
+          if (state.isConnected) {
+            return const SizedBox.shrink();
+          }
 
-              return MaterialBanner(
-                content: Text(context.t.strings.common.noConnection),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      context.read<ConnectivityCubit>().refresh();
-                    },
-                    child: Text(context.t.strings.common.retry),
-                  ),
-                ],
-              );
-            },
-          ),
-          Expanded(
-            child: IndexedStack(index: _currentIndex, children: pages),
-          ),
-        ],
+          return MaterialBanner(
+            content: Text(context.t.strings.common.noConnection),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  context.read<ConnectivityCubit>().refresh();
+                },
+                child: Text(context.t.strings.common.retry),
+              ),
+            ],
+          );
+        },
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,

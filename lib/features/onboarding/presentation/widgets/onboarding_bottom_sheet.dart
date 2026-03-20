@@ -48,7 +48,12 @@ class OnboardingBottomSheet extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 26, left: 25, right: 25, bottom: 20),
+          padding: const EdgeInsets.only(
+            top: 26,
+            left: 25,
+            right: 25,
+            bottom: 20,
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -82,7 +87,7 @@ class OnboardingBottomSheet extends StatelessWidget {
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                           height: 1.4,
-                          color: textColor.withOpacity(0.7),
+                          color: textColor.withValues(alpha: 0.7),
                         ),
                       ),
                     ],
@@ -90,14 +95,14 @@ class OnboardingBottomSheet extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              
+
               // Indicators Row
               OnboardingIndicatorRow(
                 currentPage: currentPage,
                 inactiveColor: indicatorInactiveColor,
                 onTap: onIndicatorTap,
               ),
-              
+
               const Spacer(),
 
               // Action Button
