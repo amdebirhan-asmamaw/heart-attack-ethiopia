@@ -160,6 +160,9 @@ class TranslationsStringsNavigationEn {
 
 	// Translations
 
+	/// en: 'Home'
+	String get home => 'Home';
+
 	/// en: 'Chat'
 	String get chat => 'Chat';
 
@@ -429,6 +432,7 @@ extension on Translations {
 			'strings.auth.signup.confirmPassword' => 'Confirm Password',
 			'strings.auth.signup.submit' => 'Sign up',
 			'strings.auth.signup.alreadyHaveAccount' => 'Already have an account?',
+			'strings.navigation.home' => 'Home',
 			'strings.navigation.chat' => 'Chat',
 			'strings.navigation.notifications' => 'Notifications',
 			'strings.navigation.profile' => 'Profile',

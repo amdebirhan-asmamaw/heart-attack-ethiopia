@@ -46,6 +46,7 @@
     }
   },
   "navigation": {
+    "home": "Home",
     "chat": "Chat",
     "notifications": "Notifications",
     "profile": "Profile",

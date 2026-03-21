@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import '../core/config/app_config.dart';
+import '../core/constants/app_colors.dart';
 import '../core/di/injection.dart';
 import '../core/localization/generated/strings.g.dart';
 import '../core/router/app_router.dart';
 import '../core/theme/app_theme.dart';
+import '../core/widgets/page_system_ui.dart';
 import '../features/auth/presentation/bloc/auth_cubit.dart';
 import '../features/onboarding/presentation/bloc/onboarding_cubit.dart';
 import '../shared/bloc/connectivity_cubit.dart';
@@ -40,6 +42,12 @@ class _AppState extends State<App> {
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
+        builder: (context, child) {
+          return PageSystemUi(
+            systemNavigationBarColor: AppColors.background,
+            child: child ?? const SizedBox.shrink(),
+          );
+        },
         locale: TranslationProvider.of(context).flutterLocale,
         supportedLocales: AppLocaleUtils.supportedLocales,
         localizationsDelegates: GlobalMaterialLocalizations.delegates,

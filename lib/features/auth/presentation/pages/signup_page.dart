@@ -8,6 +8,7 @@ import 'package:heart_attack_ethiopia/core/extensions/context_extensions.dart';
 import 'package:heart_attack_ethiopia/core/localization/generated/strings.g.dart';
 import 'package:heart_attack_ethiopia/core/router/routes.dart';
 import 'package:heart_attack_ethiopia/core/utils/validators.dart';
+import 'package:heart_attack_ethiopia/core/widgets/page_system_ui.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/signup_cubit.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/pages/login_page.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/widgets/auth_button.dart';
@@ -77,58 +78,61 @@ class _SignupViewState extends State<_SignupView> {
           context.pushReplacement(AppRoutes.phoneInput);
         }
       },
-      child: Scaffold(
-        backgroundColor: AppColors.background,
-        resizeToAvoidBottomInset: true,
-        appBar: AppBar(
+      child: PageSystemUi(
+        systemNavigationBarColor: AppColors.background,
+        child: Scaffold(
           backgroundColor: AppColors.background,
-          surfaceTintColor: Colors.transparent,
-          elevation: 0,
-          leading: IconButton(
-            onPressed: () => context.pop(),
-            icon: Icon(CupertinoIcons.chevron_back, color: AppColors.primary),
+          resizeToAvoidBottomInset: true,
+          appBar: AppBar(
+            backgroundColor: AppColors.background,
+            surfaceTintColor: Colors.transparent,
+            elevation: 0,
+            leading: IconButton(
+              onPressed: () => context.pop(),
+              icon: Icon(CupertinoIcons.chevron_back, color: AppColors.primary),
+            ),
           ),
-        ),
-        body: SafeArea(
-          top: false,
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  _SignupHeaderSection(
-                    title: signupT.title,
-                    subtitle: signupT.subtitle,
-                  ),
-                  const SizedBox(height: 28),
-                  _SignupFormSection(
-                    formKey: _formKey,
-                    firstNameController: _firstNameController,
-                    lastNameController: _lastNameController,
-                    passwordController: _passwordController,
-                    confirmPasswordController: _confirmPasswordController,
-                  ),
-                  const SizedBox(height: 24),
-                  const AuthSocialSection(),
-                  const SizedBox(height: 24),
-                  AuthTermsSection(
-                    prefixText: "By continuing you agree to ",
-                    linkText: "Terms of Service",
-                    middleText: " and ",
-                    secondaryLinkText: "Privacy Policy",
-                    onTermsTap: () =>
-                        context.showAppSnackBar(commonT.comingSoon),
-                    onPrivacyTap: () =>
-                        context.showAppSnackBar(commonT.comingSoon),
-                  ),
-                  const SizedBox(height: 16),
-                  _SignupFooterSection(
-                    prompt: signupT.alreadyHaveAccount,
-                    actionLabel: t.submit,
-                  ),
-                ],
+          body: SafeArea(
+            top: false,
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _SignupHeaderSection(
+                      title: signupT.title,
+                      subtitle: signupT.subtitle,
+                    ),
+                    const SizedBox(height: 28),
+                    _SignupFormSection(
+                      formKey: _formKey,
+                      firstNameController: _firstNameController,
+                      lastNameController: _lastNameController,
+                      passwordController: _passwordController,
+                      confirmPasswordController: _confirmPasswordController,
+                    ),
+                    const SizedBox(height: 24),
+                    const AuthSocialSection(),
+                    const SizedBox(height: 24),
+                    AuthTermsSection(
+                      prefixText: "By continuing you agree to ",
+                      linkText: "Terms of Service",
+                      middleText: " and ",
+                      secondaryLinkText: "Privacy Policy",
+                      onTermsTap: () =>
+                          context.showAppSnackBar(commonT.comingSoon),
+                      onPrivacyTap: () =>
+                          context.showAppSnackBar(commonT.comingSoon),
+                    ),
+                    const SizedBox(height: 16),
+                    _SignupFooterSection(
+                      prompt: signupT.alreadyHaveAccount,
+                      actionLabel: t.submit,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -17,10 +17,29 @@ abstract final class AppColors {
   static const textMuted = Color(0xFF808080);
   static const textSubtle = Color(0xFFCCCCCC);
 
+  // Heart Attack App Colors
   static const red = Color(0xFFD72335);
+  static const heartRed = Color(0xFFE00007);
+  static const heartRedDark = Color(0xFF420C11);
+  static const coralAccent = Color(0xFFefa582);
+
+  // Green buttons
+  static const green = Color(0xFF2C8A23);
+  static const greenLight = Color(0xFF238A3D);
+  static const greenSubtle = Color(0xFFE9F5EC);
+  static const greenText = Color(0xFF279944);
+
+  // News category colors
+  static const categoryInfrastructure = Color(0xFF07AC64);
+  static const categoryReport = Color(0xFF1972E5);
+  static const categoryStory = Color(0xFFFF4D0C);
+  static const categoryMedicalGuide = Color(0xFFB90B1C);
 
   // Feedback
   static const success = Color(0xFF1E9E62);
   static const warning = Color(0xFFF59E0B);
   static const error = Color(0xFFD64545);
+
+  // Border colors
+  static const borderLight = Color(0xFFEae8e8);
 }

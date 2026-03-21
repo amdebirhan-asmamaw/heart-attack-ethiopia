@@ -11,6 +11,7 @@ import 'package:heart_attack_ethiopia/core/extensions/context_extensions.dart';
 import 'package:heart_attack_ethiopia/core/localization/generated/strings.g.dart';
 import 'package:heart_attack_ethiopia/core/router/routes.dart';
 import 'package:heart_attack_ethiopia/core/utils/validators.dart';
+import 'package:heart_attack_ethiopia/core/widgets/page_system_ui.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/login_cubit.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/widgets/auth_button.dart';
@@ -80,40 +81,43 @@ class _LoginViewState extends State<_LoginView> {
           context.read<AuthCubit>().applySession(state.session!);
         }
       },
-      child: Scaffold(
-        backgroundColor: AppColors.background,
-        resizeToAvoidBottomInset: true,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const _LoginLogoSection(),
-                  const SizedBox(height: 24),
-                  _LoginFormSection(
-                    formKey: _formKey,
-                    emailController: _emailController,
-                    passwordController: _passwordController,
-                    emailFocusNode: _emailFocusNode,
-                    passwordFocusNode: _passwordFocusNode,
-                  ),
-                  const SizedBox(height: 24),
-                  const AuthSocialSection(),
-                  const SizedBox(height: 24),
-                  AuthTermsSection(
-                    prefixText: "By continuing you agree to ",
-                    linkText: "Terms of Service",
-                    middleText: " and ",
-                    secondaryLinkText: "Privacy Policy",
-                    onTermsTap: () =>
-                        context.showAppSnackBar(commonT.comingSoon),
-                    onPrivacyTap: () =>
-                        context.showAppSnackBar(commonT.comingSoon),
-                  ),
-                ],
+      child: PageSystemUi(
+        systemNavigationBarColor: AppColors.background,
+        child: Scaffold(
+          backgroundColor: AppColors.background,
+          resizeToAvoidBottomInset: true,
+          body: SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const _LoginLogoSection(),
+                    const SizedBox(height: 24),
+                    _LoginFormSection(
+                      formKey: _formKey,
+                      emailController: _emailController,
+                      passwordController: _passwordController,
+                      emailFocusNode: _emailFocusNode,
+                      passwordFocusNode: _passwordFocusNode,
+                    ),
+                    const SizedBox(height: 24),
+                    const AuthSocialSection(),
+                    const SizedBox(height: 24),
+                    AuthTermsSection(
+                      prefixText: "By continuing you agree to ",
+                      linkText: "Terms of Service",
+                      middleText: " and ",
+                      secondaryLinkText: "Privacy Policy",
+                      onTermsTap: () =>
+                          context.showAppSnackBar(commonT.comingSoon),
+                      onPrivacyTap: () =>
+                          context.showAppSnackBar(commonT.comingSoon),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
