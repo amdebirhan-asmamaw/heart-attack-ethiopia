@@ -39,18 +39,24 @@ class _LoginViewState extends State<_LoginView> {
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
+  late final FocusNode _emailFocusNode;
+  late final FocusNode _passwordFocusNode;
 
   @override
   void initState() {
     super.initState();
     _emailController = TextEditingController(text: AppStrings.demoEmail);
     _passwordController = TextEditingController(text: AppStrings.demoPassword);
+    _emailFocusNode = FocusNode();
+    _passwordFocusNode = FocusNode();
   }
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
     super.dispose();
   }
 
@@ -91,6 +97,8 @@ class _LoginViewState extends State<_LoginView> {
                     formKey: _formKey,
                     emailController: _emailController,
                     passwordController: _passwordController,
+                    emailFocusNode: _emailFocusNode,
+                    passwordFocusNode: _passwordFocusNode,
                   ),
                   const SizedBox(height: 24),
                   const AuthSocialSection(),
@@ -131,30 +139,42 @@ class _LoginLogoSection extends StatelessWidget {
   }
 }
 
-class _LoginFormSection extends StatelessWidget {
+class _LoginFormSection extends StatefulWidget {
   const _LoginFormSection({
     required this.formKey,
     required this.emailController,
     required this.passwordController,
+    required this.emailFocusNode,
+    required this.passwordFocusNode,
   });
 
   final GlobalKey<FormState> formKey;
   final TextEditingController emailController;
   final TextEditingController passwordController;
+  final FocusNode emailFocusNode;
+  final FocusNode passwordFocusNode;
+
+  @override
+  State<_LoginFormSection> createState() => _LoginFormSectionState();
+}
+
+class _LoginFormSectionState extends State<_LoginFormSection> {
+  bool _hasEditedEmail = false;
+  bool _hasEditedPassword = false;
 
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<LoginCubit>();
 
     void submitForm() {
-      final formState = formKey.currentState;
+      final formState = widget.formKey.currentState;
       if (formState == null || !formState.validate()) {
         return;
       }
 
       cubit.submit(
-        email: emailController.text,
-        password: passwordController.text,
+        email: widget.emailController.text,
+        password: widget.passwordController.text,
       );
     }
 
@@ -162,10 +182,23 @@ class _LoginFormSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         AuthTextField(
-          controller: emailController,
+          controller: widget.emailController,
+          focusNode: widget.emailFocusNode,
           hintText: context.t.strings.auth.emailLabel,
+          autovalidateMode: _hasEditedEmail
+              ? AutovalidateMode.onUserInteraction
+              : AutovalidateMode.disabled,
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.next,
+          onChanged: (_) {
+            if (_hasEditedEmail) {
+              return;
+            }
+            setState(() {
+              _hasEditedEmail = true;
+            });
+          },
+          onSubmitted: (_) => widget.passwordFocusNode.requestFocus(),
           autofillHints: const [AutofillHints.email],
           validator: (value) {
             final email = value?.trim() ?? '';
@@ -183,8 +216,20 @@ class _LoginFormSection extends StatelessWidget {
           selector: (state) => state.isPasswordObscured,
           builder: (context, isPasswordObscured) {
             return AuthTextField(
-              controller: passwordController,
+              controller: widget.passwordController,
+              focusNode: widget.passwordFocusNode,
               hintText: context.t.strings.auth.passwordLabel,
+              autovalidateMode: _hasEditedPassword
+                  ? AutovalidateMode.onUserInteraction
+                  : AutovalidateMode.disabled,
+              onChanged: (_) {
+                if (_hasEditedPassword) {
+                  return;
+                }
+                setState(() {
+                  _hasEditedPassword = true;
+                });
+              },
               obscureText: isPasswordObscured,
               onToggleVisibility: cubit.togglePasswordVisibility,
               textInputAction: TextInputAction.done,

@@ -7,6 +7,7 @@ import '../../features/auth/presentation/bloc/auth_cubit.dart';
 import '../../home_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/signup_page.dart';
+import '../../features/auth/presentation/pages/phone_verification_page.dart';
 import '../../splash_page.dart';
 import '../../features/onboarding/presentation/bloc/onboarding_cubit.dart';
 import '../../features/onboarding/presentation/pages/onboarding_page.dart';
@@ -48,6 +49,10 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.signup,
             builder: (context, state) => const SignupPage(),
+          ),
+          GoRoute(
+            path: AppRoutes.phoneVerification,
+            builder: (context, state) => const PhoneVerificationPage(),
           ),
           GoRoute(
             path: AppRoutes.shell,

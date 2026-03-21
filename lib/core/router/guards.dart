@@ -10,7 +10,8 @@ abstract final class AppGuards {
   }) {
     final isAuthRoute =
         currentLocation == AppRoutes.login ||
-        currentLocation == AppRoutes.signup;
+        currentLocation == AppRoutes.signup ||
+        currentLocation == AppRoutes.phoneVerification;
     final isOnboardingRoute = currentLocation == AppRoutes.onboarding;
     final isSplashRoute = currentLocation == AppRoutes.splash;
     final isProtectedRoute = currentLocation.startsWith(AppRoutes.shell);

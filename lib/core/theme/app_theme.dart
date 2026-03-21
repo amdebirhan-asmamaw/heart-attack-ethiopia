@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/app_colors.dart';
 import 'dark_theme.dart';
@@ -14,9 +15,12 @@ abstract final class AppTheme {
     );
 
     return ThemeData(
+      fontFamily: GoogleFonts.leagueSpartan().fontFamily,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: AppColors.background,
-      textTheme: TextStyles.textTheme(AppColors.textPrimary),
+      textTheme: GoogleFonts.leagueSpartanTextTheme(
+        TextStyles.textTheme(AppColors.textPrimary),
+      ),
       useMaterial3: true,
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.background,

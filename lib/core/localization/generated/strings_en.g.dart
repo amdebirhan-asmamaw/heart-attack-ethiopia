@@ -148,6 +148,7 @@ class TranslationsStringsAuthEn {
 	/// en: 'By pressing on 'Continue with...' you agree to our Terms of Services and Privacy Policy'
 	String get terms => 'By pressing on \'Continue with...\' you agree to our Terms of Services and Privacy Policy';
 
+	late final TranslationsStringsAuthPhoneVerificationEn phoneVerification = TranslationsStringsAuthPhoneVerificationEn.internal(_root);
 	late final TranslationsStringsAuthSignupEn signup = TranslationsStringsAuthSignupEn.internal(_root);
 }
 
@@ -186,8 +187,8 @@ class TranslationsStringsCommonEn {
 	/// en: 'Cancel'
 	String get cancel => 'Cancel';
 
-	/// en: 'This feature slice is ready for implementation.'
-	String get comingSoon => 'This feature slice is ready for implementation.';
+	/// en: 'This feature will be available in a future update.'
+	String get comingSoon => 'This feature will be available in a future update.';
 
 	/// en: 'No internet connection'
 	String get noConnection => 'No internet connection';
@@ -319,6 +320,30 @@ class TranslationsStringsOnboardingEn {
 	String get signUp => 'Sign Up';
 }
 
+// Path: strings.auth.phoneVerification
+class TranslationsStringsAuthPhoneVerificationEn {
+	TranslationsStringsAuthPhoneVerificationEn.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Sign in with your phone'
+	String get signInWithPhone => 'Sign in with your phone';
+
+	/// en: 'Write your phone'
+	String get enterPhoneNumber => 'Write your phone';
+
+	/// en: '+251'
+	String get countryCode => '+251';
+
+	/// en: 'Send OTP'
+	String get sendOtp => 'Send OTP';
+
+	/// en: 'Continue'
+	String get verify => 'Continue';
+}
+
 // Path: strings.auth.signup
 class TranslationsStringsAuthSignupEn {
 	TranslationsStringsAuthSignupEn.internal(this._root);
@@ -383,6 +408,11 @@ extension on Translations {
 			'strings.auth.continueWithApple' => 'Continue with Apple',
 			'strings.auth.continueWithFacebook' => 'Continue with Facebook',
 			'strings.auth.terms' => 'By pressing on \'Continue with...\' you agree to our Terms of Services and Privacy Policy',
+			'strings.auth.phoneVerification.signInWithPhone' => 'Sign in with your phone',
+			'strings.auth.phoneVerification.enterPhoneNumber' => 'Write your phone',
+			'strings.auth.phoneVerification.countryCode' => '+251',
+			'strings.auth.phoneVerification.sendOtp' => 'Send OTP',
+			'strings.auth.phoneVerification.verify' => 'Continue',
 			'strings.auth.signup.title' => 'Signup',
 			'strings.auth.signup.subtitle' => 'Lets create your account',
 			'strings.auth.signup.firstName' => 'First name',
@@ -397,7 +427,7 @@ extension on Translations {
 			'strings.navigation.settings' => 'Settings',
 			'strings.common.retry' => 'Retry',
 			'strings.common.cancel' => 'Cancel',
-			'strings.common.comingSoon' => 'This feature slice is ready for implementation.',
+			'strings.common.comingSoon' => 'This feature will be available in a future update.',
 			'strings.common.noConnection' => 'No internet connection',
 			'strings.chat.title' => 'Team Chat',
 			'strings.chat.description' => 'Hook your live messaging flows into this feature module.',

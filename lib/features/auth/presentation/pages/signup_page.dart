@@ -6,8 +6,8 @@ import 'package:heart_attack_ethiopia/core/constants/app_colors.dart';
 import 'package:heart_attack_ethiopia/core/di/injection.dart';
 import 'package:heart_attack_ethiopia/core/extensions/context_extensions.dart';
 import 'package:heart_attack_ethiopia/core/localization/generated/strings.g.dart';
+import 'package:heart_attack_ethiopia/core/router/routes.dart';
 import 'package:heart_attack_ethiopia/core/utils/validators.dart';
-import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/signup_cubit.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/pages/login_page.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/widgets/auth_button.dart';
@@ -66,17 +66,15 @@ class _SignupViewState extends State<_SignupView> {
     return BlocListener<SignupCubit, SignupState>(
       listenWhen: (previous, current) =>
           previous.status != current.status ||
-          previous.errorMessage != current.errorMessage ||
-          previous.session != current.session,
+          previous.errorMessage != current.errorMessage,
       listener: (context, state) {
         if (state.status == SignupSubmissionStatus.failure &&
             state.errorMessage != null) {
           context.showAppSnackBar(state.errorMessage!);
         }
 
-        if (state.status == SignupSubmissionStatus.success &&
-            state.session != null) {
-          context.read<AuthCubit>().applySession(state.session!);
+        if (state.status == SignupSubmissionStatus.success) {
+          context.pushReplacement(AppRoutes.phoneVerification);
         }
       },
       child: Scaffold(
@@ -97,7 +95,6 @@ class _SignupViewState extends State<_SignupView> {
             padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
             child: Form(
               key: _formKey,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -198,6 +195,32 @@ class _SignupFormSection extends StatefulWidget {
 class _SignupFormSectionState extends State<_SignupFormSection> {
   bool isPasswordObscured = false;
   bool isConfirmPasswordObscured = false;
+  bool _hasEditedFirstName = false;
+  bool _hasEditedLastName = false;
+  bool _hasEditedPassword = false;
+  bool _hasEditedConfirmPassword = false;
+  late final FocusNode _firstNameFocusNode;
+  late final FocusNode _lastNameFocusNode;
+  late final FocusNode _passwordFocusNode;
+  late final FocusNode _confirmPasswordFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _firstNameFocusNode = FocusNode();
+    _lastNameFocusNode = FocusNode();
+    _passwordFocusNode = FocusNode();
+    _confirmPasswordFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _firstNameFocusNode.dispose();
+    _lastNameFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    _confirmPasswordFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -222,8 +245,21 @@ class _SignupFormSectionState extends State<_SignupFormSection> {
       children: [
         AuthTextField(
           controller: widget.firstNameController,
+          focusNode: _firstNameFocusNode,
           hintText: signupT.firstName,
+          autovalidateMode: _hasEditedFirstName
+              ? AutovalidateMode.onUserInteraction
+              : AutovalidateMode.disabled,
+          onChanged: (_) {
+            if (_hasEditedFirstName) {
+              return;
+            }
+            setState(() {
+              _hasEditedFirstName = true;
+            });
+          },
           textInputAction: TextInputAction.next,
+          onSubmitted: (_) => _lastNameFocusNode.requestFocus(),
           autofillHints: const [AutofillHints.givenName],
           validator: (value) {
             if ((value?.trim() ?? '').isEmpty || value == null) {
@@ -237,8 +273,21 @@ class _SignupFormSectionState extends State<_SignupFormSection> {
         const SizedBox(height: 12),
         AuthTextField(
           controller: widget.lastNameController,
+          focusNode: _lastNameFocusNode,
           hintText: signupT.lastName,
+          autovalidateMode: _hasEditedLastName
+              ? AutovalidateMode.onUserInteraction
+              : AutovalidateMode.disabled,
+          onChanged: (_) {
+            if (_hasEditedLastName) {
+              return;
+            }
+            setState(() {
+              _hasEditedLastName = true;
+            });
+          },
           textInputAction: TextInputAction.next,
+          onSubmitted: (_) => _passwordFocusNode.requestFocus(),
           autofillHints: const [AutofillHints.familyName],
           validator: (value) {
             if ((value?.trim() ?? '').isEmpty || value == null) {
@@ -253,7 +302,19 @@ class _SignupFormSectionState extends State<_SignupFormSection> {
         const SizedBox(height: 12),
         AuthTextField(
           controller: widget.passwordController,
+          focusNode: _passwordFocusNode,
           hintText: signupT.password,
+          autovalidateMode: _hasEditedPassword
+              ? AutovalidateMode.onUserInteraction
+              : AutovalidateMode.disabled,
+          onChanged: (_) {
+            if (_hasEditedPassword) {
+              return;
+            }
+            setState(() {
+              _hasEditedPassword = true;
+            });
+          },
           obscureText: isPasswordObscured,
           onToggleVisibility: () {
             setState(() {
@@ -261,6 +322,7 @@ class _SignupFormSectionState extends State<_SignupFormSection> {
             });
           },
           textInputAction: TextInputAction.next,
+          onSubmitted: (_) => _confirmPasswordFocusNode.requestFocus(),
           autofillHints: const [AutofillHints.newPassword],
           validator: (value) {
             final password = value ?? '';
@@ -276,7 +338,19 @@ class _SignupFormSectionState extends State<_SignupFormSection> {
         const SizedBox(height: 12),
         AuthTextField(
           controller: widget.confirmPasswordController,
+          focusNode: _confirmPasswordFocusNode,
           hintText: signupT.confirmPassword,
+          autovalidateMode: _hasEditedConfirmPassword
+              ? AutovalidateMode.onUserInteraction
+              : AutovalidateMode.disabled,
+          onChanged: (_) {
+            if (_hasEditedConfirmPassword) {
+              return;
+            }
+            setState(() {
+              _hasEditedConfirmPassword = true;
+            });
+          },
           obscureText: isConfirmPasswordObscured,
           onToggleVisibility: () {
             setState(() {

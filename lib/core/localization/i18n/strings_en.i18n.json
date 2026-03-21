@@ -25,6 +25,13 @@
     "continueWithApple": "Continue with Apple",
     "continueWithFacebook": "Continue with Facebook",
     "terms": "By pressing on 'Continue with...' you agree to our Terms of Services and Privacy Policy",
+    "phoneVerification": {
+      "signInWithPhone": "Sign in with your phone",
+      "enterPhoneNumber": "Write your phone",
+      "countryCode": "+251",
+      "sendOtp": "Send OTP",
+      "verify": "Continue"
+    },
     "signup": {
       "title": "Signup",
       "subtitle": "Lets create your account",
@@ -45,7 +52,7 @@
   "common": {
     "retry": "Retry",
     "cancel": "Cancel",
-    "comingSoon": "This feature slice is ready for implementation.",
+    "comingSoon": "This feature will be available in a future update.",
     "noConnection": "No internet connection"
   },
   "chat": {
