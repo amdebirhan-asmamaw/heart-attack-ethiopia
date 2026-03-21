@@ -74,7 +74,7 @@ class _SignupViewState extends State<_SignupView> {
         }
 
         if (state.status == SignupSubmissionStatus.success) {
-          context.pushReplacement(AppRoutes.phoneVerification);
+          context.pushReplacement(AppRoutes.phoneInput);
         }
       },
       child: Scaffold(

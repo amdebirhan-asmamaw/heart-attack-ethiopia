@@ -3,56 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heart_attack_ethiopia/core/constants/app_colors.dart';
-import 'package:heart_attack_ethiopia/core/extensions/context_extensions.dart';
 import 'package:heart_attack_ethiopia/core/localization/generated/strings.g.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/widgets/auth_button.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/widgets/auth_text_field.dart';
 
-class PhoneVerificationPage extends StatefulWidget {
-  const PhoneVerificationPage({super.key});
+class PhoneInputPage extends StatefulWidget {
+  const PhoneInputPage({super.key});
 
   @override
-  State<PhoneVerificationPage> createState() => _PhoneVerificationPageState();
+  State<PhoneInputPage> createState() => _PhoneInputPageState();
 }
 
-class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
+class _PhoneInputPageState extends State<PhoneInputPage> {
   final _phoneController = TextEditingController();
-  final _otpController = TextEditingController();
-  final _otpFocusNode = FocusNode();
-  bool _showOtpSection = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _otpController.addListener(_onOtpChanged);
-  }
 
   @override
   void dispose() {
     _phoneController.dispose();
-    _otpController.dispose();
-    _otpFocusNode.dispose();
     super.dispose();
-  }
-
-  void _onOtpChanged() {
-    setState(() {});
   }
 
   void _sendOtp() {
     if (_phoneController.text.length >= 9) {
-      setState(() {
-        _showOtpSection = true;
-      });
-      Future.delayed(const Duration(milliseconds: 100), () {
-        _otpFocusNode.requestFocus();
-      });
-    }
-  }
-
-  void _verifyOtp() {
-    if (_otpController.text.length == 6) {
-      context.showAppSnackBar(context.t.strings.common.comingSoon);
+      context.push('/otp-verification');
     }
   }
 
@@ -90,33 +63,11 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
                 onSubmitted: _sendOtp,
               ),
               const SizedBox(height: 20),
-              AnimatedSize(
-                duration: const Duration(milliseconds: 300),
-                child: _showOtpSection
-                    ? Column(
-                        children: [
-                          _OtpInputField(
-                            controller: _otpController,
-                            focusNode: _otpFocusNode,
-                            onSubmitted: _verifyOtp,
-                          ),
-                          const SizedBox(height: 20),
-                          AuthButton.primary(
-                            text: t.verify,
-                            onPressed: _verifyOtp,
-                          ),
-                          const SizedBox(height: 16),
-                        ],
-                      )
-                    : const SizedBox.shrink(),
+              AuthButton.primary(
+                text: t.sendOtp,
+                onPressed: _sendOtp,
               ),
-              if (!_showOtpSection) ...[
-                AuthButton.primary(
-                  text: t.sendOtp,
-                  onPressed: _sendOtp,
-                ),
-                const SizedBox(height: 16),
-              ],
+              const SizedBox(height: 16),
             ],
           ),
         ),
@@ -217,43 +168,6 @@ class _PhoneInputSection extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _OtpInputField extends StatelessWidget {
-  const _OtpInputField({
-    required this.controller,
-    required this.focusNode,
-    required this.onSubmitted,
-  });
-
-  final TextEditingController controller;
-  final FocusNode focusNode;
-  final VoidCallback onSubmitted;
-
-  @override
-  Widget build(BuildContext context) {
-    return AuthTextField(
-      controller: controller,
-      hintText: '',
-      focusNode: focusNode,
-      keyboardType: TextInputType.number,
-      textInputAction: TextInputAction.done,
-      borderRadius: 10,
-      textAlign: TextAlign.center,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-      textStyle: const TextStyle(
-        fontFamily: 'Nunito',
-        fontWeight: FontWeight.w700,
-        fontSize: 20,
-        color: AppColors.textPrimary,
-      ),
-      inputFormatters: [
-        FilteringTextInputFormatter.digitsOnly,
-        LengthLimitingTextInputFormatter(6),
-      ],
-      onSubmitted: (_) => onSubmitted(),
     );
   }
 }

@@ -342,6 +342,12 @@ class TranslationsStringsAuthPhoneVerificationEn {
 
 	/// en: 'Continue'
 	String get verify => 'Continue';
+
+	/// en: 'Enter OTP'
+	String get enterOtp => 'Enter OTP';
+
+	/// en: 'Enter the 6 digit code sent to your phone'
+	String get otpSentMessage => 'Enter the 6 digit code sent to your phone';
 }
 
 // Path: strings.auth.signup
@@ -413,6 +419,8 @@ extension on Translations {
 			'strings.auth.phoneVerification.countryCode' => '+251',
 			'strings.auth.phoneVerification.sendOtp' => 'Send OTP',
 			'strings.auth.phoneVerification.verify' => 'Continue',
+			'strings.auth.phoneVerification.enterOtp' => 'Enter OTP',
+			'strings.auth.phoneVerification.otpSentMessage' => 'Enter the 6 digit code sent to your phone',
 			'strings.auth.signup.title' => 'Signup',
 			'strings.auth.signup.subtitle' => 'Lets create your account',
 			'strings.auth.signup.firstName' => 'First name',

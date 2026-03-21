@@ -30,7 +30,9 @@
       "enterPhoneNumber": "Write your phone",
       "countryCode": "+251",
       "sendOtp": "Send OTP",
-      "verify": "Continue"
+      "verify": "Continue",
+      "enterOtp": "Enter OTP",
+      "otpSentMessage": "Enter the 6 digit code sent to your phone"
     },
     "signup": {
       "title": "Signup",
