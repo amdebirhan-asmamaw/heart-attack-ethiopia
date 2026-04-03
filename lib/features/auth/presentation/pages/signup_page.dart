@@ -62,7 +62,6 @@ class _SignupViewState extends State<_SignupView> {
   Widget build(BuildContext context) {
     final t = context.t.strings.auth;
     final signupT = t.signup;
-    final commonT = context.t.strings.common;
 
     return BlocListener<SignupCubit, SignupState>(
       listenWhen: (previous, current) =>
@@ -115,17 +114,6 @@ class _SignupViewState extends State<_SignupView> {
                     ),
                     const SizedBox(height: 24),
                     const AuthSocialSection(),
-                    const SizedBox(height: 24),
-                    AuthTermsSection(
-                      prefixText: "By continuing you agree to ",
-                      linkText: "Terms of Service",
-                      middleText: " and ",
-                      secondaryLinkText: "Privacy Policy",
-                      onTermsTap: () =>
-                          context.showAppSnackBar(commonT.comingSoon),
-                      onPrivacyTap: () =>
-                          context.showAppSnackBar(commonT.comingSoon),
-                    ),
                     const SizedBox(height: 16),
                     _SignupFooterSection(
                       prompt: signupT.alreadyHaveAccount,

@@ -1,16 +1,11 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:heart_attack_ethiopia/app/resources/app_media.dart';
-import 'package:heart_attack_ethiopia/core/constants/app_colors.dart';
-import 'package:heart_attack_ethiopia/core/constants/app_strings.dart';
 import 'package:heart_attack_ethiopia/core/di/injection.dart';
 import 'package:heart_attack_ethiopia/core/extensions/context_extensions.dart';
 import 'package:heart_attack_ethiopia/core/localization/generated/strings.g.dart';
 import 'package:heart_attack_ethiopia/core/router/routes.dart';
-import 'package:heart_attack_ethiopia/core/utils/validators.dart';
 import 'package:heart_attack_ethiopia/core/widgets/page_system_ui.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/login_cubit.dart';
@@ -38,33 +33,26 @@ class _LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<_LoginView> {
   final _formKey = GlobalKey<FormState>();
-  late final TextEditingController _emailController;
-  late final TextEditingController _passwordController;
-  late final FocusNode _emailFocusNode;
-  late final FocusNode _passwordFocusNode;
+  late final TextEditingController _phoneController;
+  late final FocusNode _phoneFocusNode;
+
 
   @override
   void initState() {
     super.initState();
-    _emailController = TextEditingController(text: AppStrings.demoEmail);
-    _passwordController = TextEditingController(text: AppStrings.demoPassword);
-    _emailFocusNode = FocusNode();
-    _passwordFocusNode = FocusNode();
+    _phoneController = TextEditingController();
+    _phoneFocusNode = FocusNode();
   }
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    _emailFocusNode.dispose();
-    _passwordFocusNode.dispose();
+    _phoneController.dispose();
+    _phoneFocusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final commonT = context.t.strings.common;
-
     return BlocListener<LoginCubit, LoginState>(
       listenWhen: (previous, current) =>
           previous.status != current.status ||
@@ -82,40 +70,28 @@ class _LoginViewState extends State<_LoginView> {
         }
       },
       child: PageSystemUi(
-        systemNavigationBarColor: AppColors.background,
+        systemNavigationBarColor: const Color(0xFFFAFAFA),
         child: Scaffold(
-          backgroundColor: AppColors.background,
+          backgroundColor: const Color(0xFFFAFAFA),
           resizeToAvoidBottomInset: true,
           body: SafeArea(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Form(
                 key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const _LoginLogoSection(),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 115),
+                    const _LoginHeaderSection(),
+                    const SizedBox(height: 48),
                     _LoginFormSection(
                       formKey: _formKey,
-                      emailController: _emailController,
-                      passwordController: _passwordController,
-                      emailFocusNode: _emailFocusNode,
-                      passwordFocusNode: _passwordFocusNode,
+                      phoneController: _phoneController,
+                      phoneFocusNode: _phoneFocusNode,
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 48),
                     const AuthSocialSection(),
-                    const SizedBox(height: 24),
-                    AuthTermsSection(
-                      prefixText: "By continuing you agree to ",
-                      linkText: "Terms of Service",
-                      middleText: " and ",
-                      secondaryLinkText: "Privacy Policy",
-                      onTermsTap: () =>
-                          context.showAppSnackBar(commonT.comingSoon),
-                      onPrivacyTap: () =>
-                          context.showAppSnackBar(commonT.comingSoon),
-                    ),
                   ],
                 ),
               ),
@@ -127,192 +103,124 @@ class _LoginViewState extends State<_LoginView> {
   }
 }
 
-class _LoginLogoSection extends StatelessWidget {
-  const _LoginLogoSection();
+class _LoginHeaderSection extends StatelessWidget {
+  const _LoginHeaderSection();
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Image.asset(
-        AppMedia.onboardingLogoPng,
-        width: 210,
-        height: 210,
-        fit: BoxFit.contain,
-      ),
+    final t = context.t.strings.auth;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          t.title,
+          style: const TextStyle(
+            fontFamily: 'League Spartan',
+            fontWeight: FontWeight.w500,
+            fontSize: 24,
+            height: 22 / 24,
+            color: Color(0xFF420C11),
+          ),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          t.phoneVerification.enterPhoneNumber,
+          style: TextStyle(
+            fontFamily: 'League Spartan',
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+            height: 15 / 16,
+            color: const Color(0xFF000000).withValues(alpha: 0.5),
+          ),
+        ),
+      ],
     );
   }
 }
 
+
 class _LoginFormSection extends StatefulWidget {
   const _LoginFormSection({
     required this.formKey,
-    required this.emailController,
-    required this.passwordController,
-    required this.emailFocusNode,
-    required this.passwordFocusNode,
+    required this.phoneController,
+    required this.phoneFocusNode,
   });
 
   final GlobalKey<FormState> formKey;
-  final TextEditingController emailController;
-  final TextEditingController passwordController;
-  final FocusNode emailFocusNode;
-  final FocusNode passwordFocusNode;
+  final TextEditingController phoneController;
+  final FocusNode phoneFocusNode;
 
   @override
   State<_LoginFormSection> createState() => _LoginFormSectionState();
 }
 
 class _LoginFormSectionState extends State<_LoginFormSection> {
-  bool _hasEditedEmail = false;
-  bool _hasEditedPassword = false;
+  bool _hasEditedPhone = false;
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<LoginCubit>();
+    final t = context.t.strings.auth;
+
 
     void submitForm() {
       final formState = widget.formKey.currentState;
       if (formState == null || !formState.validate()) {
         return;
       }
-
-      cubit.submit(
-        email: widget.emailController.text,
-        password: widget.passwordController.text,
-      );
+      // For now this will navigate to otp since the login state uses email and password wait for actual integration, but keep the cubit code alive.
+      context.push(AppRoutes.otpVerification);
     }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         AuthTextField(
-          controller: widget.emailController,
-          focusNode: widget.emailFocusNode,
-          hintText: context.t.strings.auth.emailLabel,
-          autovalidateMode: _hasEditedEmail
+          controller: widget.phoneController,
+          focusNode: widget.phoneFocusNode,
+          hintText: "Phone number",
+          keyboardType: TextInputType.phone,
+          textInputAction: TextInputAction.done,
+          borderRadius: 13,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 17, vertical: 11),
+          textStyle: const TextStyle(
+              fontFamily: 'League Spartan',
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
+              height: 20 / 16,
+              color: Color(0xFF808080),
+              letterSpacing: -0.005,
+          ),
+          autovalidateMode: _hasEditedPhone
               ? AutovalidateMode.onUserInteraction
               : AutovalidateMode.disabled,
-          keyboardType: TextInputType.emailAddress,
-          textInputAction: TextInputAction.next,
           onChanged: (_) {
-            if (_hasEditedEmail) {
+            if (_hasEditedPhone) {
               return;
             }
             setState(() {
-              _hasEditedEmail = true;
+              _hasEditedPhone = true;
             });
           },
-          onSubmitted: (_) => widget.passwordFocusNode.requestFocus(),
-          autofillHints: const [AutofillHints.email],
+          onSubmitted: (_) => submitForm(),
           validator: (value) {
-            final email = value?.trim() ?? '';
-            if (email.isEmpty) {
-              return 'Email is required';
-            }
-            if (!Validators.isValidEmail(email)) {
-              return 'Enter a valid email';
+            final phone = value?.trim() ?? '';
+            if (phone.isEmpty) {
+              return 'Phone number is required';
             }
             return null;
           },
         ),
-        const SizedBox(height: 12),
-        BlocSelector<LoginCubit, LoginState, bool>(
-          selector: (state) => state.isPasswordObscured,
-          builder: (context, isPasswordObscured) {
-            return AuthTextField(
-              controller: widget.passwordController,
-              focusNode: widget.passwordFocusNode,
-              hintText: context.t.strings.auth.passwordLabel,
-              autovalidateMode: _hasEditedPassword
-                  ? AutovalidateMode.onUserInteraction
-                  : AutovalidateMode.disabled,
-              onChanged: (_) {
-                if (_hasEditedPassword) {
-                  return;
-                }
-                setState(() {
-                  _hasEditedPassword = true;
-                });
-              },
-              obscureText: isPasswordObscured,
-              onToggleVisibility: cubit.togglePasswordVisibility,
-              textInputAction: TextInputAction.done,
-              autofillHints: const [AutofillHints.password],
-              onSubmitted: (_) => submitForm(),
-              validator: (value) {
-                final password = value ?? '';
-                if (password.trim().isEmpty) {
-                  return 'Password is required';
-                }
-                if (!Validators.hasMinLength(password, 8)) {
-                  return 'Password must be at least 8 characters';
-                }
-                return null;
-              },
-            );
-          },
-        ),
-        const SizedBox(height: 8),
-        Align(
-          alignment: Alignment.center,
-          child: TextButton(
-            onPressed: () {},
-            style: TextButton.styleFrom(
-              minimumSize: Size.zero,
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            ),
-            child: Text(
-              context.t.strings.auth.forgotPassword,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                color: AppColors.textHint,
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 16),
         BlocSelector<LoginCubit, LoginState, bool>(
           selector: (state) => state.status == LoginSubmissionStatus.inProgress,
           builder: (context, isLoading) {
             return AuthButton.primary(
-              text: context.t.strings.auth.submit,
+              text: t.phoneVerification.verify,
               onPressed: submitForm,
               isLoading: isLoading,
               loadingText: 'Signing in...',
             );
           },
-        ),
-        const SizedBox(height: 12),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              context.t.strings.auth.dontHaveAccount,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                color: AppColors.textHint,
-              ),
-            ),
-            TextButton(
-              onPressed: () => context.push(AppRoutes.signup),
-              style: TextButton.styleFrom(
-                minimumSize: Size.zero,
-                padding: const EdgeInsets.only(left: 4, top: 8, bottom: 8),
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              ),
-              child: Text(
-                context.t.strings.auth.createAccount,
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.primary,
-                ),
-              ),
-            ),
-          ],
         ),
       ],
     );
@@ -326,106 +234,132 @@ class AuthSocialSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.t.strings.auth;
     final commonT = context.t.strings.common;
-    final socialActions = <({String label, VoidCallback onPressed})>[
-      (
-        label: t.continueWithGoogle,
-        onPressed: () => context.showAppSnackBar(commonT.comingSoon),
-      ),
-      (
-        label: t.continueWithApple,
-        onPressed: () => context.showAppSnackBar(commonT.comingSoon),
-      ),
-      (
-        label: t.continueWithFacebook,
-        onPressed: () => context.showAppSnackBar(commonT.comingSoon),
-      ),
-    ];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Row(
+           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Expanded(child: Divider(color: Colors.black, thickness: 1)),
+            Container(
+              width: 119.5,
+              height: 1,
+              color: const Color(0xFF000000),
+            ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Text(
                 t.or,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
-                  fontSize: 14,
+                   fontFamily: 'League Spartan',
+                  fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.textPrimary,
+                  height: 20 / 16,
+                  color: Color(0xFF252525),
+                  letterSpacing: -0.005,
                 ),
               ),
             ),
-            const Expanded(child: Divider(color: Colors.black, thickness: 1)),
+            Container(
+             width: 119.5,
+             height: 1,
+             color: const Color(0xFF000000),
+            ),
           ],
         ),
-        const SizedBox(height: 16),
-        for (final socialAction in socialActions) ...[
-          AuthButton.secondary(
-            text: socialAction.label,
-            onPressed: socialAction.onPressed,
-          ),
-          if (socialAction != socialActions.last) const SizedBox(height: 10),
-        ],
+        const SizedBox(height: 28),
+        _GoogleAuthButton(
+          onPressed: () => context.showAppSnackBar(commonT.comingSoon),
+        ),
+         const SizedBox(height: 24),
+         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              t.dontHaveAccount,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontFamily: 'League Spartan',
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Color(0xFF808080),
+                 height: 20/14,
+                letterSpacing: -0.005,
+              ),
+            ),
+            TextButton(
+              onPressed: () => context.push(AppRoutes.signup),
+              style: TextButton.styleFrom(
+                minimumSize: Size.zero,
+                padding: EdgeInsets.zero,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+              child: Text(
+                t.createAccount,
+                  textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontFamily: 'League Spartan',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF000000),
+                  height: 20/14,
+                   letterSpacing: -0.005,
+                ),
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }
 }
 
-class AuthTermsSection extends StatelessWidget {
-  const AuthTermsSection({
-    required this.prefixText,
-    required this.linkText,
-    required this.middleText,
-    required this.secondaryLinkText,
-    required this.onTermsTap,
-    required this.onPrivacyTap,
-    super.key,
-  });
+class _GoogleAuthButton extends StatelessWidget {
+  const _GoogleAuthButton({required this.onPressed});
 
-  final String prefixText;
-  final String linkText;
-  final String middleText;
-  final String secondaryLinkText;
-  final VoidCallback onTermsTap;
-  final VoidCallback onPrivacyTap;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
-    const baseStyle = TextStyle(
-      fontSize: 13,
-      fontWeight: FontWeight.w400,
-      height: 1.3,
-      color: AppColors.textSubtle,
-    );
-
-    const linkStyle = TextStyle(
-      fontSize: 13,
-      fontWeight: FontWeight.w500,
-      height: 1.3,
-      color: AppColors.textMuted,
-    );
-
-    return RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-        style: baseStyle,
-        children: [
-          TextSpan(text: prefixText),
-          TextSpan(
-            text: linkText,
-            style: linkStyle,
-            recognizer: TapGestureRecognizer()..onTap = onTermsTap,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        minWidth: double.infinity,
+        minHeight: 45,
+      ),
+      child: OutlinedButton(
+        onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+          foregroundColor: const Color(0xFF252525),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          minimumSize: const Size.fromHeight(45),
+          side: const BorderSide(color: Color(0xFF808080), width: 1),
+          shape: RoundedRectangleBorder(
+             borderRadius: BorderRadius.circular(13),
           ),
-          TextSpan(text: middleText),
-          TextSpan(
-            text: secondaryLinkText,
-            style: linkStyle,
-            recognizer: TapGestureRecognizer()..onTap = onPrivacyTap,
-          ),
-        ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // If the svg asset available, use it here, otherwise just the text as in figma
+               Flexible(
+                 child: Text(
+                   context.t.strings.auth.continueWithGoogle,
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                     fontFamily: 'League Spartan',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                       height: 20/16,
+                       color: Color(0xFF252525),
+                       letterSpacing: -0.005,
+                    ),
+                  ),
+               ),
+          ],
+        ),
       ),
     );
   }
