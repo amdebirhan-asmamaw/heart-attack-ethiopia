@@ -1,23 +1,69 @@
 import 'package:flutter/material.dart';
+
 import 'package:heart_attack_ethiopia/core/constants/app_colors.dart';
+
+class ResourcesSection extends StatelessWidget {
+  const ResourcesSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const _ResourcesHeader(),
+            const SizedBox(height: 16),
+            SizedBox(
+              height: 255,
+              child: ListView(
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                children: const [
+                  ResourceCard(
+                    title: 'Emergency Heart Care\n101',
+                    subtitle:
+                        'Learn the critical steps to take when someone is experiencing cardiac...',
+                    category: 'Medical Guide',
+                    readTime: '5 Min read',
+                  ),
+                  SizedBox(width: 16),
+                  ResourceCard(
+                    title: 'Emergency Heart Care\n101',
+                    subtitle:
+                        'Learn the critical steps to take when someone is experiencing cardiac...',
+                    category: 'Medical Guide',
+                    readTime: '5 Min read',
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        const Positioned(
+          right: -2,
+          top: 34,
+          child: _QuestionBadge(),
+        ),
+      ],
+    );
+  }
+}
 
 class ResourceCard extends StatelessWidget {
   const ResourceCard({
-    super.key,
     required this.title,
     required this.subtitle,
     required this.category,
     required this.readTime,
-    this.imageUrl,
-    this.categoryColor = AppColors.red,
+    super.key,
   });
 
   final String title;
   final String subtitle;
   final String category;
   final String readTime;
-  final String? imageUrl;
-  final Color categoryColor;
 
   @override
   Widget build(BuildContext context) {
@@ -31,46 +77,36 @@ class ResourceCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             height: 135,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.transparent,
-                  Colors.black.withValues(alpha: 0.3),
-                  Colors.black.withValues(alpha: 0.5),
-                ],
-              ),
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
-              ),
-              color: AppColors.primary.withValues(alpha: 0.1),
-            ),
             child: Stack(
               children: [
-                const Center(
-                  child: Icon(
-                    Icons.favorite,
-                    size: 48,
-                    color: AppColors.heartRedDark,
+                Positioned.fill(
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                    ),
+                    child: const _ResourceMedia(),
                   ),
                 ),
                 Positioned(
-                  bottom: 8,
                   left: 7,
+                  bottom: 6,
                   child: Container(
+                    height: 22,
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
+                      horizontal: 12,
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
                         colors: [
-                          Color(0xFFebe7e7),
+                          Color(0xFFEBE7E7),
                           AppColors.background,
+                          Color(0xFFEBE7E7),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(28),
@@ -90,7 +126,7 @@ class ResourceCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(19),
+            padding: const EdgeInsets.fromLTRB(19, 16, 19, 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -99,10 +135,10 @@ class ResourceCard extends StatelessWidget {
                     Container(
                       width: 8,
                       height: 8,
-                      decoration: BoxDecoration(
-                        color: categoryColor,
+                      decoration: const BoxDecoration(
+                        color: AppColors.categoryMedicalGuide,
                         shape: BoxShape.circle,
-                        boxShadow: const [
+                        boxShadow: [
                           BoxShadow(
                             color: Color(0x40000000),
                             blurRadius: 9.1,
@@ -114,11 +150,11 @@ class ResourceCard extends StatelessWidget {
                     const SizedBox(width: 4),
                     Text(
                       category,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'Inter',
                         fontSize: 8,
                         fontWeight: FontWeight.w400,
-                        color: categoryColor,
+                        color: AppColors.categoryMedicalGuide,
                       ),
                     ),
                   ],
@@ -130,15 +166,20 @@ class ResourceCard extends StatelessWidget {
                     fontFamily: 'Inter',
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
+                    height: 1.2,
                     color: AppColors.textPrimary,
                   ),
                 ),
+                const SizedBox(height: 4),
                 Text(
                   subtitle,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontFamily: 'Inter',
                     fontSize: 8,
                     fontWeight: FontWeight.w400,
+                    height: 1.2,
                     color: AppColors.textPrimary.withValues(alpha: 0.5),
                   ),
                 ),
@@ -151,73 +192,148 @@ class ResourceCard extends StatelessWidget {
   }
 }
 
-class ResourcesSection extends StatelessWidget {
-  const ResourcesSection({super.key});
+class _ResourceMedia extends StatelessWidget {
+  const _ResourceMedia();
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              'Resources',
-              style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: AppColors.textPrimary,
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            const Color(0xFF746246),
+            const Color(0xFFC7B79F),
+            const Color(0xFF3A2A1F).withValues(alpha: 0.9),
+          ],
+        ),
+      ),
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Positioned(
+            left: -18,
+            top: 22,
+            child: Transform.rotate(
+              angle: -0.25,
+              child: Container(
+                width: 150,
+                height: 62,
+                color: Colors.white.withValues(alpha: 0.82),
               ),
             ),
-            Row(
-              children: [
-                Text(
-                  'See all',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w300,
-                    color: AppColors.red,
-                  ),
-                ),
-                const SizedBox(width: 4),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  size: 10,
-                  color: AppColors.red.withValues(alpha: 0.5),
-                ),
-              ],
+          ),
+          Positioned(
+            right: -10,
+            top: 8,
+            child: Transform.rotate(
+              angle: 0.12,
+              child: Container(
+                width: 122,
+                height: 84,
+                color: const Color(0xFFF7F0E0).withValues(alpha: 0.9),
+              ),
+            ),
+          ),
+          const Center(
+            child: Icon(
+              Icons.favorite,
+              size: 46,
+              color: AppColors.categoryReport,
+            ),
+          ),
+          DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.transparent,
+                  Colors.black.withValues(alpha: 0.2),
+                  Colors.black.withValues(alpha: 0.45),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ResourcesHeader extends StatelessWidget {
+  const _ResourcesHeader();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Text(
+          'resources',
+          style: TextStyle(
+            fontFamily: 'Inter',
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: AppColors.textPrimary,
+          ),
+        ),
+        Row(
+          children: [
+            const Text(
+              'Detail',
+              style: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 12,
+                fontWeight: FontWeight.w300,
+                color: AppColors.red,
+              ),
+            ),
+            const SizedBox(width: 4),
+            Icon(
+              Icons.arrow_forward_ios,
+              size: 10,
+              color: AppColors.red.withValues(alpha: 0.6),
             ),
           ],
         ),
-        const SizedBox(height: 16),
-        SizedBox(
-          height: 255,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              const ResourceCard(
-                title: 'Emergency Heart Care 101',
-                subtitle:
-                    'Learn the critical steps to take when someone is experiencing cardiac...',
-                category: 'Medical Guide',
-                readTime: '5 Min read',
-                categoryColor: AppColors.categoryMedicalGuide,
-              ),
-              const SizedBox(width: 8),
-              ResourceCard(
-                title: 'Heart-Healthy Diet Tips',
-                subtitle: 'Discover the best foods for maintaining cardiovascular health...',
-                category: 'Medical Guide',
-                readTime: '3 Min read',
-                categoryColor: AppColors.categoryMedicalGuide,
-              ),
-            ],
+      ],
+    );
+  }
+}
+
+class _QuestionBadge extends StatelessWidget {
+  const _QuestionBadge();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 30,
+      height: 30,
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            AppColors.background,
+            Color(0xFFEBE6E6),
+            AppColors.background,
+          ],
+        ),
+      ),
+      child: const Center(
+        child: Text(
+          '?',
+          style: TextStyle(
+            fontFamily: 'Inter',
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+            color: AppColors.red,
           ),
         ),
-      ],
+      ),
     );
   }
 }

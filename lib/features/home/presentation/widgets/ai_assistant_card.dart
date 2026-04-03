@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:heart_attack_ethiopia/core/constants/app_colors.dart';
 
 class AiAssistantCard extends StatelessWidget {
@@ -8,9 +9,10 @@ class AiAssistantCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
+      height: 121,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: AppColors.background.withValues(alpha: 0.8),
+        color: AppColors.background.withValues(alpha: 0.92),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: AppColors.borderLight),
         boxShadow: const [
@@ -21,97 +23,113 @@ class AiAssistantCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
+      child: Stack(
         children: [
-          Container(
-            width: 97,
-            height: 108,
-            decoration: BoxDecoration(
-              color: AppColors.heartRedDark.withValues(alpha: 0.1),
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(8),
-                bottomLeft: Radius.circular(8),
-              ),
-            ),
-            child: const Center(
-              child: Icon(
-                Icons.favorite,
-                size: 48,
-                color: AppColors.heartRedDark,
+          Positioned(
+            right: 28,
+            top: 45,
+            child: Container(
+              width: 150,
+              height: 5,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    const Color(0xFFF8EAEA).withValues(alpha: 0),
+                    const Color(0xFFF0DDDD),
+                    const Color(0xFFDDEDDD),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(999),
               ),
             ),
           ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text(
-                  'Heart health AI Assistant',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  'Get instant guidance on symptoms, risks, and emergencies.',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 10,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.greenText.withValues(alpha: 0.7),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.greenLight,
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: const Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.chat_bubble_outline,
-                            size: 9,
-                            color: AppColors.background,
-                          ),
-                          SizedBox(width: 6),
-                          Text(
-                            'Ask the AI',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.background,
-                            ),
-                          ),
-                        ],
-                      ),
+          Positioned(
+            left: 2,
+            bottom: -2,
+            child: Icon(
+              Icons.health_and_safety_outlined,
+              size: 100,
+              color: AppColors.greenLight.withValues(alpha: 0.45),
+            ),
+          ),
+          const Positioned(
+            left: 102,
+            top: 7,
+            child: SizedBox(
+              width: 214,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Heart health AI Assistant',
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textPrimary,
                     ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Not for diagnosis. Emergency cases redirected instantly',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 8,
-                    fontWeight: FontWeight.w400,
-                    color: const Color(0xFF0E3618).withValues(alpha: 0.4),
                   ),
-                ),
-              ],
+                  SizedBox(height: 4),
+                  Text(
+                    'Get instant guidance on symptoms, risks,\nand emergencies.',
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
+                      height: 1.2,
+                      color: Color(0xB3279944),
+                    ),
+                  ),
+                  SizedBox(height: 12),
+                  _AiButton(),
+                  SizedBox(height: 8),
+                  Text(
+                    'Not for diagnosis. Emergency cases redirected instantly',
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 8,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0x660E3618),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _AiButton extends StatelessWidget {
+  const _AiButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 162,
+      height: 24,
+      decoration: BoxDecoration(
+        color: AppColors.greenLight,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: const Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.question_mark,
+            size: 10,
+            color: AppColors.background,
+          ),
+          SizedBox(width: 6),
+          Text(
+            'Ask the AI',
+            style: TextStyle(
+              fontFamily: 'Inter',
+              fontSize: 10,
+              fontWeight: FontWeight.w400,
+              color: AppColors.background,
             ),
           ),
         ],

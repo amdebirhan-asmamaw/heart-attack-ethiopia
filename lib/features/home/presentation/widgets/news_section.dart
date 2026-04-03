@@ -1,19 +1,76 @@
 import 'package:flutter/material.dart';
+
 import 'package:heart_attack_ethiopia/core/constants/app_colors.dart';
+
+class NewsSection extends StatelessWidget {
+  const NewsSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const [
+        Text(
+          'News',
+          style: TextStyle(
+            fontFamily: 'League Spartan',
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: AppColors.textPrimary,
+          ),
+        ),
+        SizedBox(height: 16),
+        NewsCard(
+          category: 'Infrastructure',
+          title: 'New Cardiac center opening in Addis Ababa this Friday.',
+          timeAgo: '2 hrs ago',
+          categoryColor: AppColors.categoryInfrastructure,
+          thumbnailColor: Color(0xFF1669C8),
+          thumbnailIcon: Icons.apartment_rounded,
+        ),
+        SizedBox(height: 8),
+        NewsCard(
+          category: 'Report',
+          title: 'HAE Mission Report: Q3 Achievements and Future Goals.',
+          timeAgo: '2 days ago',
+          categoryColor: AppColors.categoryReport,
+          thumbnailColor: AppColors.categoryMedicalGuide,
+          thumbnailIcon: Icons.favorite,
+          darkPlayButton: true,
+        ),
+        SizedBox(height: 8),
+        NewsCard(
+          category: 'Story',
+          title: 'New Cardiac center opening in Addis Ababa this Friday.',
+          timeAgo: '2 hrs ago',
+          categoryColor: AppColors.categoryStory,
+          thumbnailColor: Color(0xFF76AFD8),
+          thumbnailIcon: Icons.people_alt_outlined,
+        ),
+      ],
+    );
+  }
+}
 
 class NewsCard extends StatelessWidget {
   const NewsCard({
-    super.key,
     required this.category,
     required this.title,
     required this.timeAgo,
-    this.categoryColor = AppColors.categoryInfrastructure,
+    required this.categoryColor,
+    required this.thumbnailColor,
+    required this.thumbnailIcon,
+    this.darkPlayButton = false,
+    super.key,
   });
 
   final String category;
   final String title;
   final String timeAgo;
   final Color categoryColor;
+  final Color thumbnailColor;
+  final IconData thumbnailIcon;
+  final bool darkPlayButton;
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +78,13 @@ class NewsCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+        gradient: const LinearGradient(
+          begin: Alignment.centerRight,
+          end: Alignment.centerLeft,
           colors: [
-            AppColors.background.withValues(alpha: 0.95),
-            AppColors.surface.withValues(alpha: 0.7),
-            AppColors.background.withValues(alpha: 0.9),
+            Color(0xFFFDFDFD),
+            Color(0xFFEFECEC),
+            Color(0xFFFDFDFD),
           ],
         ),
         borderRadius: BorderRadius.circular(20),
@@ -38,21 +95,53 @@ class NewsCard extends StatelessWidget {
             width: 76,
             height: 76,
             decoration: BoxDecoration(
-              color: AppColors.primary.withValues(alpha: 0.1),
+              color: thumbnailColor,
               borderRadius: BorderRadius.circular(16),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x1A000000),
+                  blurRadius: 15.2,
+                  offset: Offset(0, 4),
+                ),
+              ],
             ),
-            child: const Center(
-              child: Icon(
-                Icons.favorite,
-                size: 32,
-                color: AppColors.heartRedDark,
-              ),
+            child: Stack(
+              children: [
+                Center(
+                  child: Icon(
+                    thumbnailIcon,
+                    size: 34,
+                    color: AppColors.background.withValues(alpha: 0.96),
+                  ),
+                ),
+                Positioned(
+                  right: 5,
+                  bottom: 5,
+                  child: Container(
+                    width: 18,
+                    height: 18,
+                    decoration: BoxDecoration(
+                      color: darkPlayButton
+                          ? AppColors.textPrimary
+                          : AppColors.background,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Icon(
+                      Icons.play_arrow_rounded,
+                      size: 12,
+                      color: darkPlayButton
+                          ? AppColors.background
+                          : AppColors.textPrimary,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 16),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
@@ -64,20 +153,20 @@ class NewsCard extends StatelessWidget {
                       fontSize: 8,
                       fontWeight: FontWeight.w500,
                       color: categoryColor,
-                      letterSpacing: 1,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontFamily: 'League Spartan',
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
+                      height: 1.2,
                       color: AppColors.textPrimary,
                     ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
                   Text(
@@ -93,65 +182,8 @@ class NewsCard extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            width: 18,
-            height: 18,
-            margin: const EdgeInsets.only(right: 8),
-            decoration: BoxDecoration(
-              color: AppColors.background,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: const Icon(
-              Icons.arrow_forward_ios,
-              size: 8,
-              color: AppColors.textPrimary,
-            ),
-          ),
         ],
       ),
-    );
-  }
-}
-
-class NewsSection extends StatelessWidget {
-  const NewsSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'News',
-          style: TextStyle(
-            fontFamily: 'League Spartan',
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: AppColors.textPrimary,
-          ),
-        ),
-        const SizedBox(height: 16),
-        const NewsCard(
-          category: 'Infrastructure',
-          title: 'New Cardiac center opening in Addis Ababa this Friday.',
-          timeAgo: '2 hrs ago',
-          categoryColor: AppColors.categoryInfrastructure,
-        ),
-        const SizedBox(height: 8),
-        const NewsCard(
-          category: 'Report',
-          title: 'HAE Mission Report: Q3 Achievements and Future Goals.',
-          timeAgo: '2 days ago',
-          categoryColor: AppColors.categoryReport,
-        ),
-        const SizedBox(height: 8),
-        const NewsCard(
-          category: 'Story',
-          title: 'New Cardiac center opening in Addis Ababa this Friday.',
-          timeAgo: '2 hrs ago',
-          categoryColor: AppColors.categoryStory,
-        ),
-      ],
     );
   }
 }
