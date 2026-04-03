@@ -5,6 +5,7 @@ import 'package:heart_attack_ethiopia/core/extensions/context_extensions.dart';
 import 'package:heart_attack_ethiopia/core/localization/generated/strings.g.dart';
 import 'package:heart_attack_ethiopia/features/onboarding/presentation/bloc/onboarding_cubit.dart';
 import 'package:heart_attack_ethiopia/features/onboarding/presentation/widgets/onboarding_bottom_sheet.dart';
+import 'package:heart_attack_ethiopia/core/widgets/page_system_ui.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -58,8 +59,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
           context.showAppSnackBar(state.errorMessage!);
         }
       },
-      child: Scaffold(
-        body: Stack(
+      child: PageSystemUi(
+        systemNavigationBarColor: Colors.black,
+        child: Scaffold(
+          body: Stack(
           children: [
             Positioned.fill(
               child: Image.asset(
@@ -75,38 +78,45 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 120),
-                child: Image.asset(
-                  AppMedia.onboardingLogoPng,
-                  width: 225,
-                  height: 225,
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-            PageView(
-              controller: _pageController,
-              physics: const ClampingScrollPhysics(),
-              children: _steps
-                  .asMap()
-                  .entries
-                  .map(
-                    (entry) => _buildStep(
-                      context,
-                      step: entry.value,
-                      pageIndex: entry.key,
-                      onboardingText: t,
+            SafeArea(
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 120),
+                      child: Image.asset(
+                        AppMedia.onboardingLogoPng,
+                        width: 225,
+                        height: 225,
+                        fit: BoxFit.contain,
+                      ),
                     ),
-                  )
-                  .toList(),
+                  ),
+                  PageView(
+                    controller: _pageController,
+                    physics: const ClampingScrollPhysics(),
+                    children: _steps
+                        .asMap()
+                        .entries
+                        .map(
+                          (entry) => _buildStep(
+                            context,
+                            step: entry.value,
+                            pageIndex: entry.key,
+                            onboardingText: t,
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
-    );
+    ),
+  );
   }
 
   Widget _buildStep(
