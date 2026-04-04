@@ -120,28 +120,28 @@ class _CategoryCard extends StatelessWidget {
               ),
             ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(13, 17, 13, 17),
+            padding: const EdgeInsets.fromLTRB(13, 10, 13, 10),
             child: Column(
               children: [
-                Icon(icon, size: 36, color: accentColor),
-                const SizedBox(height: 8),
+                Icon(icon, size: 32, color: accentColor),
+                const SizedBox(height: 6),
                 Text(
                   title,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontFamily: 'League Spartan',
-                    fontSize: 15,
+                    fontSize: 14,
                     fontWeight: FontWeight.w500,
                     color: AppColors.primary,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 6),
                 Container(
                   width: 90,
                   height: 1,
                   color: lineColor ?? accentColor,
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 6),
                 for (final String item in items) ...[
                   _CategoryItem(text: item, accentColor: accentColor),
                   if (item != items.last) const SizedBox(height: 8),
