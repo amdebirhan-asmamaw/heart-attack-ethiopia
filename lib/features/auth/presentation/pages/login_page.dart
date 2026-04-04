@@ -7,6 +7,8 @@ import 'package:heart_attack_ethiopia/core/extensions/context_extensions.dart';
 import 'package:heart_attack_ethiopia/core/localization/generated/strings.g.dart';
 import 'package:heart_attack_ethiopia/core/router/routes.dart';
 import 'package:heart_attack_ethiopia/core/widgets/page_system_ui.dart';
+import 'package:heart_attack_ethiopia/features/auth/domain/entities/auth_session.dart';
+import 'package:heart_attack_ethiopia/features/auth/domain/entities/auth_user.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/login_cubit.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/widgets/auth_button.dart';
@@ -310,10 +312,38 @@ class AuthSocialSection extends StatelessWidget {
             ),
           ],
         ),
+        const SizedBox(height: 24),
+        Center(
+          child: TextButton(
+            onPressed: () {
+              final demoSession = AuthSession(
+                user: const AuthUser(
+                  id: 'demo_user_id',
+                  email: 'demo@example.com',
+                  displayName: 'Demo User',
+                ),
+                accessToken: 'demo_token',
+                signedInAt: DateTime.now(),
+              );
+              context.read<AuthCubit>().applySession(demoSession);
+            },
+            child: const Text(
+              'Bypass with Demo Login',
+              style: TextStyle(
+                fontFamily: 'League Spartan',
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFF420C11),
+                decoration: TextDecoration.underline,
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
 }
+
 
 class _GoogleAuthButton extends StatelessWidget {
   const _GoogleAuthButton({required this.onPressed});
