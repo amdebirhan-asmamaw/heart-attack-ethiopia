@@ -12,4 +12,7 @@ class AppMedia {
   static const String onboardingLogoPng = 'assets/logo/logo.png';
   static const String onboardingBackground =
       'assets/images/onboarding-background.jpg';
+
+  // Auth
+  static const String lockImage = 'assets/images/lock-image.png';
 }

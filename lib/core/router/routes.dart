@@ -5,5 +5,6 @@ abstract final class AppRoutes {
   static const signup = '/signup';
   static const phoneInput = '/phone-input';
   static const otpVerification = '/otp-verification';
+  static const authSuccess = '/auth-success';
   static const shell = '/app';
 }

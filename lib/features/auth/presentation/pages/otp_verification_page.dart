@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:heart_attack_ethiopia/core/constants/app_colors.dart';
-import 'package:heart_attack_ethiopia/core/extensions/context_extensions.dart';
-import 'package:heart_attack_ethiopia/core/localization/generated/strings.g.dart';
-import 'package:heart_attack_ethiopia/features/auth/presentation/widgets/auth_button.dart';
+import 'package:heart_attack_ethiopia/core/router/routes.dart';
+import 'package:heart_attack_ethiopia/core/widgets/page_system_ui.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 
@@ -20,110 +18,128 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
   String _otp = '';
 
   void _verifyOtp() {
-    if (_otp.length == 6) {
-      context.showAppSnackBar(context.t.strings.common.comingSoon);
+    if (_otp.length == 4) {
+      context.pushReplacement(AppRoutes.authSuccess);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final t = context.t.strings.auth.phoneVerification;
-
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        backgroundColor: AppColors.background,
-        surfaceTintColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () => context.pop(),
-          icon: const Icon(CupertinoIcons.chevron_back, color: AppColors.primary),
+    return PageSystemUi(
+      systemNavigationBarColor: const Color(0xFFFAFAFA),
+      child: Scaffold(
+        backgroundColor: const Color(0xFFFAFAFA),
+        appBar: AppBar(
+          backgroundColor: const Color(0xFFFAFAFA),
+          surfaceTintColor: Colors.transparent,
+          elevation: 0,
+          leading: IconButton(
+            onPressed: () => context.pop(),
+            icon: const Icon(CupertinoIcons.chevron_back, color: Color(0xFF420C11)),
+          ),
         ),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 11),
-              _HeaderSection(
-                title: t.enterOtp,
-                subtitle: t.otpSentMessage,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 31),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(height: 32),
+                  const Text(
+                    'We Sent You 4 Digit Code',
+                    style: TextStyle(
+                      fontFamily: 'League Spartan',
+                      fontSize: 24,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xFF420C11),
+                      height: 22 / 24,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'Write The Code We Sent',
+                    style: TextStyle(
+                      fontFamily: 'League Spartan',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xFF000000).withValues(alpha: 0.5),
+                      height: 15 / 16,
+                    ),
+                  ),
+                  const SizedBox(height: 59),
+                  OTPTextField(
+                    controller: _otpController,
+                    length: 4,
+                    width: MediaQuery.of(context).size.width - 62,
+                    fieldWidth: 65,
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20,
+                      color: Color(0xFF000000),
+                    ),
+                    textFieldAlignment: MainAxisAlignment.spaceBetween,
+                    fieldStyle: FieldStyle.box,
+                    outlineBorderRadius: 10,
+                    otpFieldStyle: OtpFieldStyle(
+                      backgroundColor: const Color(0xFFF2F2F2),
+                      borderColor: Colors.transparent,
+                      enabledBorderColor: Colors.transparent,
+                      focusBorderColor: const Color(0xFF420C11),
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        _otp = value;
+                      });
+                    },
+                    onCompleted: (value) {
+                      setState(() {
+                        _otp = value;
+                      });
+                      _verifyOtp();
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Resend OTP',
+                    style: TextStyle(
+                      fontFamily: 'League Spartan',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xFF000000).withValues(alpha: 0.5),
+                      height: 15 / 16,
+                    ),
+                  ),
+                  const SizedBox(height: 48),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF420C11),
+                      foregroundColor: Colors.white,
+                      minimumSize: const Size.fromHeight(45),
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      elevation: 0,
+                    ),
+                    onPressed: _otp.length == 4 ? _verifyOtp : null,
+                    child: const Text(
+                      'Verify',
+                      style: TextStyle(
+                        fontFamily: 'League Spartan',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                        letterSpacing: -0.005,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 47),
-              OTPTextField(
-                controller: _otpController,
-                length: 6,
-                width: MediaQuery.of(context).size.width - 64,
-                fieldWidth: 40,
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontWeight: FontWeight.w700,
-                  fontSize: 20,
-                  color: AppColors.textPrimary,
-                ),
-                textFieldAlignment: MainAxisAlignment.spaceBetween,
-                fieldStyle: FieldStyle.box,
-                outlineBorderRadius: 10,
-                onChanged: (value) {
-                  setState(() {
-                    _otp = value;
-                  });
-                },
-                onCompleted: (value) {
-                  setState(() {
-                    _otp = value;
-                  });
-                  _verifyOtp();
-                },
-              ),
-              const SizedBox(height: 24),
-              AuthButton.primary(
-                text: t.verify,
-                onPressed: _otp.length == 6 ? _verifyOtp : () {},
-                isLoading: false,
-              ),
-            ],
+            ),
           ),
         ),
       ),
-    );
-  }
-}
-
-class _HeaderSection extends StatelessWidget {
-  const _HeaderSection({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontFamily: 'League Spartan',
-            fontSize: 24,
-            fontWeight: FontWeight.w500,
-            color: AppColors.primary,
-          ),
-        ),
-        const SizedBox(height: 10),
-        Text(
-          subtitle,
-          style: TextStyle(
-            fontFamily: 'League Spartan',
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: AppColors.textPrimary.withValues(alpha: 0.5),
-          ),
-        ),
-      ],
     );
   }
 }

@@ -9,6 +9,7 @@ import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/signup_page.dart';
 import '../../features/auth/presentation/pages/phone_input_page.dart';
 import '../../features/auth/presentation/pages/otp_verification_page.dart';
+import '../../features/auth/presentation/pages/auth_success_page.dart';
 import '../../splash_page.dart';
 import '../../features/onboarding/presentation/bloc/onboarding_cubit.dart';
 import '../../features/onboarding/presentation/pages/onboarding_page.dart';
@@ -58,6 +59,10 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.otpVerification,
             builder: (context, state) => const OtpVerificationPage(),
+          ),
+          GoRoute(
+            path: AppRoutes.authSuccess,
+            builder: (context, state) => const AuthSuccessPage(),
           ),
           GoRoute(
             path: AppRoutes.shell,
