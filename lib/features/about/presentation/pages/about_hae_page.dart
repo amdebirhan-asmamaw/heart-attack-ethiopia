@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:heart_attack_ethiopia/app/resources/app_media.dart';
+import 'package:heart_attack_ethiopia/shared/widgets/cards/team_member_card.dart';
 
 import 'package:heart_attack_ethiopia/core/router/routes.dart';
 
@@ -39,7 +40,7 @@ class AboutHAEPage extends StatelessWidget {
             Text(
               'Saving Lives,\nOne Heart At A Time.',
               style: GoogleFonts.leagueSpartan(
-                fontSize: 24,
+                fontSize: 28, // bumped
                 fontWeight: FontWeight.w600,
                 color: const Color(0xFF32080C),
                 height: 1.1,
@@ -49,7 +50,7 @@ class AboutHAEPage extends StatelessWidget {
             Text(
               'Heart Attack Ethiopia is a nonprofit initiative founded by Ethiopian-American physicians to reduce premature deaths caused by heart attacks and strokes across Ethiopia and Africa. We focus on improving awareness, prevention, and timely care to save lives and strengthen cardiovascular health in our communities.',
               style: GoogleFonts.inter(
-                fontSize: 14,
+                fontSize: 16, // bumped
                 fontWeight: FontWeight.w400,
                 color: Colors.black.withValues(alpha: 0.5),
                 height: 1.4,
@@ -95,7 +96,7 @@ class AboutHAEPage extends StatelessWidget {
             const Row(
               children: [
                 Expanded(
-                  child: _TeamCard(
+                  child: TeamMemberCard(
                     name: 'Tesfaye Telila',
                     title: 'MD, FACC, FSCAI',
                     role: 'Founder and Executive Director',
@@ -103,7 +104,7 @@ class AboutHAEPage extends StatelessWidget {
                 ),
                 SizedBox(width: 8),
                 Expanded(
-                  child: _TeamCard(
+                  child: TeamMemberCard(
                     name: 'OBSINET MERID',
                     title: 'MD',
                     role: 'Co-Founder & CEO',
@@ -185,7 +186,7 @@ class AboutHAEPage extends StatelessWidget {
             child: Text(
               'Donate Now',
               style: GoogleFonts.inter(
-                fontSize: 14, // Slightly bumped up from 10px Figma for standard mobile legibility
+                fontSize: 16, // Slightly bumped up 14 -> 16
                 fontWeight: FontWeight.w500,
                 color: Colors.white,
               ),
@@ -244,7 +245,7 @@ class _HAEAccordionState extends State<_HAEAccordion> {
                   child: Text(
                     widget.title,
                     style: GoogleFonts.inter(
-                      fontSize: 14,
+                      fontSize: 16, // bumped
                       fontWeight: FontWeight.w600,
                       color: const Color(0xFF000000),
                     ),
@@ -265,7 +266,7 @@ class _HAEAccordionState extends State<_HAEAccordion> {
                 child: Text(
                   widget.previewText,
                   style: GoogleFonts.inter(
-                    fontSize: 12,
+                    fontSize: 14, // bumped
                     fontWeight: FontWeight.w400,
                     color: Colors.black.withValues(alpha: 0.5),
                     height: 1.4,
@@ -282,82 +283,7 @@ class _HAEAccordionState extends State<_HAEAccordion> {
   }
 }
 
-class _TeamCard extends StatelessWidget {
-  const _TeamCard({
-    required this.name,
-    required this.title,
-    required this.role,
-  });
 
-  final String name;
-  final String title;
-  final String role;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xFFF3F3F3),
-        border: Border.all(color: const Color(0xFFEAE8E8)),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      padding: const EdgeInsets.all(8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 139,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8),
-              image: const DecorationImage(
-                image: AssetImage(AppMedia.teamDoctor),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Text(
-                  name,
-                  style: GoogleFonts.inter(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              const Icon(Icons.call_made_rounded, size: 16, color: Colors.black),
-            ],
-          ),
-          Text(
-            title,
-            style: GoogleFonts.inter(
-              fontSize: 10,
-              fontWeight: FontWeight.w400,
-              color: Colors.black54,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            role,
-            style: GoogleFonts.inter(
-              fontSize: 10,
-              fontWeight: FontWeight.w300,
-              color: Colors.black,
-              height: 1.2,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 class _DonationCard extends StatelessWidget {
   const _DonationCard({
@@ -405,7 +331,7 @@ class _DonationCard extends StatelessWidget {
                     Text(
                       title,
                       style: GoogleFonts.inter(
-                        fontSize: 14,
+                        fontSize: 16, // bumped
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
@@ -431,7 +357,7 @@ class _DonationCard extends StatelessWidget {
                                 child: Text(
                                   bullet,
                                   style: GoogleFonts.inter(
-                                    fontSize: 12,
+                                    fontSize: 14, // bumped
                                     fontWeight: FontWeight.w400,
                                     color: Colors.black.withValues(alpha: 0.5),
                                     height: 1.2,
