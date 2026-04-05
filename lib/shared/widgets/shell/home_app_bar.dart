@@ -28,13 +28,6 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: [
-        IconButton(
-          icon: const Icon(CupertinoIcons.search, size: 24, color: Color(0xFF252525)),
-          onPressed: () {},
-          padding: EdgeInsets.zero,
-          constraints: const BoxConstraints(),
-        ),
-        const SizedBox(width: 16),
         Stack(
           clipBehavior: Clip.none,
           alignment: Alignment.center,
