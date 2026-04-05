@@ -201,7 +201,7 @@ class AboutHAEPage extends StatelessWidget {
 // Local Component Definitions
 // ------------------------------
 
-class _HAEAccordion extends StatelessWidget {
+class _HAEAccordion extends StatefulWidget {
   const _HAEAccordion({
     required this.title,
     required this.previewText,
@@ -211,45 +211,72 @@ class _HAEAccordion extends StatelessWidget {
   final String previewText;
 
   @override
+  State<_HAEAccordion> createState() => _HAEAccordionState();
+}
+
+class _HAEAccordionState extends State<_HAEAccordion> {
+  bool _isExpanded = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: const Color(0xFFEAE8E8)),
-        borderRadius: BorderRadius.circular(18),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: GoogleFonts.inter(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: const Color(0xFF000000),
+    return InkWell(
+      onTap: () {
+        setState(() {
+          _isExpanded = !_isExpanded;
+        });
+      },
+      borderRadius: BorderRadius.circular(18),
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: const Color(0xFFEAE8E8)),
+          borderRadius: BorderRadius.circular(18),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    widget.title,
+                    style: GoogleFonts.inter(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xFF000000),
+                    ),
+                  ),
+                ),
+                Icon(
+                  _isExpanded ? Icons.keyboard_arrow_up_rounded : Icons.keyboard_arrow_down_rounded,
+                  color: const Color(0xFF32080C),
+                ),
+              ],
+            ),
+            AnimatedSize(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: Text(
+                  widget.previewText,
+                  style: GoogleFonts.inter(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black.withValues(alpha: 0.5),
+                    height: 1.4,
+                  ),
+                  maxLines: _isExpanded ? null : 2,
+                  overflow: _isExpanded ? TextOverflow.clip : TextOverflow.ellipsis,
                 ),
               ),
-              const Icon(Icons.keyboard_arrow_down_rounded, color: Color(0xFF32080C)),
-            ],
-          ),
-          const SizedBox(height: 6),
-          Text(
-            previewText,
-            style: GoogleFonts.inter(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              color: Colors.black.withValues(alpha: 0.5),
-              height: 1.4,
             ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
