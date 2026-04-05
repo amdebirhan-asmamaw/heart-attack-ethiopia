@@ -3,22 +3,13 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../core/config/app_config.dart';
-import '../../core/di/injection.dart';
 import '../../features/auth/presentation/bloc/auth_cubit.dart';
-import '../../home_page.dart';
+import '../../shared/widgets/shell/app_shell.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/signup_page.dart';
 import '../../features/auth/presentation/pages/phone_input_page.dart';
 import '../../features/auth/presentation/pages/otp_verification_page.dart';
 import '../../features/auth/presentation/pages/auth_success_page.dart';
-import '../../features/chat/presentation/chat_page.dart';
-import '../../features/home/presentation/pages/home_content_page.dart';
-import '../../features/notifications/presentation/notifications_page.dart';
-import '../../features/profile/presentation/profile_page.dart';
-import '../../features/settings/presentation/settings_page.dart';
 import '../../splash_page.dart';
 import '../../features/onboarding/presentation/bloc/onboarding_cubit.dart';
 import '../../features/onboarding/presentation/pages/onboarding_page.dart';
@@ -73,57 +64,9 @@ class AppRouter {
             path: AppRoutes.authSuccess,
             builder: (context, state) => const AuthSuccessPage(),
           ),
-          StatefulShellRoute.indexedStack(
-            builder: (context, state, navigationShell) {
-              return HomePage(navigationShell: navigationShell);
-            },
-            branches: [
-              StatefulShellBranch(
-                routes: [
-                  GoRoute(
-                    path: AppRoutes.home,
-                    builder: (context, state) => const HomeContentPage(),
-                  ),
-                ],
-              ),
-              StatefulShellBranch(
-                routes: [
-                  GoRoute(
-                    path: AppRoutes.education,
-                    builder: (context, state) => SettingsPage(
-                      environmentLabel: sl<AppConfig>().environmentLabel,
-                    ),
-                  ),
-                ],
-              ),
-              StatefulShellBranch(
-                routes: [
-                  GoRoute(
-                    path: AppRoutes.chat,
-                    builder: (context, state) => const ChatPage(),
-                  ),
-                ],
-              ),
-              StatefulShellBranch(
-                routes: [
-                  GoRoute(
-                    path: AppRoutes.news,
-                    builder: (context, state) => const NotificationsPage(),
-                  ),
-                ],
-              ),
-              StatefulShellBranch(
-                routes: [
-                  GoRoute(
-                    path: AppRoutes.profile,
-                    builder: (context, state) {
-                      final session = context.read<AuthCubit>().state.session;
-                      return ProfilePage(userEmail: session?.user.email);
-                    },
-                  ),
-                ],
-              ),
-            ],
+          GoRoute(
+            path: AppRoutes.home,
+            builder: (context, state) => const AppShell(),
           ),
         ],
       ),
