@@ -38,9 +38,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 label: 'Edit Profile',
                 onTap: () => context.push(AppRoutes.editProfile),
               ),
-              const ProfileMenuItem(
-                icon: Icon(Icons.lock_outline_rounded, color: Color(0x99333333)),
-                label: 'Password & Security',
+              ProfileMenuItem(
+                icon: const Icon(Icons.lock_outline_rounded, color: Color(0x99333333)),
+                label: 'Change Password',
+                onTap: () => context.push(AppRoutes.changePassword),
               ),
               ProfileMenuItem(
                 icon: const Icon(Icons.notifications_none_rounded, color: Color(0x99333333)),

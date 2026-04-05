@@ -8,12 +8,14 @@ class EditProfileFormField extends StatelessWidget {
     required this.placeholder,
     this.trailingIcon,
     this.keyboardType,
+    this.obscureText = false,
   });
 
   final String label;
   final String placeholder;
   final Widget? trailingIcon;
   final TextInputType? keyboardType;
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,7 @@ class EditProfileFormField extends StatelessWidget {
               Expanded(
                 child: TextField(
                   keyboardType: keyboardType,
+                  obscureText: obscureText,
                   cursorColor: const Color(0xFF420C11),
                   decoration: InputDecoration(
                     hintText: placeholder,
