@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:heart_attack_ethiopia/core/router/routes.dart';
+
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
 
@@ -25,8 +27,9 @@ class AboutPage extends StatelessWidget {
                 _AboutListItem(
                   iconWidget: const Icon(Icons.support_agent_outlined, color: Colors.black87),
                   title: 'Help center',
-                  // TODO: Map to actual help/chat page
-                  onTap: () {}, 
+                  onTap: () {
+                    context.push(AppRoutes.chat);
+                  },
                 ),
                 const SizedBox(height: 16),
                 _AboutListItem(

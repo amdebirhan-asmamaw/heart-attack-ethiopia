@@ -11,6 +11,7 @@ import '../../features/news/presentation/pages/news_detail_page.dart';
 import '../../features/education/presentation/pages/education_detail_page.dart';
 import 'package:heart_attack_ethiopia/features/about/presentation/pages/about_hae_page.dart';
 import 'package:heart_attack_ethiopia/features/about/presentation/pages/team_page.dart';
+import 'package:heart_attack_ethiopia/features/chat/presentation/chat_page.dart';
 import '../../shared/widgets/shell/app_shell.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/signup_page.dart';
@@ -98,6 +99,10 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.team,
             builder: (context, state) => const TeamPage(),
+          ),
+          GoRoute(
+            path: AppRoutes.chat,
+            builder: (context, state) => const ChatPage(),
           ),
           GoRoute(
             path: AppRoutes.home,
