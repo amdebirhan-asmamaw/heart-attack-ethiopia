@@ -48,7 +48,7 @@ class AboutPage extends StatelessWidget {
                     ),
                     padding: const EdgeInsets.all(2),
                     child: Center(
-                      child: Image.asset('assets/images/placeholder.png'), // TODO: Replace with logo asset
+                      child: Image.asset('assets/logo/logo.png'), // TODO: Replace with specific icon if needed
                     ),
                   ),
                   title: 'Heart Attack Ethiopia',

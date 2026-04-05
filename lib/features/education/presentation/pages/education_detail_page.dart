@@ -35,7 +35,7 @@ class EducationDetailPage extends StatelessWidget {
                   ),
                 ],
                 image: const DecorationImage(
-                  image: AssetImage('assets/images/placeholder.png'), // Figma placeholder fallback
+                  image: AssetImage('assets/images/education_hero.png'), // Figma placeholder fallback
                   fit: BoxFit.cover,
                 ),
               ),

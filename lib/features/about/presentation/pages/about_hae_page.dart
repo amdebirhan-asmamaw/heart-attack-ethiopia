@@ -23,7 +23,7 @@ class AboutHAEPage extends StatelessWidget {
             padding: const EdgeInsets.only(right: 32.0),
             child: SizedBox(
                height: 40,
-               child: Image.asset('assets/images/placeholder.png'), // Placeholder for HAE Logo
+               child: Image.asset('assets/logo/logo.png'), // Placeholder for HAE Logo
             ),
           ),
         ),
@@ -283,7 +283,7 @@ class _TeamCard extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
               image: const DecorationImage(
-                image: AssetImage('assets/images/placeholder.png'),
+                image: AssetImage('assets/images/team_doctor.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -360,7 +360,7 @@ class _DonationCard extends StatelessWidget {
                 topRight: Radius.circular(18),
               ),
               image: DecorationImage(
-                image: AssetImage('assets/images/placeholder.png'),
+                image: AssetImage('assets/images/donation_event.png'),
                 fit: BoxFit.cover,
               ),
             ),

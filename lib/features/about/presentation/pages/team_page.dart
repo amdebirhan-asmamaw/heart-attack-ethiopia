@@ -186,7 +186,7 @@ class _FounderCard extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
               image: const DecorationImage(
-                image: AssetImage('assets/images/placeholder.png'),
+                image: AssetImage('assets/images/team_doctor.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -262,7 +262,7 @@ class _BoardMemberCard extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(6),
               image: const DecorationImage(
-                image: AssetImage('assets/images/placeholder.png'),
+                image: AssetImage('assets/images/team_doctor.png'),
                 fit: BoxFit.cover,
               ),
             ),
