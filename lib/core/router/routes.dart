@@ -12,6 +12,7 @@ abstract final class AppRoutes {
   static const chat = '/chat';
   static const news = '/news';
   static const profile = '/profile';
+  static const notifications = '/notifications';
   static const editProfile = '/edit-profile';
   static const changePassword = '/change-password';
   static const language = '/language';

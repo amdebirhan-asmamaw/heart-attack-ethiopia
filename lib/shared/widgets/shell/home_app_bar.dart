@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:heart_attack_ethiopia/app/resources/app_media.dart';
+import 'package:go_router/go_router.dart';
+import 'package:heart_attack_ethiopia/core/router/routes.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
@@ -39,7 +41,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             IconButton(
               icon: const Icon(CupertinoIcons.bell, size: 24, color: Color(0xFF252525)),
-              onPressed: () {},
+              onPressed: () => context.push(AppRoutes.notifications),
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(),
             ),
