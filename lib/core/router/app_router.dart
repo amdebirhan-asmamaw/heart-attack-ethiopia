@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/bloc/auth_cubit.dart';
 import '../../features/profile/presentation/pages/edit_profile_page.dart';
 import '../../features/profile/presentation/pages/change_password_page.dart';
+import '../../features/profile/presentation/pages/language_page.dart';
 import '../../shared/widgets/shell/app_shell.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/signup_page.dart';
@@ -73,6 +74,10 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.changePassword,
             builder: (context, state) => const ChangePasswordPage(),
+          ),
+          GoRoute(
+            path: AppRoutes.language,
+            builder: (context, state) => const LanguagePage(),
           ),
           GoRoute(
             path: AppRoutes.home,

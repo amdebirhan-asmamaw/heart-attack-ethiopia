@@ -55,9 +55,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   },
                 ),
               ),
-              const ProfileMenuItem(
-                icon: Icon(Icons.language_rounded, color: Color(0x99333333)),
+              ProfileMenuItem(
+                icon: const Icon(CupertinoIcons.globe, color: Color(0x99333333)),
                 label: 'Language',
+                onTap: () => context.push(AppRoutes.language),
               ),
             ],
           ),
