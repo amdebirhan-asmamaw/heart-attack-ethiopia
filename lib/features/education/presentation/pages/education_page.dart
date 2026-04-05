@@ -24,7 +24,7 @@ class EducationPage extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         SizedBox(
-          height: 164,
+          height: 185,
           child: ListView(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
@@ -150,7 +150,7 @@ class _HeartHealthCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 151,
-      height: 159,
+      height: 174,
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: const Color(0xFFEAE8E8)),
