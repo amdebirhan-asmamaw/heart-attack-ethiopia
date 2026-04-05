@@ -61,22 +61,22 @@ class AboutHAEPage extends StatelessWidget {
             // Accordion Sections
             const _HAEAccordion(
               title: 'Our Mission',
-              previewText: 'Heart Attack Ethiopia is dedicated to saving lives and improving cardiovascular health in ...',
+              previewText: 'Heart Attack Ethiopia is dedicated to saving lives and improving cardiovascular health in Ethiopia. We aim to equip local clinics with essential diagnostic tools, foster extensive community health education, and deliver sustainable cardiac care directly to underprivileged communities lacking medical resources.',
             ),
             const SizedBox(height: 10),
             const _HAEAccordion(
               title: 'Our Vision',
-              previewText: 'We aspire to inspire and catalyze positive change in cardiovascular health throughout Africa. ...',
+              previewText: 'We aspire to inspire and catalyze positive change in cardiovascular health throughout Africa. Creating a future where no Ethiopian dies prematurely from preventable heart conditions by making emergency cardiovascular treatments deeply integrated, accessible, and affordable for every citizen.',
             ),
             const SizedBox(height: 10),
             const _HAEAccordion(
               title: 'Our Approach',
-              previewText: 'We believe in a holistic approach to cardiovascular health. Through community outreach pro...',
+              previewText: 'We believe in a holistic approach to cardiovascular health. Through community outreach programs, specialized workshops for local healthcare providers, and building direct bridges across international medical experts, our framework treats acute illnesses while building long-term systemic capacity.',
             ),
             const SizedBox(height: 10),
             const _HAEAccordion(
               title: 'Why Ethiopia?',
-              previewText: 'Cardiovascular disease is a leading cause of death in Ethiopia, responsible for nearly 30% of ...',
+              previewText: 'Cardiovascular disease is a leading cause of death in Ethiopia, responsible for nearly 30% of all mortality. The stark contrast between urban capability and rural vulnerabilities alongside severe scarcities in cardiological medication demands an urgent, localized intervention targeting systemic hurdles.',
             ),
             const SizedBox(height: 32),
 
