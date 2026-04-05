@@ -15,4 +15,9 @@ class AppMedia {
 
   // Auth
   static const String lockImage = 'assets/images/lock-image.png';
+
+  // Placeholders
+  static const String teamDoctor = 'assets/images/team_doctor.png';
+  static const String donationEvent = 'assets/images/donation_event.png';
+  static const String educationHero = 'assets/images/education_hero.png';
 }

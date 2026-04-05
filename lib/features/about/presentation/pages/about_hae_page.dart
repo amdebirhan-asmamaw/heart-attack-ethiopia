@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:heart_attack_ethiopia/app/resources/app_media.dart';
+
 import 'package:heart_attack_ethiopia/core/router/routes.dart';
 
 class AboutHAEPage extends StatelessWidget {
@@ -283,7 +285,7 @@ class _TeamCard extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
               image: const DecorationImage(
-                image: AssetImage('assets/images/team_doctor.png'),
+                image: AssetImage(AppMedia.teamDoctor),
                 fit: BoxFit.cover,
               ),
             ),
@@ -360,7 +362,7 @@ class _DonationCard extends StatelessWidget {
                 topRight: Radius.circular(18),
               ),
               image: DecorationImage(
-                image: AssetImage('assets/images/donation_event.png'),
+                image: AssetImage(AppMedia.donationEvent),
                 fit: BoxFit.cover,
               ),
             ),

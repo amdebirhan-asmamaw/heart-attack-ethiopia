@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:heart_attack_ethiopia/app/resources/app_media.dart';
 import 'package:heart_attack_ethiopia/features/news/presentation/widgets/news_list_card.dart';
 import 'package:heart_attack_ethiopia/shared/widgets/shell/home_app_bar.dart';
 
@@ -35,7 +37,7 @@ class EducationDetailPage extends StatelessWidget {
                   ),
                 ],
                 image: const DecorationImage(
-                  image: AssetImage('assets/images/education_hero.png'), // Figma placeholder fallback
+                  image: AssetImage(AppMedia.educationHero), // Figma placeholder fallback
                   fit: BoxFit.cover,
                 ),
               ),
