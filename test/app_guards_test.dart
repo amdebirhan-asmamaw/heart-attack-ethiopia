@@ -29,21 +29,39 @@ void main() {
       expect(redirect, AppRoutes.onboarding);
     });
 
-    test(
-      'routes authenticated users past onboarding to shell from auth routes',
-      () {
-        final redirect = AppGuards.redirect(
-          authState: const AuthState(status: AuthStatus.authenticated),
-          onboardingState: const OnboardingState(
-            status: OnboardingStatus.completed,
-            isSubmitting: false,
-          ),
-          currentLocation: AppRoutes.login,
-        );
+    test('redirects to home when authenticated on auth routes', () {
+      final authState = const AuthState(status: AuthStatus.authenticated);
 
-        expect(redirect, AppRoutes.shell);
-      },
-    );
+      final redirect1 = AppGuards.redirect(
+        authState: authState,
+        onboardingState: const OnboardingState(
+          status: OnboardingStatus.completed,
+          isSubmitting: false,
+        ),
+        currentLocation: AppRoutes.login,
+      );
+      expect(redirect1, AppRoutes.home);
+
+      final redirect2 = AppGuards.redirect(
+        authState: authState,
+        onboardingState: const OnboardingState(
+          status: OnboardingStatus.completed,
+          isSubmitting: false,
+        ),
+        currentLocation: AppRoutes.splash,
+      );
+      expect(redirect2, AppRoutes.home);
+
+      final redirect3 = AppGuards.redirect(
+        authState: authState,
+        onboardingState: const OnboardingState(
+          status: OnboardingStatus.completed,
+          isSubmitting: false,
+        ),
+        currentLocation: AppRoutes.onboarding,
+      );
+      expect(redirect3, AppRoutes.home);
+    });
 
     test('routes unauthenticated users to login after onboarding', () {
       final redirect = AppGuards.redirect(
@@ -52,7 +70,7 @@ void main() {
           status: OnboardingStatus.completed,
           isSubmitting: false,
         ),
-        currentLocation: AppRoutes.shell,
+        currentLocation: AppRoutes.home,
       );
 
       expect(redirect, AppRoutes.login);
