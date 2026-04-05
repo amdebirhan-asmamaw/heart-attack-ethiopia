@@ -14,4 +14,5 @@ abstract final class AppRoutes {
   static const editProfile = '/edit-profile';
   static const changePassword = '/change-password';
   static const language = '/language';
+  static const newsDetail = '/news-detail';
 }
