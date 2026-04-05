@@ -8,6 +8,7 @@ import '../../features/profile/presentation/pages/edit_profile_page.dart';
 import '../../features/profile/presentation/pages/change_password_page.dart';
 import '../../features/profile/presentation/pages/language_page.dart';
 import '../../features/news/presentation/pages/news_detail_page.dart';
+import '../../features/education/presentation/pages/education_detail_page.dart';
 import '../../shared/widgets/shell/app_shell.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/signup_page.dart';
@@ -83,6 +84,10 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.newsDetail,
             builder: (context, state) => const NewsDetailPage(),
+          ),
+          GoRoute(
+            path: AppRoutes.educationDetail,
+            builder: (context, state) => const EducationDetailPage(),
           ),
           GoRoute(
             path: AppRoutes.home,
