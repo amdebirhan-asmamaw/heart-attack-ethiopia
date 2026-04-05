@@ -3,24 +3,43 @@ import 'package:flutter/material.dart';
 import 'package:heart_attack_ethiopia/core/constants/app_colors.dart';
 
 class NewsSection extends StatelessWidget {
-  const NewsSection({super.key});
+  const NewsSection({super.key, this.onSeeAll});
+
+  final VoidCallback? onSeeAll;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Text(
-          'News',
-          style: TextStyle(
-            fontFamily: 'League Spartan',
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: AppColors.textPrimary,
-          ),
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'News',
+              style: TextStyle(
+                fontFamily: 'League Spartan',
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textPrimary,
+              ),
+            ),
+            GestureDetector(
+              onTap: onSeeAll,
+              child: const Text(
+                'Detail',
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF420C11),
+                ),
+              ),
+            ),
+          ],
         ),
-        SizedBox(height: 16),
-        NewsCard(
+        const SizedBox(height: 16),
+        const NewsCard(
           category: 'Infrastructure',
           title: 'New Cardiac center opening in Addis Ababa this Friday.',
           timeAgo: '2 hrs ago',
@@ -28,8 +47,8 @@ class NewsSection extends StatelessWidget {
           thumbnailColor: Color(0xFF1669C8),
           thumbnailIcon: Icons.apartment_rounded,
         ),
-        SizedBox(height: 8),
-        NewsCard(
+        const SizedBox(height: 8),
+        const NewsCard(
           category: 'Report',
           title: 'HAE Mission Report: Q3 Achievements and Future Goals.',
           timeAgo: '2 days ago',
@@ -38,8 +57,8 @@ class NewsSection extends StatelessWidget {
           thumbnailIcon: Icons.favorite,
           darkPlayButton: true,
         ),
-        SizedBox(height: 8),
-        NewsCard(
+        const SizedBox(height: 8),
+        const NewsCard(
           category: 'Story',
           title: 'New Cardiac center opening in Addis Ababa this Friday.',
           timeAgo: '2 hrs ago',

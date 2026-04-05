@@ -6,7 +6,7 @@ import 'package:heart_attack_ethiopia/core/di/injection.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:heart_attack_ethiopia/features/chat/presentation/chat_page.dart';
 import 'package:heart_attack_ethiopia/features/home/presentation/pages/home_content_page.dart';
-import 'package:heart_attack_ethiopia/features/notifications/presentation/notifications_page.dart';
+import 'package:heart_attack_ethiopia/features/news/presentation/pages/news_page.dart';
 import 'package:heart_attack_ethiopia/features/profile/presentation/profile_page.dart';
 import 'package:heart_attack_ethiopia/features/settings/presentation/settings_page.dart';
 
@@ -30,10 +30,10 @@ class _AppShellState extends State<AppShell> {
     super.initState();
     final session = context.read<AuthCubit>().state.session;
     _pages = [
-      const HomeContentPage(),
+      HomeContentPage(onNavigateToNews: () => _onTabSelected(3)),
       SettingsPage(environmentLabel: sl<AppConfig>().environmentLabel),
       const ChatPage(),
-      const NotificationsPage(),
+      const NewsPage(),
       ProfilePage(userEmail: session?.user.email),
     ];
   }
