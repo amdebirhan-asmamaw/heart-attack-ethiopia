@@ -416,31 +416,7 @@ class _DonationCard extends StatelessWidget {
                         )),
                   ],
                 ),
-                Positioned(
-                  right: -10,
-                  top: -26,
-                  child: Container(
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.25),
-                          blurRadius: 20.5,
-                        ),
-                      ],
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Center(
-                      child: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 10,
-                        color: Color(0xFF32080C),
-                      ),
-                    ),
-                  ),
-                ),
+
               ],
             ),
           ),
