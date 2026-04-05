@@ -19,7 +19,7 @@ class NewsSection extends StatelessWidget {
               'News',
               style: TextStyle(
                 fontFamily: 'League Spartan',
-                fontSize: 16,
+                fontSize: 18, // bumped
                 fontWeight: FontWeight.w500,
                 color: AppColors.textPrimary,
               ),
@@ -30,7 +30,7 @@ class NewsSection extends StatelessWidget {
                 'Detail',
                 style: TextStyle(
                   fontFamily: 'Inter',
-                  fontSize: 14,
+                  fontSize: 16, // bumped
                   fontWeight: FontWeight.w500,
                   color: Color(0xFF420C11),
                 ),
@@ -111,8 +111,8 @@ class NewsCard extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            width: 76,
-            height: 76,
+            width: 88, // 76 -> 88
+            height: 88,
             decoration: BoxDecoration(
               color: thumbnailColor,
               borderRadius: BorderRadius.circular(16),
@@ -169,7 +169,7 @@ class NewsCard extends StatelessWidget {
                     category.toUpperCase(),
                     style: TextStyle(
                       fontFamily: 'League Spartan',
-                      fontSize: 8,
+                      fontSize: 11, // 8 -> 11
                       fontWeight: FontWeight.w500,
                       color: categoryColor,
                     ),
@@ -181,7 +181,7 @@ class NewsCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontFamily: 'League Spartan',
-                      fontSize: 14,
+                      fontSize: 16, // 14 -> 16
                       fontWeight: FontWeight.w500,
                       height: 1.2,
                       color: AppColors.textPrimary,
@@ -192,7 +192,7 @@ class NewsCard extends StatelessWidget {
                     timeAgo,
                     style: const TextStyle(
                       fontFamily: 'League Spartan',
-                      fontSize: 10,
+                      fontSize: 12, // 10 -> 12
                       fontWeight: FontWeight.w300,
                       color: AppColors.textPrimary,
                     ),

@@ -85,7 +85,7 @@ class EducationDetailPage extends StatelessWidget {
                 Text(
                   'Medical Guide',
                   style: GoogleFonts.inter(
-                    fontSize: 8,
+                    fontSize: 11, // bumped
                     fontWeight: FontWeight.w400,
                     color: const Color(0xFFB90B1C),
                   ),
@@ -98,7 +98,7 @@ class EducationDetailPage extends StatelessWidget {
             Text(
               'Winter storm delays Piedmont cardiologists\' lifesaving mission to Ethiopia',
               style: GoogleFonts.quicksand(
-                fontSize: 16,
+                fontSize: 18, // bumped
                 fontWeight: FontWeight.w700,
                 color: const Color(0xFF000000),
                 height: 1.2,
@@ -110,7 +110,7 @@ class EducationDetailPage extends StatelessWidget {
             Text(
               'The Brief',
               style: GoogleFonts.inter(
-                fontSize: 16,
+                fontSize: 18, // bumped
                 fontWeight: FontWeight.w700,
                 color: const Color(0xFF000000),
               ),
@@ -124,7 +124,7 @@ class EducationDetailPage extends StatelessWidget {
               'The mission involves sending over half a million dollars\' worth of medical supplies and 14 healthcare professionals to Ethiopia, with volunteers sacrificing their vacation time for the cause.\n\n'
               'A team of Piedmont cardiologists, part of Heart Attack Ethiopia, has been delayed in Atlanta due to a winter storm, affecting their mission to perform lifesaving surgeries in Ethiopia.',
               style: GoogleFonts.inter(
-                fontSize: 14,
+                fontSize: 16, // bumped
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFF000000).withValues(alpha: 0.8),
                 height: 1.4,
@@ -137,7 +137,7 @@ class EducationDetailPage extends StatelessWidget {
             Text(
               'Learn More',
               style: GoogleFonts.inter(
-                fontSize: 16,
+                fontSize: 18, // bumped
                 fontWeight: FontWeight.w500,
                 color: const Color(0xFF000000),
               ),

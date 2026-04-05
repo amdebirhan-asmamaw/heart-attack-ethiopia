@@ -14,14 +14,14 @@ class CategoriesSection extends StatelessWidget {
           'What Do You Want To Know?',
           style: TextStyle(
             fontFamily: 'League Spartan',
-            fontSize: 16,
+            fontSize: 18, // bumped
             fontWeight: FontWeight.w500,
             color: AppColors.textPrimary,
           ),
         ),
         const SizedBox(height: 8),
         SizedBox(
-          height: 164,
+          height: 195, // bumped
           child: ListView(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
@@ -93,7 +93,7 @@ class _CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 151.62,
-      height: 159,
+      height: 185, // bumped
       decoration: BoxDecoration(
         color: AppColors.background,
         borderRadius: BorderRadius.circular(18),
@@ -130,7 +130,7 @@ class _CategoryCard extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontFamily: 'League Spartan',
-                    fontSize: 14,
+                    fontSize: 16, // bumped
                     fontWeight: FontWeight.w500,
                     color: AppColors.primary,
                   ),
@@ -179,7 +179,7 @@ class _CategoryItem extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontFamily: 'League Spartan',
-              fontSize: 8,
+              fontSize: 11, // bumped
               fontWeight: FontWeight.w400,
               color: const Color(0xFF63373B).withValues(alpha: 0.5),
             ),

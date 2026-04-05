@@ -16,15 +16,15 @@ class EducationPage extends StatelessWidget {
           child: Text(
             'Learn Heart Health',
             style: GoogleFonts.leagueSpartan(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
+              fontSize: 18, // bumped
+              fontWeight: FontWeight.w600,
               color: const Color(0xFF000000),
             ),
           ),
         ),
         const SizedBox(height: 8),
         SizedBox(
-          height: 185,
+          height: 215, // bumped
           child: ListView(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
@@ -95,15 +95,15 @@ class EducationPage extends StatelessWidget {
           child: Text(
             'Resources',
             style: GoogleFonts.leagueSpartan(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
+              fontSize: 18, // bumped
+              fontWeight: FontWeight.w600,
               color: const Color(0xFF000000),
             ),
           ),
         ),
         const SizedBox(height: 16),
         SizedBox(
-          height: 255,
+          height: 275, // bumped
           child: ListView(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
@@ -150,7 +150,7 @@ class _HeartHealthCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 151,
-      height: 174,
+      height: 200, // bumped
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: const Color(0xFFEAE8E8)),
@@ -175,8 +175,8 @@ class _HeartHealthCard extends StatelessWidget {
           Text(
             title,
             style: GoogleFonts.leagueSpartan(
-              fontSize: 15,
-              fontWeight: FontWeight.w500,
+              fontSize: 17, // bumped
+              fontWeight: FontWeight.w600,
               color: const Color(0xFF420C11),
               height: 1.0,
             ),
@@ -207,8 +207,8 @@ class _HeartHealthCard extends StatelessWidget {
                             child: Text(
                               point,
                               style: GoogleFonts.leagueSpartan(
-                                fontSize: 8,
-                                fontWeight: FontWeight.w400,
+                                fontSize: 11, // bumped (8 -> 11)
+                                fontWeight: FontWeight.w500,
                                 color: const Color(0xFF63373B).withValues(alpha: 0.5),
                                 height: 1.2,
                               ),

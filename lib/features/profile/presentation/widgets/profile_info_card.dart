@@ -50,7 +50,7 @@ class ProfileInfoCard extends StatelessWidget {
                 Text(
                   name,
                   style: GoogleFonts.inter(
-                    fontSize: 14,
+                    fontSize: 16, // bumped
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
                     height: 1.2,
@@ -60,7 +60,7 @@ class ProfileInfoCard extends StatelessWidget {
                 Text(
                   email,
                   style: GoogleFonts.leagueSpartan(
-                    fontSize: 12,
+                    fontSize: 14, // bumped
                     fontWeight: FontWeight.w500,
                     color: Colors.black.withOpacity(0.25),
                     height: 1.2,

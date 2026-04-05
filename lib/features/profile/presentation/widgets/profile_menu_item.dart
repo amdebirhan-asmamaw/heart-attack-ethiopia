@@ -33,7 +33,7 @@ class ProfileMenuItem extends StatelessWidget {
               child: Text(
                 label,
                 style: GoogleFonts.inter(
-                  fontSize: 14,
+                  fontSize: 16, // bumped
                   fontWeight: FontWeight.w500,
                   color: const Color(0xFF333333),
                   height: 1.2,

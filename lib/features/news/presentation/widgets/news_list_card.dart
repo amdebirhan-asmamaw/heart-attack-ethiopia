@@ -30,7 +30,7 @@ class NewsListCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 84,
+        height: 100, // bumped
         padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
         decoration: BoxDecoration(
           color: isHighlighted ? const Color(0xFFE9F6FE) : const Color(0xFFFFFFFF),
@@ -40,8 +40,8 @@ class NewsListCard extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              width: 76,
-              height: 76,
+              width: 88, // 76 -> 88
+              height: 88,
               decoration: BoxDecoration(
                 color: const Color(0xFFE0E0E0),
                 borderRadius: BorderRadius.circular(16),
@@ -86,7 +86,7 @@ class NewsListCard extends StatelessWidget {
                     Text(
                       category,
                       style: GoogleFonts.leagueSpartan(
-                        fontSize: 8,
+                        fontSize: 11, // 8 -> 11
                         fontWeight: FontWeight.w500,
                         color: categoryColor,
                         height: 1.2,
@@ -97,7 +97,7 @@ class NewsListCard extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.leagueSpartan(
-                        fontSize: 14,
+                        fontSize: 16, // 14 -> 16
                         fontWeight: FontWeight.w500,
                         color: const Color(0xFF000000),
                         height: 1.2,
@@ -106,7 +106,7 @@ class NewsListCard extends StatelessWidget {
                     Text(
                       timeAgo,
                       style: GoogleFonts.leagueSpartan(
-                        fontSize: 10,
+                        fontSize: 12, // 10 -> 12
                         fontWeight: FontWeight.w300,
                         color: const Color(0xFF000000),
                         height: 1.2,

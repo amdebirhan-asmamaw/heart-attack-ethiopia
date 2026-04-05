@@ -16,7 +16,7 @@ class NewsPage extends StatelessWidget {
         Text(
           'Latest News',
           style: GoogleFonts.inter(
-            fontSize: 16,
+            fontSize: 18, // bumped
             fontWeight: FontWeight.w500,
             color: const Color(0xFF000000),
           ),

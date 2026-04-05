@@ -18,7 +18,7 @@ class ResourcesSection extends StatelessWidget {
             const _ResourcesHeader(),
             const SizedBox(height: 16),
             SizedBox(
-              height: 255,
+              height: 275, // bumped
               child: ListView(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
@@ -119,8 +119,8 @@ class ResourceCard extends StatelessWidget {
                       readTime,
                       style: const TextStyle(
                         fontFamily: 'Inter',
-                        fontSize: 8,
-                        fontWeight: FontWeight.w400,
+                        fontSize: 11, // 8 -> 11
+                        fontWeight: FontWeight.w500,
                         color: Color(0x99000000),
                       ),
                     ),
@@ -156,8 +156,8 @@ class ResourceCard extends StatelessWidget {
                       category,
                       style: const TextStyle(
                         fontFamily: 'Inter',
-                        fontSize: 8,
-                        fontWeight: FontWeight.w400,
+                        fontSize: 11, // 8 -> 11
+                        fontWeight: FontWeight.w500,
                         color: AppColors.categoryMedicalGuide,
                       ),
                     ),
@@ -168,7 +168,7 @@ class ResourceCard extends StatelessWidget {
                   title,
                   style: const TextStyle(
                     fontFamily: 'Inter',
-                    fontSize: 14,
+                    fontSize: 16, // 14 -> 16
                     fontWeight: FontWeight.w600,
                     height: 1.2,
                     color: AppColors.textPrimary,
@@ -181,7 +181,7 @@ class ResourceCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontFamily: 'Inter',
-                    fontSize: 8,
+                    fontSize: 12, // 8 -> 12
                     fontWeight: FontWeight.w400,
                     height: 1.2,
                     color: AppColors.textPrimary.withValues(alpha: 0.5),
@@ -279,7 +279,7 @@ class _ResourcesHeader extends StatelessWidget {
           'resources',
           style: TextStyle(
             fontFamily: 'Inter',
-            fontSize: 14,
+            fontSize: 16, // 14 -> 16
             fontWeight: FontWeight.w600,
             color: AppColors.textPrimary,
           ),
@@ -290,8 +290,8 @@ class _ResourcesHeader extends StatelessWidget {
               'Detail',
               style: TextStyle(
                 fontFamily: 'Inter',
-                fontSize: 12,
-                fontWeight: FontWeight.w300,
+                fontSize: 14, // 12 -> 14
+                fontWeight: FontWeight.w400,
                 color: AppColors.red,
               ),
             ),
