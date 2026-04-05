@@ -40,107 +40,64 @@ class HomeBottomNav extends StatelessWidget {
               topRight: Radius.circular(35),
             ),
           ),
-          child: SafeArea(
-            top: false,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _NavItem(
-                    icon: Icons.home,
-                    isSelected: currentIndex == 0,
-                    onTap: () => onTabSelected(0),
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
+            child: BottomNavigationBar(
+              currentIndex: currentIndex,
+              onTap: onTabSelected,
+              backgroundColor: Colors.transparent,
+              type: BottomNavigationBarType.fixed,
+              elevation: 0,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              selectedItemColor: const Color(0xFF420C11),
+              unselectedItemColor: const Color(0xFF420C11).withValues(alpha: 0.5),
+              items: [
+                const BottomNavigationBarItem(
+                  icon: Icon(Icons.home, size: 26),
+                  label: '',
+                ),
+                const BottomNavigationBarItem(
+                  icon: Icon(Icons.school_outlined, size: 26),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Color(0xFFD72335), Color(0xFF71121C)],
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0xFFD72335).withValues(alpha: 0.3),
+                          blurRadius: 12,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: const Icon(CupertinoIcons.question, color: Colors.white, size: 24),
                   ),
-                  _NavItem(
-                    icon: Icons.school_outlined,
-                    isSelected: currentIndex == 1,
-                    onTap: () => onTabSelected(1),
-                  ),
-                  _CenterItem(onTap: () => onTabSelected(2)),
-                  _NavItem(
-                    icon: CupertinoIcons.news,
-                    isSelected: currentIndex == 3,
-                    onTap: () => onTabSelected(3),
-                  ),
-                  _NavItem(
-                    icon: CupertinoIcons.person,
-                    isSelected: currentIndex == 4,
-                    onTap: () => onTabSelected(4),
-                  ),
-                ],
-              ),
+                  label: '',
+                ),
+                const BottomNavigationBarItem(
+                  icon: Icon(CupertinoIcons.news, size: 26),
+                  label: '',
+                ),
+                const BottomNavigationBarItem(
+                  icon: Icon(CupertinoIcons.person, size: 26),
+                  label: '',
+                ),
+              ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _NavItem extends StatelessWidget {
-  const _NavItem({
-    required this.icon,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  final IconData icon;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        child: Icon(
-          icon,
-          color: isSelected
-              ? const Color(0xFF420C11)
-              : const Color(0xFF420C11).withValues(alpha: 0.5),
-          size: 26,
-        ),
-      ),
-    );
-  }
-}
-
-class _CenterItem extends StatelessWidget {
-  const _CenterItem({required this.onTap});
-
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: Container(
-        width: 44,
-        height: 44,
-        margin: const EdgeInsets.symmetric(horizontal: 8),
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: const LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFFD72335), Color(0xFF71121C)],
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFFD72335).withValues(alpha: 0.3),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: const Icon(
-          CupertinoIcons.question,
-          color: Colors.white,
-          size: 24,
         ),
       ),
     );

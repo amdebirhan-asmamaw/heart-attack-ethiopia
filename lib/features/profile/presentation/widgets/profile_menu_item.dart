@@ -5,12 +5,14 @@ class ProfileMenuItem extends StatelessWidget {
   const ProfileMenuItem({
     required this.icon,
     required this.label,
+    this.trailing,
     this.onTap,
     super.key,
   });
 
   final Widget icon;
   final String label;
+  final Widget? trailing;
   final VoidCallback? onTap;
 
   @override
@@ -24,7 +26,7 @@ class ProfileMenuItem extends StatelessWidget {
             SizedBox(
               width: 24,
               height: 24,
-              child: icon,
+              child: Center(child: icon),
             ),
             const SizedBox(width: 10),
             Expanded(
@@ -38,11 +40,12 @@ class ProfileMenuItem extends StatelessWidget {
                 ),
               ),
             ),
-            const Icon(
-              Icons.chevron_right_rounded,
-              size: 24,
-              color: Color(0xFFEEE9E9),
-            ),
+            trailing ??
+                const Icon(
+                  Icons.chevron_right_rounded,
+                  size: 24,
+                  color: Color(0xFFEEE9E9),
+                ),
           ],
         ),
       ),

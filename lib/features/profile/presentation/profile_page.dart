@@ -5,10 +5,17 @@ import 'widgets/profile_info_card.dart';
 import 'widgets/profile_menu_group.dart';
 import 'widgets/profile_menu_item.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({required this.userEmail, super.key});
 
   final String? userEmail;
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  bool _isNotificationEnabled = true;
 
   @override
   Widget build(BuildContext context) {
@@ -19,30 +26,38 @@ class ProfilePage extends StatelessWidget {
         children: [
           ProfileInfoCard(
             name: 'Abebe Kebede',
-            email: userEmail ?? 'AbebeKebede@gmail.com',
+            email: widget.userEmail ?? 'abebekebede@gmail.com',
           ),
-          const SizedBox(height: 9),
-          const ProfileMenuGroup(
+          const SizedBox(height: 8),
+          ProfileMenuGroup(
             children: [
-              ProfileMenuItem(
+              const ProfileMenuItem(
                 icon: Icon(Icons.person_outline_rounded, color: Color(0x99333333)),
-                label: 'Profile',
+                label: 'Edit Profile',
               ),
-              ProfileMenuItem(
+              const ProfileMenuItem(
                 icon: Icon(Icons.lock_outline_rounded, color: Color(0x99333333)),
                 label: 'Password & Security',
               ),
               ProfileMenuItem(
-                icon: Icon(Icons.notifications_none_rounded, color: Color(0x99333333)),
+                icon: const Icon(Icons.notifications_none_rounded, color: Color(0x99333333)),
                 label: 'Notification',
+                trailing: _CustomSwitch(
+                  value: _isNotificationEnabled,
+                  onChanged: (val) {
+                    setState(() {
+                      _isNotificationEnabled = val;
+                    });
+                  },
+                ),
               ),
-              ProfileMenuItem(
+              const ProfileMenuItem(
                 icon: Icon(Icons.language_rounded, color: Color(0x99333333)),
                 label: 'Language',
               ),
             ],
           ),
-          const SizedBox(height: 9),
+          const SizedBox(height: 8),
           const ProfileMenuGroup(
             children: [
               ProfileMenuItem(
@@ -55,7 +70,7 @@ class ProfilePage extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 9),
+          const SizedBox(height: 8),
           const ProfileMenuGroup(
             children: [
               ProfileMenuItem(
@@ -77,6 +92,49 @@ class ProfilePage extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _CustomSwitch extends StatelessWidget {
+  const _CustomSwitch({required this.value, required this.onChanged});
+  
+  final bool value;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => onChanged(!value),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        width: 31,
+        height: 15,
+        padding: const EdgeInsets.symmetric(horizontal: 2.5),
+        alignment: value ? Alignment.centerRight : Alignment.centerLeft,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          gradient: value
+              ? const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0xFFD72335), Color(0xFF71121C)],
+                )
+              : const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0xFFB0B0B0), Color(0xFFB0B0B0)],
+                ),
+        ),
+        child: Container(
+          width: 11,
+          height: 11,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }
