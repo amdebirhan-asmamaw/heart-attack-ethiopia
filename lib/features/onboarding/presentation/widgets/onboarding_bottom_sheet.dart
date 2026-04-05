@@ -35,32 +35,33 @@ class OnboardingBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bottomPadding = MediaQuery.of(context).padding.bottom;
+    
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
         width: double.infinity,
-        height: 254, // CSS height: 254px
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(30), // CSS border-radius: 30px
+            topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(
+          padding: EdgeInsets.only(
             top: 26,
             left: 25,
             right: 25,
-            bottom: 20,
+            bottom: 20 + bottomPadding,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               // Title Section
               SizedBox(
-                width: 313, // CSS width
-                height: 87, // CSS height
+                width: 313,
+                height: 87,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -70,7 +71,7 @@ class OnboardingBottomSheet extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 24, // CSS font-size
+                        fontSize: 24,
                         fontWeight: FontWeight.w700,
                         height: 1.2,
                         color: textColor,
@@ -103,7 +104,7 @@ class OnboardingBottomSheet extends StatelessWidget {
                 onTap: onIndicatorTap,
               ),
 
-              const Spacer(),
+              const SizedBox(height: 48),
 
               // Action Button
               OnboardingActionButton(

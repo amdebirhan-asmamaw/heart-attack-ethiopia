@@ -17,16 +17,30 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> {
   late final PageController _pageController;
   late final List<_OnboardingStep> _steps;
+  int _currentPageIndex = 0;
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
+    _pageController.addListener(_onPageChanged);
     _steps = const [_OnboardingStep.story, _OnboardingStep.welcome];
+  }
+
+  void _onPageChanged() {
+    final page = _pageController.page?.round() ?? 0;
+    if (_currentPageIndex != page) {
+      if (mounted) {
+        setState(() {
+          _currentPageIndex = page;
+        });
+      }
+    }
   }
 
   @override
   void dispose() {
+    _pageController.removeListener(_onPageChanged);
     _pageController.dispose();
     super.dispose();
   }
@@ -60,8 +74,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
         }
       },
       child: PageSystemUi(
-        systemNavigationBarColor: Colors.black,
+        systemNavigationBarColor: _currentPageIndex == 0 ? Colors.white : Colors.black,
         child: Scaffold(
+          extendBody: true,
           body: Stack(
           children: [
             Positioned.fill(
@@ -79,6 +94,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ),
             ),
             SafeArea(
+              bottom: false,
               child: Stack(
                 children: [
                   Align(
