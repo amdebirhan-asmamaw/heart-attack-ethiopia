@@ -16,4 +16,6 @@ abstract final class AppRoutes {
   static const language = '/language';
   static const newsDetail = '/news-detail';
   static const educationDetail = '/education-detail';
+  static const aboutHae = '/about-hae';
+  static const team = '/team';
 }

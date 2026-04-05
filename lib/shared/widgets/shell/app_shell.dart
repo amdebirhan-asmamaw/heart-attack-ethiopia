@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heart_attack_ethiopia/core/config/app_config.dart';
 import 'package:heart_attack_ethiopia/core/di/injection.dart';
 import 'package:heart_attack_ethiopia/features/auth/presentation/bloc/auth_cubit.dart';
-import 'package:heart_attack_ethiopia/features/chat/presentation/chat_page.dart';
+import 'package:heart_attack_ethiopia/features/about/presentation/pages/about_page.dart';
 import 'package:heart_attack_ethiopia/features/home/presentation/pages/home_content_page.dart';
 import 'package:heart_attack_ethiopia/features/education/presentation/pages/education_page.dart';
 import 'package:heart_attack_ethiopia/features/news/presentation/pages/news_page.dart';
@@ -32,7 +32,7 @@ class _AppShellState extends State<AppShell> {
     _pages = [
       HomeContentPage(onNavigateToNews: () => _onTabSelected(3)),
       const EducationPage(),
-      const ChatPage(),
+      const AboutPage(),
       const NewsPage(),
       ProfilePage(userEmail: session?.user.email),
     ];
