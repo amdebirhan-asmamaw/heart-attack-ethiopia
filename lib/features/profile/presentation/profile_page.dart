@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../core/router/routes.dart';
 
 import 'widgets/profile_info_card.dart';
 import 'widgets/profile_menu_group.dart';
@@ -31,9 +33,10 @@ class _ProfilePageState extends State<ProfilePage> {
           const SizedBox(height: 8),
           ProfileMenuGroup(
             children: [
-              const ProfileMenuItem(
-                icon: Icon(Icons.person_outline_rounded, color: Color(0x99333333)),
+              ProfileMenuItem(
+                icon: const Icon(Icons.person_outline_rounded, color: Color(0x99333333)),
                 label: 'Edit Profile',
+                onTap: () => context.push(AppRoutes.editProfile),
               ),
               const ProfileMenuItem(
                 icon: Icon(Icons.lock_outline_rounded, color: Color(0x99333333)),
