@@ -14,6 +14,7 @@ import 'package:heart_attack_ethiopia/features/about/presentation/pages/team_pag
 import 'package:heart_attack_ethiopia/features/chat/presentation/chat_page.dart';
 import '../../shared/widgets/shell/app_shell.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
+import '../../features/auth/presentation/pages/reset_password_page.dart';
 import '../../features/auth/presentation/pages/signup_page.dart';
 import '../../features/auth/presentation/pages/phone_input_page.dart';
 import '../../features/auth/presentation/pages/otp_verification_page.dart';
@@ -59,6 +60,10 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.signup,
             builder: (context, state) => const SignupPage(),
+          ),
+          GoRoute(
+            path: AppRoutes.resetPassword,
+            builder: (context, state) => const ResetPasswordPage(),
           ),
           GoRoute(
             path: AppRoutes.phoneInput,

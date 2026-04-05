@@ -212,7 +212,29 @@ class _LoginFormSectionState extends State<_LoginFormSection> {
             return null;
           },
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 8),
+        Align(
+          alignment: Alignment.centerRight,
+          child: TextButton(
+            onPressed: () => context.push(AppRoutes.resetPassword),
+            style: TextButton.styleFrom(
+              minimumSize: Size.zero,
+              padding: EdgeInsets.zero,
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
+            child: const Text(
+              'Forgot Password?',
+              style: TextStyle(
+                fontFamily: 'League Spartan',
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Color(0xFF420C11),
+                letterSpacing: -0.005,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 24),
         BlocSelector<LoginCubit, LoginState, bool>(
           selector: (state) => state.status == LoginSubmissionStatus.inProgress,
           builder: (context, isLoading) {
